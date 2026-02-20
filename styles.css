@@ -713,6 +713,10 @@ textarea {
   transform: none !important;
 }
 
+.hero-title {
+  font-size: 44px;
+}
+
 .hero-visual {
   order: 2;
   margin-top: 40px;
@@ -720,6 +724,7 @@ textarea {
 
   .hero-grid {
     grid-template-columns: 1fr;
+    gap: 0; /* row spacing handled by margin-top on hero-visual */
   }
 
   .hero-content {
@@ -738,7 +743,7 @@ textarea {
 /* ===== FIX ESPACIADO ENTRE SECCIONES ===== */
 
 .diagnostico {
-  padding: 120px 0 100px;
+  padding: 100px 0 80px;
 }
 
   /* ===== DASHBOARD ===== */
@@ -868,10 +873,12 @@ textarea {
   .diagnostico-title {
     font-size: 30px;
     letter-spacing: -0.3px;
+    max-width: 100%;
   }
 
   .diagnostico-subtext {
     font-size: 16px;
+    max-width: 100%;
   }
 
   .diagnostico-cards {
