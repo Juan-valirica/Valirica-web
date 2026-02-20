@@ -21,12 +21,14 @@ html {
   scroll-behavior: smooth;
 }
 
-section {
-  transform: translateZ(0);
+@media (min-width: 1025px) {
+  section {
+    transform: translateZ(0);
+  }
 }
 
 .mobile-modules {
-  touch-action: pan-x;
+  touch-action: pan-x pan-y;
 }
 /* =====================================================
    LAYOUT
@@ -701,15 +703,13 @@ textarea {
 /* ===== HERO FIX MOBILE ===== */
 
 .hero {
-  padding: 90px 0 50px; /* reducimos el bottom */
-  overflow-x: hidden;
+  padding: 90px 0 50px;
   transform: none !important;
 }
 
 .hero-visual {
   order: 2;
-  margin-top: 30px; /* menos separación */
-  overflow-x: hidden;
+  margin-top: 40px;
 }
 
   .hero-grid {
@@ -766,8 +766,10 @@ textarea {
     margin-top: 30px;
     padding-bottom: 40px;
     overflow-x: auto;
-    overflow-y: hidden;   /* 👈 CLAVE */
-    scroll-snap-type: x proximity; /* menos agresivo */
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .mobile-track {
@@ -897,31 +899,4 @@ textarea {
   background: #ff9700;
 }
 
-@media (max-width: 1024px) {
 
-  .hero {
-    perspective: none !important;
-    transform: none !important;
-  }
-
-  .hero * {
-    transform: none !important;
-  }
-
-}
-
-@media (max-width: 1024px) {
-
-  .hero {
-    display: block;
-  }
-
-  .hero-grid {
-    display: block;
-  }
-
-  .hero-visual {
-    margin-top: 40px;
-  }
-
-}
