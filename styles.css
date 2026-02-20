@@ -720,6 +720,8 @@ textarea {
 .hero-visual {
   order: 2;
   margin-top: 40px;
+  min-width: 0;    /* CRÍTICO: evita que el grid item crezca por el contenido del carrusel */
+  width: 100%;
 }
 
   .hero-grid {
@@ -781,6 +783,7 @@ textarea {
     scroll-snap-type: x proximity;
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
+    width: 100%;   /* necesario para que overflow-x:auto se active */
   }
 
   .mobile-track {
