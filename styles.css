@@ -623,25 +623,82 @@ textarea {
 }
 
 .diag-card {
-  padding: 28px;
-  border-radius: 18px;
-  border: 1px solid rgba(0,0,0,0.06);
-  transition: transform 300ms cubic-bezier(.4,0,.2,1),
-              border-color 300ms cubic-bezier(.4,0,.2,1),
-              box-shadow 300ms cubic-bezier(.4,0,.2,1);
+  padding: 24px 24px 24px 28px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.07);
   background: #ffffff;
+  position: relative;
+  overflow: hidden;
   will-change: transform;
+  transition: transform 300ms cubic-bezier(.4,0,.2,1),
+              border-color 280ms cubic-bezier(.4,0,.2,1),
+              box-shadow 300ms cubic-bezier(.4,0,.2,1);
+}
+
+/* Barra de acento izquierda — comunica "pain point" */
+.diag-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18%;
+  height: 64%;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(
+    to bottom,
+    #ff9700,
+    rgba(255, 151, 0, 0.25)
+  );
+  opacity: 0.55;
+  transition: opacity 280ms ease, height 280ms ease, top 280ms ease;
 }
 
 .diag-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(0,122,150,0.35);
-  box-shadow: 0 12px 36px rgba(0,122,150,0.08);
+  transform: translateY(-4px);
+  border-color: rgba(255,151,0,0.28);
+  box-shadow:
+    0 12px 32px rgba(255,151,0,0.08),
+    0 2px 8px rgba(0,0,0,0.04);
+}
+
+.diag-card:hover::before {
+  opacity: 1;
+  top: 10%;
+  height: 80%;
+}
+
+/* Icono contextual */
+.diag-card-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(255,151,0,0.07);
+  border: 1px solid rgba(255,151,0,0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: background 280ms ease, border-color 280ms ease;
+}
+
+.diag-card:hover .diag-card-icon {
+  background: rgba(255,151,0,0.12);
+  border-color: rgba(255,151,0,0.28);
+}
+
+.diag-card-icon svg {
+  width: 17px;
+  height: 17px;
+  color: #c97200;
+  stroke-width: 1.75;
 }
 
 .diag-card-title {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.15px;
+  color: #012133;
 }
 
 
@@ -968,8 +1025,12 @@ textarea {
   .culture-legend {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
-    margin-top: 30px;
+    gap: 8px;
+    margin-top: 28px;
+  }
+
+  .legend-item {
+    font-size: 12px;
   }
 
 }
@@ -1063,32 +1124,52 @@ textarea {
 ===================================================== */
 
 .culture-legend {
-  margin-top: 50px;
+  margin-top: 36px;
   display: flex;
-  justify-content: center;
-  gap: 30px;
-  font-size: 13px;
-  color: #4a5568;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .legend-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding: 7px 14px 7px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.legend-item--teal {
+  background: rgba(0,122,150,0.07);
+  border-color: rgba(0,122,150,0.20);
+  color: #005f77;
+}
+
+.legend-item--orange {
+  background: rgba(255,151,0,0.07);
+  border-color: rgba(255,151,0,0.28);
+  color: #a85f00;
 }
 
 .legend-dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .legend-green {
   background: #007a96;
+  box-shadow: 0 0 0 2px rgba(0,122,150,0.20);
 }
 
 .legend-orange {
   background: #ff9700;
+  box-shadow: 0 0 0 2px rgba(255,151,0,0.25);
 }
 
 
