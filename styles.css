@@ -25,6 +25,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden; /* evita scroll horizontal en iOS Safari */
 }
 
 @media (min-width: 1025px) {
@@ -711,6 +712,7 @@ textarea {
 .hero {
   padding: 90px 0 50px;
   transform: none !important;
+  overflow: hidden; /* contiene glows ::before/::after que se salen del viewport */
 }
 
 .hero-title {
