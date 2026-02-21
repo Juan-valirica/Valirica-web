@@ -701,4 +701,29 @@ function drawQuadrant() {
   observer.observe(section);
 })();
 
+/* =====================================================
+   DIFERENCIADOR + CASOS — staggered reveal
+===================================================== */
+
+(function initDiferenciador() {
+  const section = document.querySelector('.diferenciador');
+  if (!section) return;
+
+  const casosCards = section.querySelectorAll('.caso-card');
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      casosCards.forEach(function(card, i) {
+        setTimeout(function() {
+          card.classList.add('is-visible');
+        }, i * 110);
+      });
+      observer.disconnect();
+    });
+  }, { threshold: 0.08 });
+
+  observer.observe(section);
+})();
+
 });
