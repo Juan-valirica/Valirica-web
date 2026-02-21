@@ -635,4 +635,70 @@ function drawQuadrant() {
 
   animate();
 
+/* =====================================================
+   BENEFICIOS MEDIBLES — counter animation
+===================================================== */
+
+(function initBeneficios() {
+  const section = document.querySelector('.beneficios');
+  if (!section) return;
+
+  const cards  = section.querySelectorAll('.beneficio-card');
+  const values = section.querySelectorAll('.beneficio-value');
+
+  /* Format a number with locale thousand separators (es-ES uses dots) */
+  function formatNum(n, useSeparator) {
+    const rounded = Math.round(n);
+    if (!useSeparator) return rounded.toString();
+    return rounded.toLocaleString('es-ES');
+  }
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animateCounter(el) {
+    const target      = parseFloat(el.dataset.count) || 0;
+    const prefix      = el.dataset.prefix  || '';
+    const suffix      = el.dataset.suffix  || '';
+    const useSep      = !!el.dataset.separator;
+    const duration    = 1600;
+    const start       = performance.now();
+
+    function step(now) {
+      const t       = Math.min((now - start) / duration, 1);
+      const eased   = easeOutCubic(t);
+      el.textContent = prefix + formatNum(target * eased, useSep) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  let triggered = false;
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting || triggered) return;
+      triggered = true;
+
+      /* Stagger card reveal */
+      cards.forEach(function(card, i) {
+        setTimeout(function() {
+          card.classList.add('is-visible');
+        }, i * 90);
+      });
+
+      /* Start counters (slight extra delay so they begin while cards are fading in) */
+      values.forEach(function(el, i) {
+        setTimeout(function() { animateCounter(el); }, i * 90 + 120);
+      });
+
+      observer.disconnect();
+    });
+  }, { threshold: 0.12 });
+
+  observer.observe(section);
+})();
+
 });

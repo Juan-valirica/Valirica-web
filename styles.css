@@ -1981,3 +1981,302 @@ textarea {
   }
 
 }
+
+
+/* =====================================================
+   BENEFICIOS MEDIBLES
+===================================================== */
+
+.beneficios {
+  background: #012133;
+  padding: 120px 0 96px;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Header */
+
+.beneficios-header {
+  max-width: 680px;
+  margin: 0 auto 72px;
+  text-align: center;
+}
+
+.beneficios-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(255,151,0,0.12);
+  color: #ff9700;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 22px;
+}
+
+.beneficios-title {
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.beneficios-subtext {
+  font-size: 18px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Grid */
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+/* Cards base */
+
+.beneficio-card {
+  border-radius: 14px;
+  padding: 32px 28px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.beneficio-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Compliance cards: span 3 columns, left border orange */
+
+.beneficio-card--compliance {
+  grid-column: span 3;
+  border-left: 3px solid #ff9700;
+}
+
+/* Impact cards: span 2 columns, left border teal */
+
+.beneficio-card--impact {
+  grid-column: span 2;
+  border-left: 3px solid #007a96;
+}
+
+/* Icon */
+
+.beneficio-icon-wrap {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beneficio-card--compliance .beneficio-icon-wrap svg {
+  color: #ff9700;
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.6;
+}
+
+.beneficio-card--impact .beneficio-icon-wrap svg {
+  color: #007a96;
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.6;
+}
+
+/* Metric */
+
+.beneficio-metric {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+  line-height: 1;
+}
+
+.beneficio-hasta {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.45);
+}
+
+.beneficio-value {
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.beneficio-card--compliance .beneficio-value {
+  color: #ff9700;
+}
+
+.beneficio-card--impact .beneficio-value {
+  color: #00c4e0;
+}
+
+.beneficio-unit {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  margin-left: 2px;
+}
+
+/* Label */
+
+.beneficio-label {
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.65);
+  flex: 1;
+}
+
+.beneficio-label strong {
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+}
+
+/* Source */
+
+.beneficio-source {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.01em;
+  margin-top: auto;
+}
+
+/* CTA row */
+
+.beneficios-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-ghost-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  background: transparent;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-ghost-light:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.45);
+}
+
+/* =====================================================
+   BENEFICIOS — RESPONSIVE
+===================================================== */
+
+@media (max-width: 1024px) {
+
+  .beneficios-title {
+    font-size: 36px;
+  }
+
+  .beneficio-value {
+    font-size: 44px;
+  }
+
+  /* Compliance stays 3+3, impact wraps: 2+2+2 stays fine at this size */
+
+}
+
+@media (max-width: 768px) {
+
+  .beneficios {
+    padding: 80px 0 72px;
+  }
+
+  .beneficios-header {
+    margin-bottom: 48px;
+  }
+
+  .beneficios-title {
+    font-size: 32px;
+  }
+
+  .beneficio-value {
+    font-size: 40px;
+  }
+
+  /* All cards go full-width */
+
+  .beneficios-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .beneficio-card--compliance {
+    grid-column: span 2;
+  }
+
+  .beneficio-card--impact {
+    grid-column: span 1;
+  }
+
+  .beneficio-card {
+    padding: 24px 20px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .beneficios-title {
+    font-size: 28px;
+  }
+
+  .beneficios-subtext {
+    font-size: 16px;
+  }
+
+  .beneficios-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .beneficio-card--compliance,
+  .beneficio-card--impact {
+    grid-column: span 1;
+  }
+
+  .beneficio-value {
+    font-size: 36px;
+  }
+
+  .beneficios-cta {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .beneficios-cta .btn-primary,
+  .beneficios-cta .btn-ghost-light {
+    justify-content: center;
+  }
+
+}
