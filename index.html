@@ -269,125 +269,182 @@
 
 
 
-<!-- SECCIÓN MÓDULOS · CÓMO FUNCIONA -->
+<!-- SECCIÓN MÓDULOS · DIAGRAMA NEURONAL -->
 <section class="modulos section-fade" id="modulos">
   <div class="container">
 
     <!-- HEADER -->
     <div class="modulos-header">
-      <div class="modulos-badge">Módulos y funcionalidades</div>
-      <h2 class="modulos-title">Una plataforma. Toda la inteligencia de tu equipo.</h2>
+      <div class="modulos-badge">Cómo funciona</div>
+      <h2 class="modulos-title">Todos los datos de tu equipo.<br>Una sola inteligencia.</h2>
       <p class="modulos-subtext">
-        Valírica combina datos operativos y culturales para que tomes decisiones
-        estratégicas sobre personas — no sobre suposiciones.
+        Valírica convierte señales operativas y culturales en inteligencia
+        accionable para RRHH y dirección — en tiempo real.
       </p>
     </div>
 
-    <!-- CAPA 1: DATOS DE ENTRADA -->
-    <div class="modulos-layer-label">
-      <span class="layer-tag">Datos que alimentan el sistema</span>
-    </div>
+    <!-- DIAGRAMA NEURONAL -->
+    <div class="diagram-wrapper" id="diagramWrapper">
 
-    <div class="modulos-inputs">
+      <!-- SVG OVERLAY · LÍNEAS DE CONEXIÓN -->
+      <svg class="diagram-svg" id="diagramSvg" aria-hidden="true"></svg>
 
-      <div class="modulo-card modulo-card--input">
-        <div class="modulo-icon">
-          <i data-lucide="clock"></i>
+      <div class="diagram-grid">
+
+        <!-- COLUMNA IZQUIERDA · INPUTS -->
+        <div class="diagram-col diagram-col--inputs">
+          <span class="col-label col-label--orange">Datos de entrada</span>
+
+          <div class="diagram-node diagram-node--input" id="node-in-0">
+            <div class="node-icon"><i data-lucide="clock"></i></div>
+            <div class="node-body">
+              <strong>Registro de jornada</strong>
+              <span>Control horario y normativa laboral</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+          <div class="diagram-node diagram-node--input" id="node-in-1">
+            <div class="node-icon"><i data-lucide="message-circle"></i></div>
+            <div class="node-body">
+              <strong>Comunicación interna</strong>
+              <span>Canales formales con trazabilidad</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+          <div class="diagram-node diagram-node--input" id="node-in-2">
+            <div class="node-icon"><i data-lucide="target"></i></div>
+            <div class="node-body">
+              <strong>Metas y proyectos</strong>
+              <span>Objetivos individuales y estratégicos</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+          <div class="diagram-node diagram-node--input" id="node-in-3">
+            <div class="node-icon"><i data-lucide="scan-line"></i></div>
+            <div class="node-body">
+              <strong>Radiografía cultural</strong>
+              <span>Hofstede, Maslow, motivación intrínseca</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
         </div>
-        <h3 class="modulo-title">Registro de jornada</h3>
-        <p class="modulo-desc">
-          Control horario digital alineado con la normativa vigente.
-          Jornadas, pausas y horas extra registradas sin fricción.
-        </p>
-      </div>
 
-      <div class="modulo-card modulo-card--input">
-        <div class="modulo-icon">
-          <i data-lucide="message-circle"></i>
+        <!-- COLUMNA CENTRAL · CEREBRO -->
+        <div class="diagram-col diagram-col--center">
+
+          <div class="brain-container" id="brainContainer">
+            <div class="brain-ring brain-ring--3"></div>
+            <div class="brain-ring brain-ring--2"></div>
+            <div class="brain-ring brain-ring--1"></div>
+            <div class="brain-glow"></div>
+            <div class="brain-inner">
+
+              <!-- BRAIN SVG — icono neuronal profesional -->
+              <svg class="brain-svg" viewBox="0 0 100 86" fill="none"
+                   xmlns="http://www.w3.org/2000/svg"
+                   role="img" aria-label="Motor de inteligencia cultural Valírica">
+
+                <!-- Hemisferio izquierdo -->
+                <path d="M50 11C42 11 33 14 25 20 16 27 11 36 11 45 11 54 16 62 24 67 31 71 40 72 46 70 49 69 50 66 50 64Z"
+                      stroke="#007a96" stroke-width="1.5" fill="rgba(0,122,150,0.06)" stroke-linejoin="round"/>
+
+                <!-- Hemisferio derecho -->
+                <path d="M50 11C58 11 67 14 75 20 84 27 89 36 89 45 89 54 84 62 76 67 69 71 60 72 54 70 51 69 50 66 50 64Z"
+                      stroke="#007a96" stroke-width="1.5" fill="rgba(0,122,150,0.04)" stroke-linejoin="round"/>
+
+                <!-- Cuerpo calloso (línea central) -->
+                <line x1="50" y1="10" x2="50" y2="65" stroke="#007a96"
+                      stroke-width="0.75" stroke-dasharray="3.5 2.5" opacity="0.4"/>
+
+                <!-- Pliegues hemisferio izquierdo -->
+                <path d="M22 34Q18 43 21 52" stroke="#007a96" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.45"/>
+                <path d="M31 22Q25 33 27 44" stroke="#007a96" stroke-width="1.1" stroke-linecap="round" fill="none" opacity="0.3"/>
+                <path d="M16 54Q20 62 28 64" stroke="#007a96" stroke-width="1.1" stroke-linecap="round" fill="none" opacity="0.4"/>
+
+                <!-- Pliegues hemisferio derecho -->
+                <path d="M78 34Q82 43 79 52" stroke="#007a96" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.45"/>
+                <path d="M69 22Q75 33 73 44" stroke="#007a96" stroke-width="1.1" stroke-linecap="round" fill="none" opacity="0.3"/>
+                <path d="M84 54Q80 62 72 64" stroke="#007a96" stroke-width="1.1" stroke-linecap="round" fill="none" opacity="0.4"/>
+
+                <!-- Nodos neurales — lado izquierdo (teal = inputs) -->
+                <circle cx="31" cy="33" r="2.5" fill="#007a96"/>
+                <circle cx="23" cy="49" r="2"   fill="#007a96" opacity="0.8"/>
+                <circle cx="40" cy="53" r="2.5" fill="#007a96"/>
+                <circle cx="43" cy="26" r="2"   fill="#007a96" opacity="0.65"/>
+
+                <!-- Nodos neurales — lado derecho (naranja = outputs) -->
+                <circle cx="69" cy="33" r="2.5" fill="#ff9700"/>
+                <circle cx="77" cy="49" r="2"   fill="#ff9700" opacity="0.8"/>
+                <circle cx="60" cy="53" r="2.5" fill="#ff9700"/>
+                <circle cx="57" cy="26" r="2"   fill="#ff9700" opacity="0.65"/>
+
+                <!-- Conexiones internas al nodo central -->
+                <line x1="31" y1="33" x2="50" y2="40" stroke="#007a96" stroke-width="0.8" opacity="0.35"/>
+                <line x1="23" y1="49" x2="50" y2="40" stroke="#007a96" stroke-width="0.8" opacity="0.35"/>
+                <line x1="40" y1="53" x2="50" y2="40" stroke="#007a96" stroke-width="0.8" opacity="0.35"/>
+                <line x1="43" y1="26" x2="50" y2="40" stroke="#007a96" stroke-width="0.8" opacity="0.35"/>
+                <line x1="69" y1="33" x2="50" y2="40" stroke="#ff9700" stroke-width="0.8" opacity="0.35"/>
+                <line x1="77" y1="49" x2="50" y2="40" stroke="#ff9700" stroke-width="0.8" opacity="0.35"/>
+                <line x1="60" y1="53" x2="50" y2="40" stroke="#ff9700" stroke-width="0.8" opacity="0.35"/>
+                <line x1="57" y1="26" x2="50" y2="40" stroke="#ff9700" stroke-width="0.8" opacity="0.35"/>
+
+                <!-- Nodo central procesador -->
+                <circle cx="50" cy="40" r="10" stroke="#007a96" stroke-width="0.75"
+                        fill="rgba(0,122,150,0.09)" opacity="0.7"/>
+                <circle cx="50" cy="40" r="6" fill="#012133"/>
+                <circle cx="50" cy="40" r="3" fill="#007a96"/>
+
+                <!-- Tallo cerebral -->
+                <path d="M44 67C43 72 44 77 50 79 56 77 57 72 56 67Z"
+                      stroke="#007a96" stroke-width="1.2" fill="rgba(0,122,150,0.07)"/>
+
+              </svg>
+            </div>
+          </div>
+
+          <p class="brain-label">Motor de inteligencia<br>cultural</p>
+
         </div>
-        <h3 class="modulo-title">Comunicación interna</h3>
-        <p class="modulo-desc">
-          Canales formales con trazabilidad. Cumplimiento normativo en comunicación
-          laboral y registro oficial de interacciones del equipo.
-        </p>
-      </div>
 
-      <div class="modulo-card modulo-card--input">
-        <div class="modulo-icon">
-          <i data-lucide="target"></i>
+        <!-- COLUMNA DERECHA · OUTPUTS -->
+        <div class="diagram-col diagram-col--outputs">
+          <span class="col-label col-label--teal">Inteligencia generada</span>
+
+          <div class="diagram-node diagram-node--output" id="node-out-0">
+            <span class="node-dot node-dot--left" aria-hidden="true"></span>
+            <div class="node-icon node-icon--teal"><i data-lucide="lightbulb"></i></div>
+            <div class="node-body">
+              <strong>Sugerencias para RRHH</strong>
+              <span>Acciones proactivas de gestión de personas</span>
+            </div>
+          </div>
+
+          <div class="diagram-node diagram-node--output" id="node-out-1">
+            <span class="node-dot node-dot--left" aria-hidden="true"></span>
+            <div class="node-icon node-icon--teal"><i data-lucide="shield-alert"></i></div>
+            <div class="node-body">
+              <strong>Alertas de riesgo de talento</strong>
+              <span>Burnout y fuga de personas clave</span>
+            </div>
+          </div>
+
+          <div class="diagram-node diagram-node--output" id="node-out-2">
+            <span class="node-dot node-dot--left" aria-hidden="true"></span>
+            <div class="node-icon node-icon--teal"><i data-lucide="gift"></i></div>
+            <div class="node-body">
+              <strong>Fechas que construyen cultura</strong>
+              <span>Cumpleaños y aniversarios de empresa</span>
+            </div>
+          </div>
+
         </div>
-        <h3 class="modulo-title">Metas y proyectos</h3>
-        <p class="modulo-desc">
-          Seguimiento de objetivos personales y colectivos. Conecta el
-          desempeño individual con la estrategia empresarial en tiempo real.
-        </p>
-      </div>
 
-      <div class="modulo-card modulo-card--input">
-        <div class="modulo-icon">
-          <i data-lucide="scan-line"></i>
-        </div>
-        <h3 class="modulo-title">Radiografía cultural inicial</h3>
-        <p class="modulo-desc">
-          Dimensiones de Hofstede, Maslow, resolución de conflictos y motivación
-          intrínseca. La línea base de la cultura real de tu organización.
-        </p>
-      </div>
-
-    </div>
-
-    <!-- MOTOR CENTRAL -->
-    <div class="modulos-engine">
-      <div class="engine-line"></div>
-      <div class="engine-core">
-        <div class="engine-icon"><i data-lucide="cpu"></i></div>
-        <span>Valírica cruza jornadas, metas, comunicaciones y datos culturales
-          para generar inteligencia accionable sobre cada persona y equipo</span>
-      </div>
-      <div class="engine-line"></div>
-    </div>
-
-    <!-- CAPA 2: INTELIGENCIA GENERADA -->
-    <div class="modulos-layer-label">
-      <span class="layer-tag layer-tag--teal">Inteligencia generada para RRHH y dirección</span>
-    </div>
-
-    <div class="modulos-outputs">
-
-      <div class="modulo-card modulo-card--output">
-        <div class="modulo-icon modulo-icon--teal">
-          <i data-lucide="lightbulb"></i>
-        </div>
-        <h3 class="modulo-title">Sugerencias proactivas para RRHH</h3>
-        <p class="modulo-desc">
-          El sistema detecta patrones y genera recomendaciones accionables para
-          gestión de personas antes de que los problemas escalen.
-        </p>
-      </div>
-
-      <div class="modulo-card modulo-card--output">
-        <div class="modulo-icon modulo-icon--teal">
-          <i data-lucide="shield-alert"></i>
-        </div>
-        <h3 class="modulo-title">Alertas de riesgo de talento</h3>
-        <p class="modulo-desc">
-          Señales tempranas de burnout y riesgo de fuga de personas clave.
-          Actúa antes de que el talento decida marcharse.
-        </p>
-      </div>
-
-      <div class="modulo-card modulo-card--output">
-        <div class="modulo-icon modulo-icon--teal">
-          <i data-lucide="gift"></i>
-        </div>
-        <h3 class="modulo-title">Fechas que construyen cultura</h3>
-        <p class="modulo-desc">
-          Cumpleaños, aniversarios laborales y fechas especiales de la empresa.
-          Los detalles que hacen que las personas se sientan valoradas.
-        </p>
-      </div>
-
-    </div>
+      </div><!-- diagram-grid -->
+    </div><!-- diagram-wrapper -->
 
   </div>
 </section>

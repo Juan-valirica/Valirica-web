@@ -147,33 +147,218 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =====================================================
-   MÓDULOS · STAGGER CARD REVEAL
+   DIAGRAMA NEURONAL · REVEAL + CONEXIONES SVG
 ===================================================== */
 
-const moduloCards = document.querySelectorAll(".modulo-card");
+(function initDiagram() {
 
-if (moduloCards.length && !prefersReducedMotion) {
+  const wrapper   = document.getElementById("diagramWrapper");
+  const svgEl     = document.getElementById("diagramSvg");
+  const brainEl   = document.getElementById("brainContainer");
+  const nodes     = document.querySelectorAll(".diagram-node");
+  const modSection = document.querySelector(".modulos");
 
-  const cardObserver = new IntersectionObserver((entries, obs) => {
+  if (!wrapper || !svgEl || !brainEl || !modSection) return;
+
+  const NS = "http://www.w3.org/2000/svg";
+  const INPUT_IDS  = ["node-in-0",  "node-in-1",  "node-in-2",  "node-in-3"];
+  const OUTPUT_IDS = ["node-out-0", "node-out-1", "node-out-2"];
+
+  let connectionsDrawn = false;
+
+  /* ---- helpers ---- */
+
+  function relRect(el) {
+    const er = el.getBoundingClientRect();
+    const wr = wrapper.getBoundingClientRect();
+    return {
+      left:   er.left   - wr.left,
+      top:    er.top    - wr.top,
+      right:  er.right  - wr.left,
+      bottom: er.bottom - wr.top,
+      cx:     er.left   - wr.left + er.width  / 2,
+      cy:     er.top    - wr.top  + er.height / 2,
+      w: er.width,
+      h: er.height
+    };
+  }
+
+  function makePath(d, stroke, opacity, dashArray, animName, delay) {
+    const p = document.createElementNS(NS, "path");
+    p.setAttribute("d", d);
+    p.setAttribute("stroke", stroke);
+    p.setAttribute("stroke-opacity", opacity);
+    p.setAttribute("stroke-width", "1.5");
+    p.setAttribute("fill", "none");
+    p.setAttribute("stroke-linecap", "round");
+    if (dashArray) {
+      svgEl.appendChild(p);                       // must be in DOM for getTotalLength
+      const len = Math.round(p.getTotalLength()) || 250;
+      p.setAttribute("stroke-dasharray", dashArray);
+      p.setAttribute("stroke-dashoffset", "0");
+      p.style.animation = `${animName} ${1.9}s linear infinite`;
+      p.style.animationDelay = `${delay}s`;
+    }
+    return p;
+  }
+
+  /* ---- draw all bezier connections ---- */
+
+  function drawConnections() {
+    svgEl.innerHTML = "";
+
+    // Only draw on desktop (diagram-svg is hidden via CSS on mobile)
+    if (window.innerWidth <= 768) return;
+
+    const wr = wrapper.getBoundingClientRect();
+    svgEl.setAttribute("viewBox", `0 0 ${wr.width} ${wr.height}`);
+    svgEl.setAttribute("width",   wr.width);
+    svgEl.setAttribute("height",  wr.height);
+
+    const br = relRect(brainEl);
+
+    // attachment points on brain edges (inset 22px from extremes)
+    const brainLeft  = { x: br.left  + 22, y: br.cy };
+    const brainRight = { x: br.right - 22, y: br.cy };
+
+    /* INPUT → BRAIN (orange) */
+    INPUT_IDS.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const nr = relRect(el);
+      const from = { x: nr.right, y: nr.cy };
+      const to   = brainLeft;
+      const dx   = to.x - from.x;
+
+      const d = `M ${from.x} ${from.y} `
+              + `C ${from.x + dx * 0.55} ${from.y}, `
+              +   `${to.x   - dx * 0.35} ${to.y}, `
+              +   `${to.x} ${to.y}`;
+
+      // Static background
+      const bg = document.createElementNS(NS, "path");
+      bg.setAttribute("d", d);
+      bg.setAttribute("stroke", "#ff9700");
+      bg.setAttribute("stroke-opacity", "0.10");
+      bg.setAttribute("stroke-width", "1.5");
+      bg.setAttribute("fill", "none");
+      bg.setAttribute("stroke-linecap", "round");
+      svgEl.appendChild(bg);
+
+      // Animated flow dash
+      const flow = document.createElementNS(NS, "path");
+      flow.setAttribute("d", d);
+      flow.setAttribute("stroke", "#ff9700");
+      flow.setAttribute("stroke-opacity", "0.55");
+      flow.setAttribute("stroke-width", "1.5");
+      flow.setAttribute("fill", "none");
+      flow.setAttribute("stroke-linecap", "round");
+      svgEl.appendChild(flow);
+
+      const len = Math.round(flow.getTotalLength()) || 250;
+      flow.setAttribute("stroke-dasharray", `18 ${len - 18}`);
+      flow.setAttribute("stroke-dashoffset", "0");
+      flow.style.animation = `diagramFlowIn 2s linear infinite`;
+      flow.style.animationDelay = `${i * 0.38}s`;
+    });
+
+    /* BRAIN → OUTPUT (teal) */
+    OUTPUT_IDS.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const nr   = relRect(el);
+      const from = brainRight;
+      const to   = { x: nr.left, y: nr.cy };
+      const dx   = to.x - from.x;
+
+      const d = `M ${from.x} ${from.y} `
+              + `C ${from.x + dx * 0.35} ${from.y}, `
+              +   `${to.x   - dx * 0.55} ${to.y}, `
+              +   `${to.x} ${to.y}`;
+
+      const bg = document.createElementNS(NS, "path");
+      bg.setAttribute("d", d);
+      bg.setAttribute("stroke", "#007a96");
+      bg.setAttribute("stroke-opacity", "0.10");
+      bg.setAttribute("stroke-width", "1.5");
+      bg.setAttribute("fill", "none");
+      bg.setAttribute("stroke-linecap", "round");
+      svgEl.appendChild(bg);
+
+      const flow = document.createElementNS(NS, "path");
+      flow.setAttribute("d", d);
+      flow.setAttribute("stroke", "#007a96");
+      flow.setAttribute("stroke-opacity", "0.55");
+      flow.setAttribute("stroke-width", "1.5");
+      flow.setAttribute("fill", "none");
+      flow.setAttribute("stroke-linecap", "round");
+      svgEl.appendChild(flow);
+
+      const len = Math.round(flow.getTotalLength()) || 250;
+      flow.setAttribute("stroke-dasharray", `18 ${len - 18}`);
+      flow.setAttribute("stroke-dashoffset", "0");
+      flow.style.animation = `diagramFlowOut 2s linear infinite`;
+      flow.style.animationDelay = `${0.2 + i * 0.38}s`;
+    });
+
+    connectionsDrawn = true;
+  }
+
+  /* ---- reveal sequence (triggered once when section enters viewport) ---- */
+
+  function revealDiagram() {
+    if (prefersReducedMotion) {
+      nodes.forEach(n => n.classList.add("node-visible"));
+      brainEl.classList.add("brain-visible");
+      drawConnections();
+      return;
+    }
+
+    // Brain appears first
+    setTimeout(() => brainEl.classList.add("brain-visible"), 80);
+
+    // Input nodes: left column stagger
+    INPUT_IDS.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) setTimeout(() => el.classList.add("node-visible"), 200 + i * 100);
+    });
+
+    // Output nodes: right column stagger, offset
+    OUTPUT_IDS.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) setTimeout(() => el.classList.add("node-visible"), 280 + i * 110);
+    });
+
+    // Draw SVG connections after reveal is underway
+    setTimeout(drawConnections, 350);
+  }
+
+  /* ---- intersection observer ---- */
+
+  const sectionObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const card = entry.target;
-        const index = parseInt(card.dataset.index || "0");
-        setTimeout(() => card.classList.add("card-visible"), index * 90);
-        obs.unobserve(card);
+        revealDiagram();
+        obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.08 });
 
-  moduloCards.forEach((card, i) => {
-    card.dataset.index = i;
-    cardObserver.observe(card);
+  sectionObserver.observe(modSection);
+
+  /* ---- resize: redraw connections ---- */
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (connectionsDrawn) drawConnections();
+    }, 200);
   });
 
-} else {
-  // Sin animación — mostrar directamente
-  moduloCards.forEach(card => card.classList.add("card-visible"));
-}
+})();
 
 /* =====================================================
    CULTURE QUADRANT

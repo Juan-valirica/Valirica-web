@@ -947,33 +947,30 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  /* ===== MÓDULOS ===== */
+  /* ===== MÓDULOS / DIAGRAMA (tablet ≤1024px) ===== */
 
   .modulos {
     padding: 100px 0 80px;
   }
 
   .modulos-title {
-    font-size: 34px;
+    font-size: 36px;
     letter-spacing: -0.3px;
   }
 
-  .modulos-inputs {
-    grid-template-columns: 1fr 1fr;
+  .diagram-grid {
+    grid-template-columns: 1fr 180px 1fr;
+    gap: 0 32px;
   }
 
-  .modulos-outputs {
-    grid-template-columns: 1fr 1fr;
+  .brain-container {
+    width: 160px;
+    height: 160px;
   }
 
-  .modulos-engine {
-    gap: 16px;
-  }
-
-  .engine-core {
-    font-size: 13px;
-    padding: 16px 20px;
-  }
+  .brain-ring--1 { width: 104px; height: 104px; }
+  .brain-ring--2 { width: 132px; height: 132px; }
+  .brain-ring--3 { width: 160px; height: 160px; }
 
 }
 
@@ -1042,7 +1039,7 @@ textarea {
     padding: 20px;
   }
 
-  /* ===== MÓDULOS 768px ===== */
+  /* ===== MÓDULOS / DIAGRAMA (mobile ≤768px) ===== */
 
   .modulos {
     padding: 80px 0 70px;
@@ -1056,23 +1053,89 @@ textarea {
     font-size: 16px;
   }
 
-  .modulos-inputs,
-  .modulos-outputs {
-    grid-template-columns: 1fr;
-  }
-
-  .modulos-engine {
+  /* Diagrama: stack vertical en mobile */
+  .diagram-grid {
+    display: flex;
     flex-direction: column;
-    padding: 28px 0;
+    gap: 36px;
+    align-items: stretch;
   }
 
-  .engine-line {
+  /* Ocultar líneas SVG en mobile (no tienen sentido en layout vertical) */
+  .diagram-svg {
     display: none;
   }
 
-  .engine-core {
-    max-width: 100%;
-    width: 100%;
+  /* Ocultar connector dots en mobile */
+  .node-dot {
+    display: none;
+  }
+
+  /* Centrar label de columna */
+  .diagram-col--inputs,
+  .diagram-col--outputs {
+    align-items: flex-start;
+  }
+
+  /* Cerebro centrado */
+  .diagram-col--center {
+    align-items: center;
+    padding: 8px 0;
+  }
+
+  /* Inputs en mobile: 2 columnas (no 1, no 4) */
+  .diagram-col--inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* El col-label ocupa ambas columnas */
+  .diagram-col--inputs .col-label {
+    grid-column: 1 / -1;
+    margin-bottom: 4px;
+  }
+
+  /* Outputs en mobile: 1 columna limpia */
+  .diagram-col--outputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .diagram-col--outputs .col-label {
+    margin-bottom: 4px;
+  }
+
+  /* Cerebro más compacto en mobile */
+  .brain-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .brain-ring--1 { width: 96px;  height: 96px; }
+  .brain-ring--2 { width: 122px; height: 122px; }
+  .brain-ring--3 { width: 150px; height: 150px; }
+
+  /* Separador visual entre capas (en lugar de líneas) */
+  .diagram-col--center::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255,151,0,0.4), rgba(0,122,150,0.4));
+    border-radius: 2px;
+    margin: 0 auto 4px;
+  }
+
+  .diagram-col--center::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(0,122,150,0.4), rgba(255,151,0,0.4));
+    border-radius: 2px;
+    margin: 4px auto 0;
   }
 
   /* ===== CANVAS / QUADRANT ===== */
@@ -1144,18 +1207,23 @@ textarea {
     font-size: 15px;
   }
 
-  /* ===== MÓDULOS 480px ===== */
+  /* ===== MÓDULOS / DIAGRAMA (small phones ≤480px) ===== */
 
   .modulos-title {
     font-size: 26px;
   }
 
-  .modulo-card {
-    padding: 22px 20px 24px;
+  /* En teléfonos muy pequeños, 1 columna para los inputs */
+  .diagram-col--inputs {
+    grid-template-columns: 1fr;
   }
 
-  .modulo-title {
-    font-size: 15px;
+  .diagram-node {
+    padding: 12px 14px;
+  }
+
+  .node-body strong {
+    font-size: 13px;
   }
 
 }
@@ -1269,7 +1337,7 @@ textarea {
 }
 
 /* =====================================================
-   SECCIÓN MÓDULOS · CÓMO FUNCIONA
+   SECCIÓN MÓDULOS · DIAGRAMA NEURONAL
 ===================================================== */
 
 .modulos {
@@ -1279,7 +1347,6 @@ textarea {
   overflow: hidden;
 }
 
-/* Glow atmosférico superior derecho */
 .modulos::before {
   content: "";
   position: absolute;
@@ -1292,7 +1359,6 @@ textarea {
   pointer-events: none;
 }
 
-/* Glow atmosférico inferior izquierdo */
 .modulos::after {
   content: "";
   position: absolute;
@@ -1309,8 +1375,8 @@ textarea {
 
 .modulos-header {
   text-align: center;
-  max-width: 680px;
-  margin: 0 auto 64px;
+  max-width: 660px;
+  margin: 0 auto 80px;
 }
 
 .modulos-badge {
@@ -1339,248 +1405,318 @@ textarea {
   color: #4a5568;
 }
 
-/* ---- LAYER LABELS ---- */
+/* =====================================================
+   DIAGRAM WRAPPER & GRID
+===================================================== */
 
-.modulos-layer-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 28px;
+.diagram-wrapper {
+  position: relative;
+  width: 100%;
 }
 
-.layer-tag {
-  padding: 5px 16px;
+.diagram-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.diagram-grid {
+  display: grid;
+  grid-template-columns: 1fr 200px 1fr;
+  gap: 0 48px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- COLUMN LABELS ---- */
+
+.col-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding: 5px 12px;
   border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  display: inline-block;
+}
+
+.col-label--orange {
   background: rgba(255,151,0,0.08);
   border: 1px solid rgba(255,151,0,0.22);
   color: #9a5a00;
 }
 
-.layer-tag--teal {
+.col-label--teal {
   background: rgba(0,122,150,0.08);
-  border-color: rgba(0,122,150,0.22);
+  border: 1px solid rgba(0,122,150,0.22);
   color: #005f77;
 }
 
-/* ---- GRIDS ---- */
+/* ---- COLUMNS ---- */
 
-.modulos-inputs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+.diagram-col--inputs,
+.diagram-col--outputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.modulos-outputs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 0;
+.diagram-col--center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
 }
 
-/* ---- MODULE CARD BASE ---- */
+/* ---- DIAGRAM NODE ---- */
 
-.modulo-card {
-  padding: 28px 26px 30px;
-  border-radius: 18px;
+.diagram-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 16px;
+  border-radius: 14px;
   border: 1px solid rgba(0,0,0,0.07);
   background: #ffffff;
-  position: relative;
-  overflow: hidden;
-  will-change: transform;
-  transition: transform 280ms cubic-bezier(.4,0,.2,1),
+  width: 100%;
+  cursor: default;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 550ms cubic-bezier(.4,0,.2,1),
+              transform 550ms cubic-bezier(.4,0,.2,1),
               border-color 280ms cubic-bezier(.4,0,.2,1),
               box-shadow 280ms cubic-bezier(.4,0,.2,1);
 }
 
-/* Barra de acento izquierda — inputs (naranja) */
-.modulo-card--input::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 20%;
-  height: 60%;
-  width: 3px;
-  border-radius: 0 3px 3px 0;
-  background: linear-gradient(to bottom, #ff9700, rgba(255,151,0,0.18));
-  opacity: 0.5;
-  transition: opacity 280ms ease, height 280ms ease, top 280ms ease;
-}
-
-.modulo-card--input:hover::before {
+.diagram-node.node-visible {
   opacity: 1;
-  top: 10%;
-  height: 80%;
+  transform: translateY(0);
 }
 
-/* Barra de acento izquierda — outputs (teal) */
-.modulo-card--output::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 20%;
-  height: 60%;
-  width: 3px;
-  border-radius: 0 3px 3px 0;
-  background: linear-gradient(to bottom, #007a96, rgba(0,122,150,0.18));
-  opacity: 0.5;
-  transition: opacity 280ms ease, height 280ms ease, top 280ms ease;
+.diagram-node:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
 }
 
-.modulo-card--output:hover::before {
-  opacity: 1;
-  top: 10%;
-  height: 80%;
+.diagram-node--input:hover {
+  border-color: rgba(255,151,0,0.28);
 }
 
-.modulo-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 14px 36px rgba(0,0,0,0.07),
-    0 2px 8px rgba(0,0,0,0.04);
+.diagram-node--output:hover {
+  border-color: rgba(0,122,150,0.28);
 }
 
-.modulo-card--input:hover {
-  border-color: rgba(255,151,0,0.26);
-}
+/* ---- NODE ICON ---- */
 
-.modulo-card--output:hover {
-  border-color: rgba(0,122,150,0.26);
-}
-
-/* ---- MODULE ICON ---- */
-
-.modulo-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
+.node-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: rgba(255,151,0,0.07);
   border: 1px solid rgba(255,151,0,0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  flex-shrink: 0;
   transition: background 280ms ease, border-color 280ms ease;
 }
 
-.modulo-icon svg {
-  width: 20px;
-  height: 20px;
+.node-icon svg {
+  width: 16px;
+  height: 16px;
   color: #c97200;
   stroke-width: 1.75;
 }
 
-.modulo-icon--teal {
+.node-icon--teal {
   background: rgba(0,122,150,0.07);
   border-color: rgba(0,122,150,0.15);
 }
 
-.modulo-icon--teal svg {
+.node-icon--teal svg {
   color: #007a96;
 }
 
-.modulo-card--input:hover .modulo-icon {
+.diagram-node--input:hover .node-icon {
   background: rgba(255,151,0,0.12);
   border-color: rgba(255,151,0,0.28);
 }
 
-.modulo-card--output:hover .modulo-icon {
+.diagram-node--output:hover .node-icon {
   background: rgba(0,122,150,0.12);
   border-color: rgba(0,122,150,0.28);
 }
 
-/* ---- CARD TEXT ---- */
+/* ---- NODE BODY ---- */
 
-.modulo-title {
-  font-size: 16px;
+.node-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.node-body strong {
+  font-size: 13px;
   font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.15px;
   color: #012133;
-  margin-bottom: 10px;
+  line-height: 1.3;
 }
 
-.modulo-desc {
-  font-size: 14px;
-  line-height: 1.65;
+.node-body span {
+  font-size: 11.5px;
   color: #6b7280;
+  line-height: 1.4;
 }
 
-/* ---- ENGINE CONNECTOR ---- */
+/* ---- CONNECTOR DOTS ---- */
 
-.modulos-engine {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  padding: 36px 0;
-}
-
-.engine-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(0,122,150,0.35),
-    rgba(0,122,150,0.35),
-    transparent
-  );
-}
-
-.engine-core {
+.node-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  z-index: 3;
   flex-shrink: 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 18px 26px;
-  border-radius: 16px;
-  background: #012133;
-  color: rgba(255,255,255,0.88);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.55;
-  max-width: 460px;
-  box-shadow:
-    0 20px 50px rgba(1,33,51,0.20),
-    0 4px 12px rgba(1,33,51,0.12);
 }
 
-.engine-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  background: rgba(0,122,150,0.25);
-  border: 1px solid rgba(0,122,150,0.40);
+.node-dot--right {
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ff9700;
+  box-shadow: 0 0 0 3px rgba(255,151,0,0.18);
+}
+
+.node-dot--left {
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #007a96;
+  box-shadow: 0 0 0 3px rgba(0,122,150,0.18);
+}
+
+/* =====================================================
+   BRAIN — CEREBRO NEURONAL
+===================================================== */
+
+.brain-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.engine-icon svg {
-  width: 16px;
-  height: 16px;
-  color: #4dc9e0;
-  stroke-width: 2;
-}
-
-/* ---- CARD STAGGER REVEAL ---- */
-
-.modulo-card {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 600ms cubic-bezier(.4,0,.2,1),
-              transform 600ms cubic-bezier(.4,0,.2,1),
-              border-color 280ms cubic-bezier(.4,0,.2,1),
-              box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  transform: scale(0.88);
+  transition: opacity 700ms cubic-bezier(.4,0,.2,1),
+              transform 700ms cubic-bezier(.4,0,.2,1);
 }
 
-.modulo-card.card-visible {
+.brain-container.brain-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1);
+}
+
+/* Anillos pulsantes */
+
+.brain-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0,122,150,0.18);
+  animation: brainRingPulse 3.2s ease-in-out infinite;
+}
+
+.brain-ring--1 {
+  width: 116px;
+  height: 116px;
+  animation-delay: 0s;
+}
+
+.brain-ring--2 {
+  width: 148px;
+  height: 148px;
+  border-color: rgba(0,122,150,0.10);
+  animation-delay: 0.9s;
+}
+
+.brain-ring--3 {
+  width: 180px;
+  height: 180px;
+  border-color: rgba(0,122,150,0.06);
+  animation-delay: 1.8s;
+}
+
+@keyframes brainRingPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.05); opacity: 0.55; }
+}
+
+/* Glow interno */
+
+.brain-glow {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,122,150,0.16), transparent 70%);
+  filter: blur(18px);
+  animation: brainGlowPulse 3.2s ease-in-out infinite;
+}
+
+@keyframes brainGlowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.12); }
+}
+
+/* SVG holder */
+
+.brain-inner {
+  position: relative;
+  z-index: 2;
+  width: 100px;
+  height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brain-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Label debajo del cerebro */
+
+.brain-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #012133;
+  text-align: center;
+  line-height: 1.5;
+  opacity: 0.6;
+  letter-spacing: 0.01em;
+}
+
+/* =====================================================
+   DIAGRAM FLOW ANIMATION (SVG paths injected via JS)
+===================================================== */
+
+@keyframes diagramFlowIn {
+  to { stroke-dashoffset: -200; }
+}
+
+@keyframes diagramFlowOut {
+  to { stroke-dashoffset: -200; }
 }
 
 /* =====================================================
@@ -1642,10 +1778,16 @@ textarea {
     transform: none !important;
   }
 
-  /* Módulos visibles sin animación */
-  .modulo-card {
+  /* Diagrama neuronal visible sin animación */
+  .diagram-node,
+  .brain-container {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .brain-ring,
+  .brain-glow {
+    animation: none !important;
   }
 
 }
