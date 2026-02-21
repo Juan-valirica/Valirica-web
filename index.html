@@ -39,14 +39,14 @@
         <img src="assets/icons/logo-light.svg"
              alt="Valírica"
              class="nav-logo-img"
-             width="172"
-             height="44">
+             width="134"
+             height="34">
       </a>
 
       <!-- Nav links (desktop) -->
       <nav class="nav-links" aria-label="Navegación principal">
+          <a href="#modulos" class="nav-link">Plataforma</a>
         <a href="#diagnostico-cultural" class="nav-link">Diagnóstico</a>
-        <a href="#modulos" class="nav-link">Plataforma</a>
         <a href="#beneficios" class="nav-link">Impacto</a>
         <a href="#diferenciador" class="nav-link">Por qué Valírica</a>
         <a href="#seguridad" class="nav-link">Seguridad</a>
@@ -263,101 +263,7 @@
 
 
 
-<!-- SECCIÓN DIAGNÓSTICO -->
-<section class="diagnostico section-fade" id="diagnostico-cultural">
 
-  <div class="container diagnostico-grid">
-
-    <!-- LEFT -->
-    <div class="diagnostico-content">
-
-
-      <div class="diagnostico-badge">
-        Diagnóstico cultural estratégico
-      </div>
-
-      <h2 class="diagnostico-title">
-        ¿La cultura que quieres construir es coherente
-        con la configuración natural de tu equipo?
-      </h2>
-
-      <p class="diagnostico-subtext">
-        La cultura declarada y la cultura real rara vez coinciden por casualidad.
-        Este mapa representa la huella cultural actual de tu organización
-        y la distancia frente a la visión estratégica que deseas proyectar.
-      </p>
-
-      <div class="diagnostico-cards">
-
-        <div class="diag-card">
-          <div class="diag-card-icon"><i data-lucide="layers"></i></div>
-          <h3 class="diag-card-title">Clima laboral fragmentado</h3>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-card-icon"><i data-lucide="trending-down"></i></div>
-          <h3 class="diag-card-title">Liderazgo sin métricas humanas</h3>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-card-icon"><i data-lucide="alert-triangle"></i></div>
-          <h3 class="diag-card-title">Cumplimiento reactivo</h3>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-card-icon"><i data-lucide="compass"></i></div>
-          <h3 class="diag-card-title">Decisiones intuitivas en lugar de estratégicas</h3>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- RIGHT -->
-    <div class="diagnostico-visual">
-
-
-
-      <div class="quadrant-wrapper">
-
-        <!-- Tooltip Dinámico -->
-        <div class="culture-tooltip" id="cultureTooltip"></div>
-
-        <!-- Estado dinámico -->
-        <div class="alignment-chip" id="alignmentChip">
-          Analizando coherencia cultural...
-        </div>
-
-        <!-- Canvas -->
-        <div class="quadrant-canvas-container"
-             role="img"
-             aria-label="Mapa de cuadrantes de cultura organizacional con puntos animados que representan la configuración cultural real del equipo y la visión estratégica proyectada">
-          <canvas id="cultureQuadrant"></canvas>
-        </div>
-
-    
-
-        <!-- Leyenda -->
-        <div class="culture-legend">
-
-          <div class="legend-item legend-item--teal">
-            <span class="legend-dot legend-green"></span>
-            <span>Configuración cultural real del equipo</span>
-          </div>
-
-          <div class="legend-item legend-item--orange">
-            <span class="legend-dot legend-orange"></span>
-            <span>Cultura estratégica proyectada</span>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
 
 
 
@@ -482,6 +388,145 @@
 </section>
 
 
+<!-- =====================================================
+     INSIGHT RETO — CTA intermedio gamificado
+===================================================== -->
+<section class="insight-reto" id="insight-reto">
+  <div class="reto-inner">
+
+    <span class="reto-badge">Una pregunta rápida</span>
+
+    <div class="reto-question-area" id="retoQuestionArea" aria-live="polite">
+      <p class="reto-question is-active" data-q="0">
+        ¿Sabes quiénes son los <em>top performers</em> de tu equipo<br>y por qué lo son?
+      </p>
+      <p class="reto-question" data-q="1">
+        ¿Conoces a las personas más alineadas a<br>la cultura que quieres construir?
+      </p>
+      <p class="reto-question" data-q="2">
+        ¿Sabrías identificar quién está a punto<br>de desconectarse antes de que sea tarde?
+      </p>
+      <p class="reto-question" data-q="3">
+        ¿Tienes claro quién puede convertirse en<br>el próximo líder de tu organización?
+      </p>
+    </div>
+
+    <div class="reto-dots" id="retoDots" role="tablist" aria-label="Preguntas">
+      <button class="reto-dot is-active" data-dot="0" aria-label="Pregunta 1" role="tab"></button>
+      <button class="reto-dot" data-dot="1" aria-label="Pregunta 2" role="tab"></button>
+      <button class="reto-dot" data-dot="2" aria-label="Pregunta 3" role="tab"></button>
+      <button class="reto-dot" data-dot="3" aria-label="Pregunta 4" role="tab"></button>
+    </div>
+
+    <p class="reto-sub">
+      Si no tienes respuesta inmediata, no estás solo.<br>
+      La mayoría de founders y directores tampoco la tiene.
+    </p>
+
+    <button class="btn btn-reto" id="retoOpenModal">
+      Descubrir mis respuestas gratis
+      <i data-lucide="arrow-right" class="btn-icon"></i>
+    </button>
+
+  </div>
+</section>
+
+
+<!-- SECCIÓN DIAGNÓSTICO -->
+<section class="diagnostico section-fade" id="diagnostico-cultural">
+
+  <div class="container diagnostico-grid">
+
+    <!-- LEFT -->
+    <div class="diagnostico-content">
+
+
+      <div class="diagnostico-badge">
+        Diagnóstico cultural estratégico
+      </div>
+
+      <h2 class="diagnostico-title">
+        ¿La cultura que quieres construir es coherente
+        con la configuración natural de tu equipo?
+      </h2>
+
+      <p class="diagnostico-subtext">
+        La cultura declarada y la cultura real rara vez coinciden por casualidad.
+        Este mapa representa la huella cultural actual de tu organización
+        y la distancia frente a la visión estratégica que deseas proyectar.
+      </p>
+
+      <div class="diagnostico-cards">
+
+        <div class="diag-card">
+          <div class="diag-card-icon"><i data-lucide="layers"></i></div>
+          <h3 class="diag-card-title">Clima laboral fragmentado</h3>
+        </div>
+
+        <div class="diag-card">
+          <div class="diag-card-icon"><i data-lucide="trending-down"></i></div>
+          <h3 class="diag-card-title">Liderazgo sin métricas humanas</h3>
+        </div>
+
+        <div class="diag-card">
+          <div class="diag-card-icon"><i data-lucide="alert-triangle"></i></div>
+          <h3 class="diag-card-title">Cumplimiento reactivo</h3>
+        </div>
+
+        <div class="diag-card">
+          <div class="diag-card-icon"><i data-lucide="compass"></i></div>
+          <h3 class="diag-card-title">Decisiones intuitivas en lugar de estratégicas</h3>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="diagnostico-visual">
+
+
+
+      <div class="quadrant-wrapper">
+
+        <!-- Tooltip Dinámico -->
+        <div class="culture-tooltip" id="cultureTooltip"></div>
+
+        <!-- Estado dinámico -->
+        <div class="alignment-chip" id="alignmentChip">
+          Analizando coherencia cultural...
+        </div>
+
+        <!-- Canvas -->
+        <div class="quadrant-canvas-container"
+             role="img"
+             aria-label="Mapa de cuadrantes de cultura organizacional con puntos animados que representan la configuración cultural real del equipo y la visión estratégica proyectada">
+          <canvas id="cultureQuadrant"></canvas>
+        </div>
+
+    
+
+        <!-- Leyenda -->
+        <div class="culture-legend">
+
+          <div class="legend-item legend-item--teal">
+            <span class="legend-dot legend-green"></span>
+            <span>Configuración cultural real del equipo</span>
+          </div>
+
+          <div class="legend-item legend-item--orange">
+            <span class="legend-dot legend-orange"></span>
+            <span>Cultura estratégica proyectada</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 <!-- =====================================================
      BENEFICIOS MEDIBLES
@@ -564,6 +609,8 @@
 
   </div>
 </section>
+
+
 
 
 <!-- =====================================================
@@ -755,48 +802,7 @@
 </section>
 
 
-<!-- =====================================================
-     INSIGHT RETO — CTA intermedio gamificado
-===================================================== -->
-<section class="insight-reto" id="insight-reto">
-  <div class="reto-inner">
 
-    <span class="reto-badge">Una pregunta rápida</span>
-
-    <div class="reto-question-area" id="retoQuestionArea" aria-live="polite">
-      <p class="reto-question is-active" data-q="0">
-        ¿Sabes quiénes son los <em>top performers</em> de tu equipo<br>y por qué lo son?
-      </p>
-      <p class="reto-question" data-q="1">
-        ¿Conoces a las personas más alineadas a<br>la cultura que quieres construir?
-      </p>
-      <p class="reto-question" data-q="2">
-        ¿Sabrías identificar quién está a punto<br>de desconectarse antes de que sea tarde?
-      </p>
-      <p class="reto-question" data-q="3">
-        ¿Tienes claro quién puede convertirse en<br>el próximo líder de tu organización?
-      </p>
-    </div>
-
-    <div class="reto-dots" id="retoDots" role="tablist" aria-label="Preguntas">
-      <button class="reto-dot is-active" data-dot="0" aria-label="Pregunta 1" role="tab"></button>
-      <button class="reto-dot" data-dot="1" aria-label="Pregunta 2" role="tab"></button>
-      <button class="reto-dot" data-dot="2" aria-label="Pregunta 3" role="tab"></button>
-      <button class="reto-dot" data-dot="3" aria-label="Pregunta 4" role="tab"></button>
-    </div>
-
-    <p class="reto-sub">
-      Si no tienes respuesta inmediata, no estás solo.<br>
-      La mayoría de founders y directores tampoco la tiene.
-    </p>
-
-    <button class="btn btn-reto" id="retoOpenModal">
-      Descubrir mis respuestas gratis
-      <i data-lucide="arrow-right" class="btn-icon"></i>
-    </button>
-
-  </div>
-</section>
 
 <!-- =====================================================
      MODAL — Insight Valírica
@@ -1067,4 +1073,4 @@
   <script src="main.js" defer></script>
 
 </body>
-</html>
+</html> 
