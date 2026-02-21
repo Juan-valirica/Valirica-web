@@ -2,6 +2,10 @@
    RESET
 ===================================================== */
 
+:root {
+  color-scheme: light;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,11 +18,18 @@ img {
   display: block;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 body {
   font-family: "Gelica", serif;
   background: #ffffff;
   color: #012133;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
   overscroll-behavior-y: none;
 }
@@ -147,10 +158,17 @@ textarea {
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 240ms cubic-bezier(.4,0,.2,1);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  border: none;
+  transition: transform 240ms cubic-bezier(.4,0,.2,1),
+              box-shadow 240ms cubic-bezier(.4,0,.2,1),
+              background 240ms cubic-bezier(.4,0,.2,1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
 }
 
 .btn-primary {
@@ -160,8 +178,14 @@ textarea {
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 45px rgba(255,151,0,0.40);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 45px rgba(255,151,0,0.38);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+  box-shadow: 0 6px 20px rgba(255,151,0,0.28);
+  transition-duration: 60ms;
 }
 
 .btn-secondary {
@@ -172,6 +196,12 @@ textarea {
 
 .btn-secondary:hover {
   background: #f5f7f9;
+  border-color: #c4cfd8;
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+  transition-duration: 60ms;
 }
 
 /* =====================================================
@@ -550,7 +580,7 @@ textarea {
 .diagnostico-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 100px;
+  gap: 80px;
   align-items: center;
 }
 
@@ -596,14 +626,17 @@ textarea {
   padding: 28px;
   border-radius: 18px;
   border: 1px solid rgba(0,0,0,0.06);
-  transition: all 300ms cubic-bezier(.4,0,.2,1);
+  transition: transform 300ms cubic-bezier(.4,0,.2,1),
+              border-color 300ms cubic-bezier(.4,0,.2,1),
+              box-shadow 300ms cubic-bezier(.4,0,.2,1);
   background: #ffffff;
-  cursor: default;
+  will-change: transform;
 }
 
 .diag-card:hover {
-  transform: translateY(-6px);
-  border-color: #007a96;
+  transform: translateY(-5px);
+  border-color: rgba(0,122,150,0.35);
+  box-shadow: 0 12px 36px rgba(0,122,150,0.08);
 }
 
 .diag-card-title {
@@ -778,37 +811,67 @@ textarea {
 
   .mobile-modules {
     display: block;
-    margin-top: 30px;
-    padding-bottom: 40px;
+    margin-top: 28px;
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x proximity;
+    scroll-snap-type: x mandatory;
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
-    width: 100%;   /* necesario para que overflow-x:auto se active */
+    width: 100%;
+    /* Ocultar scrollbar: premium feel */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Fade lateral: indica que hay más contenido a la derecha */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 18px,
+      #000 calc(100% - 48px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 18px,
+      #000 calc(100% - 48px),
+      transparent 100%
+    );
+  }
+
+  .mobile-modules::-webkit-scrollbar {
+    display: none;
   }
 
   .mobile-track {
     display: flex;
-    gap: 18px;
-    padding: 10px 16px 20px;
+    gap: 14px;
+    padding: 12px 20px 24px;
   }
 
   .mobile-card {
     position: relative;
-    min-width: 260px;
-    scroll-snap-align: center;
+    min-width: 255px;
+    scroll-snap-align: start;
 
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(18px);
+    background: #ffffff;
     border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.07);
     padding: 16px 18px;
 
     display: flex;
     gap: 12px;
     align-items: center;
 
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    box-shadow:
+      0 4px 16px rgba(0,0,0,0.06),
+      0 1px 4px rgba(0,0,0,0.04);
+
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+
+  .mobile-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
 
   .mobile-card .card-desc {
@@ -1029,3 +1092,71 @@ textarea {
 }
 
 
+/* =====================================================
+   SECTION FADE · SCROLL REVEAL
+===================================================== */
+
+.section-fade {
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =====================================================
+   FOCUS VISIBLE · ACCESIBILIDAD DE TECLADO
+===================================================== */
+
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #007a96;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #007a96;
+  outline-offset: 4px;
+}
+
+/* =====================================================
+   PREFERS REDUCED MOTION · ACCESIBILIDAD DE MOVIMIENTO
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Elementos ocultos con reveal-init quedan visibles */
+  .reveal-init {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .list-init {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Sin crossfade en el dashboard */
+  .dashboard-img {
+    transition: none !important;
+  }
+
+  /* Sin hover transforms */
+  .btn:hover,
+  .btn-primary:hover,
+  .diag-card:hover,
+  .floating-card:hover {
+    transform: none !important;
+  }
+
+}

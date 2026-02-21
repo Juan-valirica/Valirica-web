@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/qrv8fyz.css">
 
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -53,7 +53,7 @@
             Iniciar prueba gratuita
           </a>
 
-          <button class="btn btn-secondary" id="openDemo">
+          <button class="btn btn-secondary" id="openDemo" type="button">
             Agendar demo
           </button>
         </div>
@@ -67,11 +67,13 @@
         <div class="dashboard-wrapper" data-depth="1">
           <img src="assets/images/dashboard-preview.png"
                class="dashboard-img img-1 active"
-               alt="Dashboard cultural Valírica">
+               alt="Dashboard cultural Valírica"
+               fetchpriority="high">
 
           <img src="assets/images/dashboard-preview2.png"
                class="dashboard-img img-2"
-               alt="Panel de inteligencia organizacional">
+               alt="Panel de inteligencia organizacional"
+               loading="lazy">
         </div>
 
         <!-- MOBILE MODULE CAROUSEL -->
@@ -231,16 +233,15 @@
         </div>
 
         <!-- Canvas -->
-        <div class="quadrant-canvas-container">
+        <div class="quadrant-canvas-container"
+             role="img"
+             aria-label="Mapa de cuadrantes de cultura organizacional con puntos animados que representan la configuración cultural real del equipo y la visión estratégica proyectada">
           <canvas id="cultureQuadrant"></canvas>
         </div>
 
     
 
-        <!-- Leyenda elegante -->
-        <div class="culture-legend">
-
-        </div>
+        <!-- Leyenda -->
         <div class="culture-legend">
 
           <div class="legend-item">

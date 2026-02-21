@@ -14,6 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const demoModal = document.getElementById("demoModal");
 
   /* =====================================================
+     MOTION PREFERENCE
+  ===================================================== */
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  /* =====================================================
      LUCIDE
   ===================================================== */
 
@@ -23,10 +31,33 @@ document.addEventListener("DOMContentLoaded", () => {
      HERO ENTRANCE
   ===================================================== */
 
-  heroElements.forEach((el, index) => {
-    el.classList.add("reveal-init");
-    setTimeout(() => el.classList.add("reveal-active"), 150 + index * 150);
-  });
+  if (!prefersReducedMotion) {
+    heroElements.forEach((el, index) => {
+      el.classList.add("reveal-init");
+      setTimeout(() => el.classList.add("reveal-active"), 150 + index * 150);
+    });
+  }
+
+  /* =====================================================
+     SECTION FADE · SCROLL REVEAL
+  ===================================================== */
+
+  const fadeSections = document.querySelectorAll(".section-fade");
+
+  if (fadeSections.length && !prefersReducedMotion) {
+    fadeSections.forEach(section => section.classList.add("reveal-init"));
+
+    const sectionObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("reveal-active");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    fadeSections.forEach(section => sectionObserver.observe(section));
+  }
 
   /* =====================================================
      DASHBOARD CROSSFADE
@@ -69,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
      HERO PARALLAX
   ===================================================== */
 
-  if (hero && window.innerWidth > 1024) {
+  if (hero && window.innerWidth > 1024 && !prefersReducedMotion) {
 
     let mouseX = 0, mouseY = 0;
     let currentX = 0, currentY = 0;
