@@ -308,8 +308,8 @@ function drawQuadrant() {
     centerX /= greenPoints.length;
     centerY /= greenPoints.length;
 
-    const cohesionStrength = 0.0025;
-    const maxRadius = 140;
+    const cohesionStrength = 0.004;
+    const maxRadius = 100;
     const returnStrength = 0.01;
 
     greenPoints.forEach((p, i) => {
