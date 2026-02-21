@@ -726,4 +726,100 @@ function drawQuadrant() {
   observer.observe(section);
 })();
 
+/* =====================================================
+   INSIGHT RETO — question carousel + modal
+===================================================== */
+
+(function initInsightReto() {
+
+  /* ── Elements ── */
+  const section   = document.querySelector('.insight-reto');
+  const overlay   = document.getElementById('insightModal');
+  const openBtn   = document.getElementById('retoOpenModal');
+  const closeBtn  = document.getElementById('insightModalClose');
+  const questions = document.querySelectorAll('.reto-question');
+  const dots      = document.querySelectorAll('.reto-dot');
+
+  if (!section || !overlay) return;
+
+  /* ── Question carousel ── */
+  let current  = 0;
+  let timer    = null;
+  const DELAY  = 4200;
+
+  function goTo(index) {
+    questions[current].classList.remove('is-active');
+    dots[current].classList.remove('is-active');
+    current = (index + questions.length) % questions.length;
+    questions[current].classList.add('is-active');
+    dots[current].classList.add('is-active');
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(function() { goTo(current + 1); }, DELAY);
+  }
+
+  /* Dot clicks */
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      goTo(parseInt(dot.dataset.dot, 10));
+      startTimer(); /* reset auto-advance */
+    });
+  });
+
+  startTimer();
+
+  /* ── Modal open/close ── */
+  function openModal() {
+    overlay.removeAttribute('hidden');
+    /* Force reflow so the transition fires */
+    overlay.getBoundingClientRect();
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    /* Wait for fade-out before hiding */
+    overlay.addEventListener('transitionend', function handler(e) {
+      if (e.target !== overlay) return;
+      overlay.setAttribute('hidden', '');
+      overlay.removeEventListener('transitionend', handler);
+      openBtn.focus();
+    });
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  /* Click outside card closes modal */
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+
+  /* Escape key */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+
+  /* ── Focus trap inside modal ── */
+  overlay.addEventListener('keydown', function(e) {
+    if (e.key !== 'Tab') return;
+    const focusable = Array.from(
+      overlay.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])')
+    ).filter(function(el) { return !el.hidden; });
+    const first = focusable[0];
+    const last  = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+})();
+
 });
