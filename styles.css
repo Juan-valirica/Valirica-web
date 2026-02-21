@@ -1820,3 +1820,164 @@ textarea {
   }
 
 }
+
+/* =====================================================
+   DIAGRAM · RESPONSIVE OVERRIDES
+   IMPORTANT: must be AFTER the base diagram styles
+   so they win the cascade (last rule with equal
+   specificity wins).
+===================================================== */
+
+@media (max-width: 1024px) {
+
+  .diagram-grid {
+    grid-template-columns: 1fr 180px 1fr;
+    gap: 0 32px;
+  }
+
+  .brain-container {
+    width: 160px;
+    height: 160px;
+  }
+
+  .brain-ring--1 { width: 104px; height: 104px; }
+  .brain-ring--2 { width: 132px; height: 132px; }
+  .brain-ring--3 { width: 160px; height: 160px; }
+
+  .brain-icon-lucide svg {
+    width: 62px;
+    height: 62px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  /* ---- DIAGRAM GRID: 3-col → single column stack ---- */
+
+  .diagram-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: stretch;
+  }
+
+  /* Hide SVG connection lines — not applicable vertically */
+  .diagram-svg {
+    display: none;
+  }
+
+  /* Hide connector dots */
+  .node-dot {
+    display: none;
+  }
+
+  /* ---- INPUTS: 2×2 grid ---- */
+
+  .diagram-col--inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .diagram-col--inputs .col-label {
+    grid-column: 1 / -1;
+    margin-bottom: 4px;
+  }
+
+  /* ---- BRAIN: centered between sections ---- */
+
+  .diagram-col--center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 4px 0;
+  }
+
+  /* Visual separators above/below brain */
+  .diagram-col--center::before {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255,151,0,0.45), rgba(0,122,150,0.45));
+    border-radius: 2px;
+    margin: 0 auto;
+  }
+
+  .diagram-col--center::after {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(0,122,150,0.45), rgba(255,151,0,0.45));
+    border-radius: 2px;
+    margin: 0 auto;
+  }
+
+  .brain-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .brain-ring--1 { width: 96px;  height: 96px; }
+  .brain-ring--2 { width: 122px; height: 122px; }
+  .brain-ring--3 { width: 150px; height: 150px; }
+
+  .brain-icon-lucide svg {
+    width: 56px;
+    height: 56px;
+  }
+
+  /* ---- OUTPUTS: 2 half-width + Sugerencias full-width ---- */
+
+  .diagram-col--outputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .diagram-col--outputs .col-label {
+    grid-column: 1 / -1;
+    margin-bottom: 4px;
+  }
+
+  /* Alertas (out-1) + Eventos (out-2) → mitad de pantalla */
+  #node-out-1 { order: 1; }
+  #node-out-2 { order: 2; }
+
+  /* Sugerencias RRHH (out-0) → full width, al fondo */
+  #node-out-0 {
+    order: 3;
+    grid-column: 1 / -1;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  /* Inputs: 1 columna en teléfonos muy pequeños */
+  .diagram-col--inputs {
+    grid-template-columns: 1fr;
+  }
+
+  /* Outputs: colapsar a 1 columna, quitar reordenamiento */
+  .diagram-col--outputs {
+    grid-template-columns: 1fr;
+  }
+
+  #node-out-0,
+  #node-out-1,
+  #node-out-2 {
+    order: unset;
+    grid-column: unset;
+  }
+
+  .diagram-node {
+    padding: 12px 14px;
+  }
+
+}
