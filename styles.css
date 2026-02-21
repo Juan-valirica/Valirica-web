@@ -972,6 +972,11 @@ textarea {
   .brain-ring--2 { width: 132px; height: 132px; }
   .brain-ring--3 { width: 160px; height: 160px; }
 
+  .brain-icon-lucide svg {
+    width: 62px;
+    height: 62px;
+  }
+
 }
 
 /* =====================================================
@@ -1096,15 +1101,26 @@ textarea {
     margin-bottom: 4px;
   }
 
-  /* Outputs en mobile: 1 columna limpia */
+  /* Outputs en mobile: 2 mitad + Sugerencias full-width abajo */
   .diagram-col--outputs {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
 
   .diagram-col--outputs .col-label {
+    grid-column: 1 / -1;
     margin-bottom: 4px;
+  }
+
+  /* Alertas (out-1) y Eventos (out-2) → mitad de pantalla */
+  #node-out-1 { order: 1; }
+  #node-out-2 { order: 2; }
+
+  /* Sugerencias RRHH (out-0) → full width al fondo */
+  #node-out-0 {
+    order: 3;
+    grid-column: 1 / -1;
   }
 
   /* Cerebro más compacto en mobile */
@@ -1116,6 +1132,11 @@ textarea {
   .brain-ring--1 { width: 96px;  height: 96px; }
   .brain-ring--2 { width: 122px; height: 122px; }
   .brain-ring--3 { width: 150px; height: 150px; }
+
+  .brain-icon-lucide svg {
+    width: 56px;
+    height: 56px;
+  }
 
   /* Separador visual entre capas (en lugar de líneas) */
   .diagram-col--center::before {
@@ -1678,21 +1699,29 @@ textarea {
   50%       { opacity: 1;   transform: scale(1.12); }
 }
 
-/* SVG holder */
+/* Icon holder */
 
 .brain-inner {
   position: relative;
   z-index: 2;
-  width: 100px;
-  height: 86px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.brain-svg {
-  width: 100%;
-  height: 100%;
+/* Lucide brain-circuit icon sizing */
+.brain-icon-lucide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.brain-icon-lucide svg {
+  width: 72px;
+  height: 72px;
+  color: #007a96;
+  stroke-width: 1.2;
 }
 
 /* Label debajo del cerebro */
