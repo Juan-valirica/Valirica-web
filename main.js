@@ -147,6 +147,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =====================================================
+   MÓDULOS · STAGGER CARD REVEAL
+===================================================== */
+
+const moduloCards = document.querySelectorAll(".modulo-card");
+
+if (moduloCards.length && !prefersReducedMotion) {
+
+  const cardObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const card = entry.target;
+        const index = parseInt(card.dataset.index || "0");
+        setTimeout(() => card.classList.add("card-visible"), index * 90);
+        obs.unobserve(card);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  moduloCards.forEach((card, i) => {
+    card.dataset.index = i;
+    cardObserver.observe(card);
+  });
+
+} else {
+  // Sin animación — mostrar directamente
+  moduloCards.forEach(card => card.classList.add("card-visible"));
+}
+
+/* =====================================================
    CULTURE QUADRANT
 ===================================================== */
 

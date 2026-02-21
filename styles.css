@@ -947,6 +947,34 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  /* ===== MÓDULOS ===== */
+
+  .modulos {
+    padding: 100px 0 80px;
+  }
+
+  .modulos-title {
+    font-size: 34px;
+    letter-spacing: -0.3px;
+  }
+
+  .modulos-inputs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .modulos-outputs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .modulos-engine {
+    gap: 16px;
+  }
+
+  .engine-core {
+    font-size: 13px;
+    padding: 16px 20px;
+  }
+
 }
 
 /* =====================================================
@@ -1012,6 +1040,39 @@ textarea {
 
   .diag-card {
     padding: 20px;
+  }
+
+  /* ===== MÓDULOS 768px ===== */
+
+  .modulos {
+    padding: 80px 0 70px;
+  }
+
+  .modulos-title {
+    font-size: 28px;
+  }
+
+  .modulos-subtext {
+    font-size: 16px;
+  }
+
+  .modulos-inputs,
+  .modulos-outputs {
+    grid-template-columns: 1fr;
+  }
+
+  .modulos-engine {
+    flex-direction: column;
+    padding: 28px 0;
+  }
+
+  .engine-line {
+    display: none;
+  }
+
+  .engine-core {
+    max-width: 100%;
+    width: 100%;
   }
 
   /* ===== CANVAS / QUADRANT ===== */
@@ -1080,6 +1141,20 @@ textarea {
   }
 
   .diag-card-title {
+    font-size: 15px;
+  }
+
+  /* ===== MÓDULOS 480px ===== */
+
+  .modulos-title {
+    font-size: 26px;
+  }
+
+  .modulo-card {
+    padding: 22px 20px 24px;
+  }
+
+  .modulo-title {
     font-size: 15px;
   }
 
@@ -1194,6 +1269,321 @@ textarea {
 }
 
 /* =====================================================
+   SECCIÓN MÓDULOS · CÓMO FUNCIONA
+===================================================== */
+
+.modulos {
+  position: relative;
+  padding: 140px 0 120px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Glow atmosférico superior derecho */
+.modulos::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(0,122,150,0.07), transparent 65%);
+  top: -200px;
+  right: -200px;
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+/* Glow atmosférico inferior izquierdo */
+.modulos::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,151,0,0.06), transparent 65%);
+  bottom: -150px;
+  left: -150px;
+  filter: blur(110px);
+  pointer-events: none;
+}
+
+/* ---- HEADER ---- */
+
+.modulos-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 64px;
+}
+
+.modulos-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0,122,150,0.08);
+  color: #007a96;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+.modulos-title {
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #012133;
+}
+
+.modulos-subtext {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.65;
+  color: #4a5568;
+}
+
+/* ---- LAYER LABELS ---- */
+
+.modulos-layer-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.layer-tag {
+  padding: 5px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(255,151,0,0.08);
+  border: 1px solid rgba(255,151,0,0.22);
+  color: #9a5a00;
+}
+
+.layer-tag--teal {
+  background: rgba(0,122,150,0.08);
+  border-color: rgba(0,122,150,0.22);
+  color: #005f77;
+}
+
+/* ---- GRIDS ---- */
+
+.modulos-inputs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.modulos-outputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 0;
+}
+
+/* ---- MODULE CARD BASE ---- */
+
+.modulo-card {
+  padding: 28px 26px 30px;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.07);
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+  transition: transform 280ms cubic-bezier(.4,0,.2,1),
+              border-color 280ms cubic-bezier(.4,0,.2,1),
+              box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+/* Barra de acento izquierda — inputs (naranja) */
+.modulo-card--input::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(to bottom, #ff9700, rgba(255,151,0,0.18));
+  opacity: 0.5;
+  transition: opacity 280ms ease, height 280ms ease, top 280ms ease;
+}
+
+.modulo-card--input:hover::before {
+  opacity: 1;
+  top: 10%;
+  height: 80%;
+}
+
+/* Barra de acento izquierda — outputs (teal) */
+.modulo-card--output::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(to bottom, #007a96, rgba(0,122,150,0.18));
+  opacity: 0.5;
+  transition: opacity 280ms ease, height 280ms ease, top 280ms ease;
+}
+
+.modulo-card--output:hover::before {
+  opacity: 1;
+  top: 10%;
+  height: 80%;
+}
+
+.modulo-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 14px 36px rgba(0,0,0,0.07),
+    0 2px 8px rgba(0,0,0,0.04);
+}
+
+.modulo-card--input:hover {
+  border-color: rgba(255,151,0,0.26);
+}
+
+.modulo-card--output:hover {
+  border-color: rgba(0,122,150,0.26);
+}
+
+/* ---- MODULE ICON ---- */
+
+.modulo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(255,151,0,0.07);
+  border: 1px solid rgba(255,151,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: background 280ms ease, border-color 280ms ease;
+}
+
+.modulo-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #c97200;
+  stroke-width: 1.75;
+}
+
+.modulo-icon--teal {
+  background: rgba(0,122,150,0.07);
+  border-color: rgba(0,122,150,0.15);
+}
+
+.modulo-icon--teal svg {
+  color: #007a96;
+}
+
+.modulo-card--input:hover .modulo-icon {
+  background: rgba(255,151,0,0.12);
+  border-color: rgba(255,151,0,0.28);
+}
+
+.modulo-card--output:hover .modulo-icon {
+  background: rgba(0,122,150,0.12);
+  border-color: rgba(0,122,150,0.28);
+}
+
+/* ---- CARD TEXT ---- */
+
+.modulo-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.15px;
+  color: #012133;
+  margin-bottom: 10px;
+}
+
+.modulo-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #6b7280;
+}
+
+/* ---- ENGINE CONNECTOR ---- */
+
+.modulos-engine {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 36px 0;
+}
+
+.engine-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0,122,150,0.35),
+    rgba(0,122,150,0.35),
+    transparent
+  );
+}
+
+.engine-core {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 26px;
+  border-radius: 16px;
+  background: #012133;
+  color: rgba(255,255,255,0.88);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+  max-width: 460px;
+  box-shadow:
+    0 20px 50px rgba(1,33,51,0.20),
+    0 4px 12px rgba(1,33,51,0.12);
+}
+
+.engine-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(0,122,150,0.25);
+  border: 1px solid rgba(0,122,150,0.40);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.engine-icon svg {
+  width: 16px;
+  height: 16px;
+  color: #4dc9e0;
+  stroke-width: 2;
+}
+
+/* ---- CARD STAGGER REVEAL ---- */
+
+.modulo-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms cubic-bezier(.4,0,.2,1),
+              transform 600ms cubic-bezier(.4,0,.2,1),
+              border-color 280ms cubic-bezier(.4,0,.2,1),
+              box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+.modulo-card.card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================================================
    FOCUS VISIBLE · ACCESIBILIDAD DE TECLADO
 ===================================================== */
 
@@ -1247,7 +1637,14 @@ textarea {
   .btn:hover,
   .btn-primary:hover,
   .diag-card:hover,
-  .floating-card:hover {
+  .floating-card:hover,
+  .modulo-card:hover {
+    transform: none !important;
+  }
+
+  /* Módulos visibles sin animación */
+  .modulo-card {
+    opacity: 1 !important;
     transform: none !important;
   }
 
