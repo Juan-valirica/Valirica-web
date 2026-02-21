@@ -1,3 +1,127 @@
+/* =====================================================
+   NAVBAR — scroll state + mobile menu + active links
+===================================================== */
+
+(function initNavbar() {
+
+  const navbar     = document.getElementById("mainNav");
+  const burger     = document.getElementById("navBurger");
+  const mobileMenu = document.getElementById("navMobileMenu");
+  const navLinks   = document.querySelectorAll(".nav-link");
+  const mobileLinks = document.querySelectorAll(".nav-mobile-link");
+
+  if (!navbar) return;
+
+  /* ── Scroll: add/remove is-scrolled ── */
+
+  function onScroll() {
+    if (window.scrollY > 60) {
+      navbar.classList.add("is-scrolled");
+    } else {
+      navbar.classList.remove("is-scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll(); // run once on load
+
+  /* ── Active link highlight on scroll ── */
+
+  const sections = document.querySelectorAll(
+    "#diagnostico-cultural, #modulos, #beneficios, #diferenciador, #seguridad"
+  );
+
+  const linkMap = {};
+  navLinks.forEach(link => {
+    const target = link.getAttribute("href").replace("#", "");
+    linkMap[target] = link;
+  });
+
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      if (linkMap[id]) {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove("is-active"));
+          linkMap[id].classList.add("is-active");
+        }
+      }
+    });
+  }, { rootMargin: "-30% 0px -60% 0px" });
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+  /* ── Hamburger toggle ── */
+
+  function openMenu() {
+    mobileMenu.classList.add("is-open");
+    mobileMenu.setAttribute("aria-hidden", "false");
+    burger.setAttribute("aria-expanded", "true");
+    burger.setAttribute("aria-label", "Cerrar menú");
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.remove("is-open");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", "Abrir menú");
+  }
+
+  if (burger && mobileMenu) {
+    burger.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.contains("is-open");
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    /* Close on mobile link click */
+    mobileLinks.forEach(link => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    /* Close on outside click */
+    document.addEventListener("click", e => {
+      if (
+        mobileMenu.classList.contains("is-open") &&
+        !navbar.contains(e.target)
+      ) {
+        closeMenu();
+      }
+    });
+
+    /* Close on Escape */
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && mobileMenu.classList.contains("is-open")) {
+        closeMenu();
+        burger.focus();
+      }
+    });
+  }
+
+  /* ── Smooth scroll with navbar offset ── */
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", e => {
+      const targetId = anchor.getAttribute("href").slice(1);
+      if (!targetId) return;
+
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      e.preventDefault();
+
+      const navbarHeight = navbar.getBoundingClientRect().height + 14 + 10;
+      const y = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+
+      /* Close mobile menu if open */
+      if (mobileMenu.classList.contains("is-open")) closeMenu();
+    });
+  });
+
+})();
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================

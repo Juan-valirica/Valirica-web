@@ -27,6 +27,98 @@
 
 <body>
 
+<!-- =====================================================
+     NAVBAR — glassmorphism flotante
+===================================================== -->
+<header class="navbar" id="mainNav" role="banner">
+  <div class="container">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="/" class="nav-logo" aria-label="Valírica — inicio">
+        <img src="assets/icons/logo-light.svg"
+             alt="Valírica"
+             class="nav-logo-img"
+             width="134"
+             height="34">
+      </a>
+
+      <!-- Nav links (desktop) -->
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#diagnostico-cultural" class="nav-link">Diagnóstico</a>
+        <a href="#modulos" class="nav-link">Plataforma</a>
+        <a href="#beneficios" class="nav-link">Impacto</a>
+        <a href="#diferenciador" class="nav-link">Por qué Valírica</a>
+        <a href="#seguridad" class="nav-link">Seguridad</a>
+      </nav>
+
+      <!-- Actions (desktop) -->
+      <div class="nav-actions">
+        <a href="https://app.valirica.com"
+           class="nav-login"
+           target="_blank"
+           rel="noopener noreferrer">
+          Acceder
+        </a>
+        <a href="https://app.valirica.com/registro.php"
+           class="nav-cta"
+           target="_blank"
+           rel="noopener noreferrer">
+          Prueba gratuita
+          <svg class="nav-cta-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-burger"
+              id="navBurger"
+              aria-label="Abrir menú"
+              aria-expanded="false"
+              aria-controls="navMobileMenu"
+              type="button">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+
+    </div><!-- /nav-inner -->
+  </div><!-- /container -->
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <div class="container">
+      <nav class="nav-mobile-links" aria-label="Menú móvil">
+        <a href="#diagnostico-cultural" class="nav-mobile-link">Diagnóstico cultural</a>
+        <a href="#modulos" class="nav-mobile-link">Plataforma</a>
+        <a href="#beneficios" class="nav-mobile-link">Impacto real</a>
+        <a href="#diferenciador" class="nav-mobile-link">Por qué Valírica</a>
+        <a href="#seguridad" class="nav-mobile-link">Seguridad y datos</a>
+      </nav>
+      <div class="nav-mobile-actions">
+        <a href="https://app.valirica.com"
+           class="nav-mobile-login"
+           target="_blank"
+           rel="noopener noreferrer">
+          Iniciar sesión
+        </a>
+        <a href="https://app.valirica.com/registro.php"
+           class="nav-cta nav-mobile-cta"
+           target="_blank"
+           rel="noopener noreferrer">
+          Prueba gratuita
+          <svg class="nav-cta-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div><!-- /nav-mobile-menu -->
+
+</header>
+
+
   <!-- HERO -->
   <section class="hero">
     <div class="container hero-grid">
@@ -865,7 +957,11 @@
       <!-- Brand -->
       <div class="footer-brand">
         <a href="/" class="footer-logo" aria-label="Valírica — inicio">
-          <span class="footer-logo-text">Valírica</span>
+          <img src="assets/icons/logo-dark.svg"
+               alt="Valírica"
+               class="footer-logo-img"
+               width="134"
+               height="34">
         </a>
         <p class="footer-tagline">Inteligencia cultural organizacional para PYMES que lideran con datos, no con intuición.</p>
         <div class="footer-social" aria-label="Redes sociales">
