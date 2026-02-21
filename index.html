@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Valírica | Inteligencia cultural organizacional</title>
+  <title>Software de Cultura Organizacional y Clima Laboral para PYMES | Valírica</title>
   <meta name="description"
-    content="Inteligencia cultural organizacional para medir clima laboral, desempeño y cumplir normativa con registro de jornada y canales formales de comunicación.">
+content="Software para medir y mejorar clima laboral y cultura organizacional en PYMES. Reduce rotación, mejora desempeño y cumple normativa laboral en una sola plataforma.">
 
-  <meta property="og:title" content="Valírica | Inteligencia Cultural Organizacional">
-  <meta property="og:description"
-    content="Gobierno organizacional basado en inteligencia cultural aplicada a PYMES.">
+  <meta property="og:title" content="Software de Cultura Organizacional para PYMES | Valírica">
+    <meta property="og:description"
+    content="Mide clima laboral, reduce rotación y mejora desempeño con inteligencia cultural aplicada a empresas en crecimiento.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.valirica.com">
   <meta property="og:image" content="https://www.valirica.com/assets/images/og-image.jpg">
@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="https://use.typekit.net/qrv8fyz.css">
 
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
 
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -35,17 +35,16 @@
       <div class="hero-content">
 
         <div class="hero-badge">
-          Inteligencia cultural organizacional
+          Software de cultura organizacional para PYMES
         </div>
 
         <h1 class="hero-title">
-          Inteligencia cultural aplicada al desempeño empresarial.
+          Software para medir y mejorar la cultura organizacional y el clima laboral en PYMES.
         </h1>
 
         <p class="hero-subtext">
-          Mide clima laboral, cultura organizacional y variables humanas en tiempo real.
-          Transforma datos culturales en decisiones estratégicas y asegura el cumplimiento
-          normativo mediante registro de jornada y canales formales de comunicación interna.
+          Centraliza clima laboral, desempeño y gestión de personas en una sola plataforma.
+          Reduce rotación de talento, mejora la alineación del equipo y cumple con la normativa laboral mediante registro de jornada y canales formales de comunicación interna.
         </p>
 
         <div class="hero-cta">
@@ -53,7 +52,7 @@
             Iniciar prueba gratuita
           </a>
 
-          <button class="btn btn-secondary" id="openDemo">
+          <button class="btn btn-secondary" id="openDemo" type="button">
             Agendar demo
           </button>
         </div>
@@ -67,11 +66,13 @@
         <div class="dashboard-wrapper" data-depth="1">
           <img src="assets/images/dashboard-preview.png"
                class="dashboard-img img-1 active"
-               alt="Dashboard cultural Valírica">
+               alt="Dashboard cultural Valírica"
+               fetchpriority="high">
 
           <img src="assets/images/dashboard-preview2.png"
                class="dashboard-img img-2"
-               alt="Panel de inteligencia organizacional">
+               alt="Panel de inteligencia organizacional"
+               loading="lazy">
         </div>
 
         <!-- MOBILE MODULE CAROUSEL -->
@@ -167,7 +168,125 @@
     </div> <!-- container -->
   </section>
 
+<!-- SECCIÓN MÓDULOS · DIAGRAMA NEURONAL -->
+<section class="modulos section-fade" id="modulos">
+  <div class="container">
 
+    <!-- HEADER -->
+    <div class="modulos-header">
+      <div class="modulos-badge">Cómo funciona el software de cultura organizacional</div>
+      <h2 class="modulos-title">Todos los datos de clima laboral, desempeño y cultura organizacional.<br>Una sola plataforma.</h2>
+      <p class="modulos-subtext">
+          Valírica integra registro de jornada, comunicación interna, metas y diagnóstico cultural
+          para convertir datos dispersos en decisiones estratégicas para dirección y RRHH.
+        </p>
+    </div>
+
+    <!-- DIAGRAMA NEURONAL -->
+    <div class="diagram-wrapper" id="diagramWrapper">
+
+      <!-- SVG OVERLAY · LÍNEAS DE CONEXIÓN -->
+      <svg class="diagram-svg" id="diagramSvg" aria-hidden="true"></svg>
+
+      <div class="diagram-grid">
+
+        <!-- COLUMNA IZQUIERDA · INPUTS -->
+        <div class="diagram-col diagram-col--inputs">
+          <span class="col-label col-label--orange">Datos de entrada</span>
+
+          <div class="diagram-node diagram-node--input" id="node-in-0">
+            <div class="node-icon"><i data-lucide="clock"></i></div>
+            <div class="node-body">
+              <strong>Registro de jornada laboral</strong>
+                <span>Control horario digital adaptado a normativa española y latinoamericana</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+          <div class="diagram-node diagram-node--input" id="node-in-1">
+            <div class="node-icon"><i data-lucide="message-circle"></i></div>
+            <div class="node-body">
+              <strong>Comunicación interna empresarial</strong>
+                <span>Canales formales con trazabilidad y gestión de incidencias</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+          <div class="diagram-node diagram-node--input" id="node-in-2">
+            <div class="node-icon"><i data-lucide="target"></i></div>
+            <div class="node-body">
+              <strong>Gestión de objetivos y desempeño</strong>
+                <span>Seguimiento de metas individuales y estratégicas</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+          <div class="diagram-node diagram-node--input" id="node-in-3">
+            <div class="node-icon"><i data-lucide="scan-line"></i></div>
+            <div class="node-body">
+              <strong>Diagnóstico de cultura organizacional</strong>
+                <span>Medición estructurada basada en Hofstede y motivación</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+        </div>
+
+        <!-- COLUMNA CENTRAL · CEREBRO -->
+        <div class="diagram-col diagram-col--center">
+
+          <div class="brain-container" id="brainContainer">
+            <div class="brain-ring brain-ring--3"></div>
+            <div class="brain-ring brain-ring--2"></div>
+            <div class="brain-ring brain-ring--1"></div>
+            <div class="brain-glow"></div>
+            <div class="brain-inner">
+              <i data-lucide="brain-circuit" class="brain-icon-lucide" aria-label="Motor de inteligencia cultural Valírica"></i>
+            </div>
+          </div>
+
+          <p class="brain-label">Motor de inteligencia<br>cultural</p>
+
+        </div>
+
+        <!-- COLUMNA DERECHA · OUTPUTS -->
+        <div class="diagram-col diagram-col--outputs">
+          <span class="col-label col-label--teal">Inteligencia generada</span>
+
+          <div class="diagram-node diagram-node--output" id="node-out-0">
+            <span class="node-dot node-dot--left" aria-hidden="true"></span>
+            <div class="node-icon node-icon--teal"><i data-lucide="lightbulb"></i></div>
+            <div class="node-body">
+              <strong>Acciones estratégicas para RRHH</strong>
+                <span>Recomendaciones basadas en datos culturales y clima laboral</span>
+            </div>
+          </div>
+
+          <div class="diagram-node diagram-node--output" id="node-out-1">
+            <span class="node-dot node-dot--left" aria-hidden="true"></span>
+            <div class="node-icon node-icon--teal"><i data-lucide="shield-alert"></i></div>
+            <div class="node-body">
+              <strong>Alertas de rotación y riesgo de talento</strong>
+                <span>Detección temprana de burnout y desalineación</span>
+            </div>
+          </div>
+
+          <div class="diagram-node diagram-node--output" id="node-out-2">
+            <span class="node-dot node-dot--left" aria-hidden="true"></span>
+            <div class="node-icon node-icon--teal"><i data-lucide="trophy"></i></div>
+            <div class="node-body">
+              <strong>Eventos memorables</strong>
+              <span>Milestones, logros del equipo y fechas especiales</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- diagram-grid -->
+    </div><!-- diagram-wrapper -->
+
+  </div>
+</section>
 
 <!-- SECCIÓN DIAGNÓSTICO -->
 <section class="diagnostico section-fade" id="diagnostico-cultural">
@@ -179,36 +298,38 @@
 
 
       <div class="diagnostico-badge">
-        Diagnóstico cultural estratégico
-      </div>
+          Diagnóstico de cultura organizacional en tiempo real
+        </div>
 
       <h2 class="diagnostico-title">
-        ¿La cultura que quieres construir es coherente
-        con la configuración natural de tu equipo?
-      </h2>
+          Mide la distancia entre la cultura real de tu empresa y la cultura que quieres construir.
+        </h2>
 
       <p class="diagnostico-subtext">
-        La cultura declarada y la cultura real rara vez coinciden por casualidad.
-        Este mapa representa la huella cultural actual de tu organización
-        y la distancia frente a la visión estratégica que deseas proyectar.
-      </p>
+          La mayoría de PYMES no tiene métricas claras sobre clima laboral y cultura organizacional.
+          Este mapa cultural muestra la configuración real del equipo y su alineación con la estrategia empresarial.
+        </p>
 
       <div class="diagnostico-cards">
 
         <div class="diag-card">
-          <h3 class="diag-card-title">Clima laboral fragmentado</h3>
+          <div class="diag-card-icon"><i data-lucide="layers"></i></div>
+          <h3 class="diag-card-title">Clima laboral sin medición estructurada</h3>
         </div>
 
         <div class="diag-card">
-          <h3 class="diag-card-title">Liderazgo sin métricas humanas</h3>
+          <div class="diag-card-icon"><i data-lucide="trending-down"></i></div>
+          <h3 class="diag-card-title">Alta rotación de talento</h3>
         </div>
 
         <div class="diag-card">
-          <h3 class="diag-card-title">Cumplimiento reactivo</h3>
+          <div class="diag-card-icon"><i data-lucide="alert-triangle"></i></div>
+          <h3 class="diag-card-title">Cumplimiento laboral reactivo</h3>
         </div>
 
         <div class="diag-card">
-          <h3 class="diag-card-title">Decisiones intuitivas en lugar de estratégicas</h3>
+          <div class="diag-card-icon"><i data-lucide="compass"></i></div>
+          <h3 class="diag-card-title">Decisiones sobre personas sin datos</h3>
         </div>
 
       </div>
@@ -231,24 +352,23 @@
         </div>
 
         <!-- Canvas -->
-        <div class="quadrant-canvas-container">
+        <div class="quadrant-canvas-container"
+             role="img"
+             aria-label="Mapa de cuadrantes de cultura organizacional con puntos animados que representan la configuración cultural real del equipo y la visión estratégica proyectada">
           <canvas id="cultureQuadrant"></canvas>
         </div>
 
     
 
-        <!-- Leyenda elegante -->
+        <!-- Leyenda -->
         <div class="culture-legend">
 
-        </div>
-        <div class="culture-legend">
-
-          <div class="legend-item">
+          <div class="legend-item legend-item--teal">
             <span class="legend-dot legend-green"></span>
             <span>Configuración cultural real del equipo</span>
           </div>
 
-          <div class="legend-item">
+          <div class="legend-item legend-item--orange">
             <span class="legend-dot legend-orange"></span>
             <span>Cultura estratégica proyectada</span>
           </div>
@@ -262,7 +382,12 @@
 
 </section>
 
-  <script src="assets/js/main.js" defer></script>
+
+
+
+
+
+  <script src="main.js" defer></script>
 
 </body>
 </html>
