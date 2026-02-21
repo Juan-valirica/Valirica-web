@@ -45,16 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const fadeSections = document.querySelectorAll(".section-fade");
 
   if (fadeSections.length && !prefersReducedMotion) {
-    fadeSections.forEach(section => section.classList.add("reveal-init"));
-
     const sectionObserver = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("reveal-active");
+          entry.target.classList.add("visible");
           obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08 });
+    }, { threshold: 0.05 });
 
     fadeSections.forEach(section => sectionObserver.observe(section));
   }
