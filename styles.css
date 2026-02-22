@@ -55,7 +55,7 @@
 }
 
 .nav-logo-img {
-  height: 55px;
+  height: 70px;
   width: auto;
   display: block;
 }
@@ -392,7 +392,7 @@
   }
 
   /* Logo */
-  .nav-logo-img { height: 34px; }
+  .nav-logo-img { height: 50px; }
 
   /* ── Strip de navegación ── */
   .nav-strip {
@@ -458,7 +458,7 @@
 }
 
 @media (max-width: 480px) {
-  .nav-logo-img { height: 32px; }
+  .nav-logo-img { height: 50px; }
   /* En móviles muy pequeños, ocultar texto "Prueba gratuita" y dejar solo el botón con texto corto */
   .nav-cta {
     padding: 7px 11px;
@@ -1417,7 +1417,7 @@ textarea {
   /* ===== HERO ===== */
 
   .hero {
-    padding: 135px 0 50px;
+    padding: 158px 0 50px;
   }
 
   .hero-visual {
@@ -1620,7 +1620,7 @@ textarea {
   /* ===== HERO ===== */
 
   .hero {
-    padding: 122px 0 40px;
+    padding: 148px 0 40px;
   }
 
   .hero-badge {
