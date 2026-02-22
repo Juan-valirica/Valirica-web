@@ -65,7 +65,7 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   flex: 1;
   justify-content: center;
 }
@@ -314,13 +314,10 @@
 }
 
 
-/* ── Hero: compensar navbar fija ── */
-
-.hero { padding-top: 160px; }
-
-@media (max-width: 1024px) { .hero { padding-top: 130px; } }
-@media (max-width: 768px)  { .hero { padding-top: 110px; } }
-@media (max-width: 480px)  { .hero { padding-top: 100px; } }
+/* ── Hero: compensar navbar fija (valores efectivos en cada breakpoint) ── */
+/* Navbar height: ~117px desktop / ~91px mobile ≤768px / ~72px ≤480px   */
+/* Se define aquí solo como referencia; los valores reales están en los   */
+/* bloques @media de cada sección del hero más abajo.                     */
 
 
 /* ── Footer logo ── */
@@ -406,7 +403,7 @@ textarea {
 
 .hero {
   position: relative;
-  padding: 120px 0 80px;
+  padding: 185px 0 80px;
   overflow: visible;
   background: #ffffff;
 
@@ -644,21 +641,22 @@ textarea {
   stroke-width: 2;
 }
 
-/* POSICIONAMIENTO AJUSTADO */
+/* POSICIONAMIENTO — contenidas para no generar overflow horizontal
+   en viewports de 1024-1440px donde el body tiene overflow-x: hidden */
 
-.card-1 { 
-  top: -30px; 
-  left: -40px; 
+.card-1 {
+  top: -30px;
+  left: -24px;
 }
 
-.card-2 { 
-  top: -10px; 
-  right: -20px; 
+.card-2 {
+  top: -10px;
+  right: -16px;
 }
 
-.card-3 { 
-  bottom: 160px; 
-  right: -100px; 
+.card-3 {
+  bottom: 160px;
+  right: -24px;
 }
 
 .card-4 { 
@@ -713,65 +711,7 @@ textarea {
 
 
 /* =====================================================
-   OPERATIVO
-===================================================== */
-
-.operativo {
-  padding: 120px 0;
-  background: #f7f9fb;
-}
-
-.operativo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 70px;
-  align-items: center;
-}
-
-.operativo h2 {
-  font-size: 40px;
-  line-height: 1.2;
-}
-
-.operativo-subtext {
-  margin-top: 20px;
-  font-size: 18px;
-  color: #4a5568;
-}
-
-.operativo-list {
-  margin-top: 30px;
-  list-style: none;
-}
-
-.operativo-list li {
-  margin-bottom: 14px;
-  font-size: 16px;
-}
-
-.mock-card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 30px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.08);
-}
-
-.mock-header {
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.mock-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 14px 0;
-  border-bottom: 1px solid #eef2f6;
-}
-
-.status.ok {
-  color: #007a96;
-  font-weight: 600;
-}
+   /* sección .operativo eliminada — CSS muerto removido */
 
 /* =====================================================
    ANIMACIONES
@@ -1134,7 +1074,7 @@ textarea {
 /* ===== HERO FIX MOBILE ===== */
 
 .hero {
-  padding: 90px 0 50px;
+  padding: 165px 0 60px;
   transform: none !important;
   overflow: hidden; /* contiene glows ::before/::after que se salen del viewport */
 }
@@ -1278,7 +1218,8 @@ textarea {
   }
 
   .diagnostico-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr; /* mantiene 2×2 en tablet — hay espacio suficiente */
+    gap: 18px;
   }
 
   /* ===== MÓDULOS / DIAGRAMA (tablet ≤1024px) ===== */
@@ -1322,7 +1263,7 @@ textarea {
   /* ===== HERO ===== */
 
   .hero {
-    padding: 70px 0 50px;
+    padding: 135px 0 50px;
   }
 
   .hero-visual {
@@ -1371,6 +1312,7 @@ textarea {
   }
 
   .diagnostico-cards {
+    grid-template-columns: 1fr; /* colapsa a 1 col solo en mobile ≤768px */
     gap: 14px;
   }
 
@@ -1524,7 +1466,7 @@ textarea {
   /* ===== HERO ===== */
 
   .hero {
-    padding: 65px 0 40px;
+    padding: 115px 0 40px;
   }
 
   .hero-badge {
@@ -1564,6 +1506,13 @@ textarea {
 
   /* ===== MÓDULOS / DIAGRAMA (small phones ≤480px) ===== */
 
+  /* Left-align el header del diagrama en small mobile */
+  .modulos-header {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .modulos-title {
     font-size: 26px;
   }
@@ -1583,28 +1532,7 @@ textarea {
 
 }
 
-/* =====================================================
-   SECTION TRANSITION · HERO → DIAGNÓSTICO
-===================================================== */
-
-.section-transition {
-  position: relative;
-  width: 100%;
-  height: 140px;
-  margin-top: -100px;
-  z-index: 1;
-}
-
-.section-transition svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.section-transition path {
-  fill: #f7f9fb;
-  filter: drop-shadow(0 -10px 30px rgba(0,0,0,0.04));
-}
+/* .section-transition eliminado — elemento no existe en el HTML, CSS muerto removido */
 
 
 
@@ -1697,7 +1625,7 @@ textarea {
 
 .modulos {
   position: relative;
-  padding: 140px 0 120px;
+  padding: 120px 0 96px;
   background: #ffffff;
   overflow: hidden;
 }
@@ -2568,7 +2496,7 @@ textarea {
   align-items: center;
   gap: 8px;
   padding: 14px 28px;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 15px;
   font-weight: 600;
   color: rgba(255,255,255,0.75);
@@ -2635,6 +2563,11 @@ textarea {
     grid-column: span 1;
   }
 
+  /* 3ª impact card sola → ocupa fila completa para evitar layout huérfano */
+  .beneficio-card--impact:last-child {
+    grid-column: span 2;
+  }
+
   .beneficio-card {
     padding: 24px 20px;
   }
@@ -2642,6 +2575,13 @@ textarea {
 }
 
 @media (max-width: 480px) {
+
+  /* Left-align header en small mobile para mejor legibilidad */
+  .beneficios-header {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   .beneficios-title {
     font-size: 28px;
@@ -3058,11 +2998,8 @@ textarea {
   }
 
   .casos-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .caso-card:last-child {
-    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr); /* mantiene 3 columnas en tablet — más espacio y sin huérfanos */
+    gap: 18px;
   }
 
 }
@@ -3114,6 +3051,14 @@ textarea {
 }
 
 @media (max-width: 480px) {
+
+  /* Left-align headers de diferenciador en small mobile */
+  .dif-header,
+  .casos-header {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   .dif-title {
     font-size: 26px;
@@ -3767,7 +3712,7 @@ textarea {
   }
 
   .seg-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* mantiene 3 col en tablet para preservar la lógica visual teal/naranja */
   }
 
 }
@@ -3820,6 +3765,13 @@ textarea {
 }
 
 @media (max-width: 480px) {
+
+  /* Left-align header seguridad en small mobile */
+  .seg-header {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   .seg-title {
     font-size: 26px;
@@ -3925,7 +3877,7 @@ textarea {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.55);
   margin-bottom: 4px;
 }
 
@@ -4048,7 +4000,7 @@ textarea {
 
 .footer-copyright {
   font-size: 12.5px;
-  color: rgba(255,255,255,0.30);
+  color: rgba(255,255,255,0.50);
 }
 
 .footer-bottom-links {
@@ -4058,18 +4010,18 @@ textarea {
 
 .footer-bottom-links a {
   font-size: 12.5px;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.52);
   text-decoration: none;
   transition: color 200ms ease;
 }
 
 .footer-bottom-links a:hover {
-  color: rgba(255,255,255,0.70);
+  color: rgba(255,255,255,0.85);
 }
 
 .footer-made {
   font-size: 12.5px;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.42);
 }
 
 /* ── Footer Responsive ── */
