@@ -452,8 +452,10 @@
 
 }
 
-/* Strip oculto por defecto en desktop (solo existe en mobile) */
-.nav-strip { display: none; }
+/* Strip solo visible en mobile — la regla positiva está en @media (≤768px) arriba */
+@media (min-width: 769px) {
+  .nav-strip { display: none; }
+}
 
 @media (max-width: 480px) {
   .nav-logo-img { height: 32px; }
@@ -2700,24 +2702,17 @@ textarea {
     font-size: 40px;
   }
 
-  /* All cards go full-width */
+  /* 1 columna en mobile — evita columnas demasiado estrechas */
 
   .beneficios-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
-  .beneficio-card--compliance {
-    grid-column: span 2;
-  }
-
-  .beneficio-card--impact {
-    grid-column: span 1;
-  }
-
-  /* 3ª impact card sola → ocupa fila completa para evitar layout huérfano */
+  .beneficio-card--compliance,
+  .beneficio-card--impact,
   .beneficio-card--impact:last-child {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 
   .beneficio-card {
@@ -2743,14 +2738,7 @@ textarea {
     font-size: 16px;
   }
 
-  .beneficios-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .beneficio-card--compliance,
-  .beneficio-card--impact {
-    grid-column: span 1;
-  }
+  /* grid y span heredados del bloque ≤768px — no necesita override aquí */
 
   .beneficio-value {
     font-size: 36px;
