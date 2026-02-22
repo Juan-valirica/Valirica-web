@@ -42,6 +42,56 @@
   <script src="https://unpkg.com/lucide@latest" defer></script>
 
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Schema Markup — JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.valirica.com/#organization",
+        "name": "Valírica",
+        "url": "https://www.valirica.com",
+        "logo": "https://www.valirica.com/assets/icons/logo-light.svg",
+        "description": "Inteligencia cultural organizacional para medir clima laboral, desempeño y cumplir normativa con registro de jornada y canales formales de comunicación.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+34-600-876-538",
+          "contactType": "customer service",
+          "email": "vale@valirica.com",
+          "availableLanguage": "Spanish"
+        },
+        "sameAs": ["https://www.linkedin.com/company/valirica"],
+        "areaServed": ["ES", "CO"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.valirica.com/#website",
+        "url": "https://www.valirica.com",
+        "name": "Valírica · Plataforma de inteligencia cultural para empresas",
+        "publisher": { "@id": "https://www.valirica.com/#organization" },
+        "inLanguage": "es"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://www.valirica.com/#software",
+        "name": "Valírica",
+        "url": "https://app.valirica.com",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Plataforma SaaS de inteligencia cultural organizacional para PYMES. Mide clima laboral, gestiona desempeño y cumple normativa laboral con registro de jornada y canales formales de comunicación interna.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "description": "Prueba gratuita disponible"
+        },
+        "publisher": { "@id": "https://www.valirica.com/#organization" }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
