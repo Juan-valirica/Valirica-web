@@ -714,6 +714,11 @@ textarea {
   padding: 18px;
 }
 
+/* Picture wrapper: transparente al layout */
+.dashboard-wrapper picture {
+  display: contents;
+}
+
 /* Imágenes superpuestas perfectamente */
 .dashboard-img {
   position: absolute;
