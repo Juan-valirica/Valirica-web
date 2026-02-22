@@ -300,17 +300,169 @@
   .nav-cta { font-size: 13px; padding: 9px 13px; }
 }
 
+/* ─────────────────────────────────────────────────────────────
+   NAVBAR MOBILE (≤768px)
+   Glassmorphism real en la barra completa, sin pill.
+   Top bar: logo + botones de acceso.
+   Strip inferior: links en scroll horizontal, se oculta al bajar.
+───────────────────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
-  .navbar { padding: 10px 0; }
-  .nav-inner { padding: 8px 12px; border-radius: 14px; }
-  .nav-links, .nav-actions { display: none; }
-  .nav-burger { display: flex; }
-  .navbar .container { width: 92%; }
+
+  /* ── La barra completa es el vidrio ── */
+  .navbar {
+    pointer-events: all;
+    padding: 0;
+    /* Fondo semitransparente — el contenido detrás debe verse borroso */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.52);
+    box-shadow:
+      0 4px 24px rgba(1, 33, 51, 0.07),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.45);
+    /* Necesario para que el strip se "recoja" hacia arriba sin salirse */
+    overflow: hidden;
+  }
+
+  /* Al hacer scroll, el vidrio se opaca ligeramente */
+  .navbar.is-scrolled {
+    background: rgba(255, 255, 255, 0.82);
+    border-bottom-color: rgba(255, 255, 255, 0.70);
+    box-shadow:
+      0 6px 32px rgba(1, 33, 51, 0.10),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.60);
+  }
+
+  /* ── Inner row: logo + acciones, sin pill ── */
+  .nav-inner {
+    width: 100%;
+    background: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(1, 33, 51, 0.06);
+  }
+
+  /* Contenedor full-width en mobile */
+  .navbar .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  /* Ocultar links centrales (van en el strip) */
+  .nav-links { display: none; }
+
+  /* Ocultar hamburger — reemplazado por strip siempre visible */
+  .nav-burger { display: none; }
+
+  /* Ocultar menú colapsable legacy */
+  .nav-mobile-menu { display: none !important; }
+
+  /* ── Mostrar ambos botones de acción en mobile ── */
+  .nav-actions {
+    display: flex;
+    gap: 7px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* Botones compactos en mobile */
+  .nav-login {
+    padding: 7px 13px;
+    font-size: 13px;
+    border-radius: 9px;
+    background: rgba(1, 33, 51, 0.06);
+    color: rgba(1, 33, 51, 0.72);
+  }
+
+  .nav-cta {
+    padding: 7px 13px;
+    font-size: 13px;
+    gap: 5px;
+  }
+
+  .nav-cta-arrow {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Logo */
+  .nav-logo-img { height: 34px; }
+
+  /* ── Strip de navegación ── */
+  .nav-strip {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE */
+    gap: 6px;
+    padding: 8px 16px 10px;
+    /* Transición de altura para el hide/show */
+    max-height: 52px;
+    opacity: 1;
+    transition:
+      max-height 300ms cubic-bezier(.4, 0, .2, 1),
+      opacity     220ms ease,
+      padding-top    300ms ease,
+      padding-bottom 300ms ease;
+  }
+
+  .nav-strip::-webkit-scrollbar { display: none; }
+
+  /* Estado oculto (scroll hacia abajo) */
+  .nav-strip.is-hidden {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    pointer-events: none;
+  }
+
+  /* Links del strip */
+  .nav-strip-link {
+    flex-shrink: 0;
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(1, 33, 51, 0.65);
+    text-decoration: none;
+    white-space: nowrap;
+    background: rgba(1, 33, 51, 0.055);
+    transition: color 160ms ease, background 160ms ease;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-strip-link:active {
+    color: #012133;
+    background: rgba(1, 33, 51, 0.10);
+  }
+
+  .nav-strip-link.is-active {
+    color: #007a96;
+    background: rgba(0, 122, 150, 0.10);
+  }
+
 }
 
+/* Strip oculto por defecto en desktop (solo existe en mobile) */
+.nav-strip { display: none; }
+
 @media (max-width: 480px) {
-  .navbar .container { width: 94%; }
-  .nav-logo-img { height: 36px; }
+  .nav-logo-img { height: 32px; }
+  /* En móviles muy pequeños, ocultar texto "Prueba gratuita" y dejar solo el botón con texto corto */
+  .nav-cta {
+    padding: 7px 11px;
+    font-size: 12.5px;
+  }
+  .nav-cta-arrow { display: none; }
 }
 
 
@@ -1466,7 +1618,7 @@ textarea {
   /* ===== HERO ===== */
 
   .hero {
-    padding: 115px 0 40px;
+    padding: 122px 0 40px;
   }
 
   .hero-badge {

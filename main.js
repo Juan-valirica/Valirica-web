@@ -4,25 +4,49 @@
 
 (function initNavbar() {
 
-  const navbar     = document.getElementById("mainNav");
-  const burger     = document.getElementById("navBurger");
-  const mobileMenu = document.getElementById("navMobileMenu");
-  const navLinks   = document.querySelectorAll(".nav-link");
+  const navbar      = document.getElementById("mainNav");
+  const burger      = document.getElementById("navBurger");
+  const mobileMenu  = document.getElementById("navMobileMenu");
+  const navStrip    = document.getElementById("navStrip");
+  const navLinks    = document.querySelectorAll(".nav-link");
+  const stripLinks  = document.querySelectorAll(".nav-strip-link");
   const mobileLinks = document.querySelectorAll(".nav-mobile-link");
 
   if (!navbar) return;
 
-  /* ── Scroll: add/remove is-scrolled ── */
+  /* ── Scroll: is-scrolled + mobile strip hide/show ── */
+
+  let lastScrollY   = window.scrollY;
+  let ticking       = false;
 
   function onScroll() {
-    if (window.scrollY > 60) {
-      navbar.classList.add("is-scrolled");
-    } else {
-      navbar.classList.remove("is-scrolled");
+    const currentY = window.scrollY;
+
+    /* Glass opacity state */
+    navbar.classList.toggle("is-scrolled", currentY > 60);
+
+    /* Strip hide/show — solo en mobile */
+    if (navStrip && window.innerWidth <= 768) {
+      if (currentY > lastScrollY && currentY > 80) {
+        /* Bajando → ocultar strip */
+        navStrip.classList.add("is-hidden");
+      } else {
+        /* Subiendo o cerca del top → mostrar strip */
+        navStrip.classList.remove("is-hidden");
+      }
     }
+
+    lastScrollY = currentY;
+    ticking = false;
   }
 
-  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
   onScroll(); // run once on load
 
   /* ── Active link highlight on scroll ── */
@@ -31,20 +55,28 @@
     "#diagnostico-cultural, #modulos, #beneficios, #diferenciador, #seguridad"
   );
 
-  const linkMap = {};
+  /* Map section id → nav-link + strip-link */
+  const linkMap      = {};
+  const stripLinkMap = {};
+
   navLinks.forEach(link => {
     const target = link.getAttribute("href").replace("#", "");
     linkMap[target] = link;
   });
 
+  stripLinks.forEach(link => {
+    const target = link.getAttribute("href").replace("#", "");
+    stripLinkMap[target] = link;
+  });
+
   const sectionObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const id = entry.target.id;
-      if (linkMap[id]) {
-        if (entry.isIntersecting) {
-          navLinks.forEach(l => l.classList.remove("is-active"));
-          linkMap[id].classList.add("is-active");
-        }
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove("is-active"));
+        stripLinks.forEach(l => l.classList.remove("is-active"));
+        if (linkMap[id])      linkMap[id].classList.add("is-active");
+        if (stripLinkMap[id]) stripLinkMap[id].classList.add("is-active");
       }
     });
   }, { rootMargin: "-30% 0px -60% 0px" });

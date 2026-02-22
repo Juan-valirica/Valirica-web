@@ -52,7 +52,7 @@
         <a href="#seguridad" class="nav-link">Seguridad</a>
       </nav>
 
-      <!-- Actions (desktop) -->
+      <!-- Actions — desktop + mobile (ambos botones visibles) -->
       <div class="nav-actions">
         <a href="https://app.valirica.com"
            class="nav-login"
@@ -71,7 +71,7 @@
         </a>
       </div>
 
-      <!-- Hamburger (mobile) -->
+      <!-- Hamburger (desktop fallback, oculto en mobile) -->
       <button class="nav-burger"
               id="navBurger"
               aria-label="Abrir menú"
@@ -86,7 +86,16 @@
     </div><!-- /nav-inner -->
   </div><!-- /container -->
 
-  <!-- Mobile menu -->
+  <!-- Strip de navegación (solo mobile) — scroll horizontal, se oculta al bajar -->
+  <nav class="nav-strip" id="navStrip" aria-label="Secciones">
+    <a href="#modulos"               class="nav-strip-link">Plataforma</a>
+    <a href="#diagnostico-cultural"  class="nav-strip-link">Diagnóstico</a>
+    <a href="#beneficios"            class="nav-strip-link">Impacto</a>
+    <a href="#diferenciador"         class="nav-strip-link">Por qué Valírica</a>
+    <a href="#seguridad"             class="nav-strip-link">Seguridad</a>
+  </nav>
+
+  <!-- Mobile menu (legacy — inactivo en mobile, preservado para JS) -->
   <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
     <div class="container">
       <nav class="nav-mobile-links" aria-label="Menú móvil">
