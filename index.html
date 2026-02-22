@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -38,6 +38,98 @@ content="Software para medir y mejorar clima laboral y cultura organizacional en
 </head>
 
 <body>
+
+<!-- =====================================================
+     NAVBAR — glassmorphism flotante
+===================================================== -->
+<header class="navbar" id="mainNav" role="banner">
+  <div class="container">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="/" class="nav-logo" aria-label="Valírica — inicio">
+        <img src="assets/icons/logo-light.svg"
+             alt="Valírica"
+             class="nav-logo-img"
+             width="134"
+             height="34">
+      </a>
+
+      <!-- Nav links (desktop) -->
+      <nav class="nav-links" aria-label="Navegación principal">
+          <a href="#modulos" class="nav-link">Plataforma</a>
+        <a href="#diagnostico-cultural" class="nav-link">Diagnóstico</a>
+        <a href="#beneficios" class="nav-link">Impacto</a>
+        <a href="#diferenciador" class="nav-link">Por qué Valírica</a>
+        <a href="#seguridad" class="nav-link">Seguridad</a>
+      </nav>
+
+      <!-- Actions (desktop) -->
+      <div class="nav-actions">
+        <a href="https://app.valirica.com"
+           class="nav-login"
+           target="_blank"
+           rel="noopener noreferrer">
+          Acceder
+        </a>
+        <a href="https://app.valirica.com/registro.php"
+           class="nav-cta"
+           target="_blank"
+           rel="noopener noreferrer">
+          Prueba gratuita
+          <svg class="nav-cta-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-burger"
+              id="navBurger"
+              aria-label="Abrir menú"
+              aria-expanded="false"
+              aria-controls="navMobileMenu"
+              type="button">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+
+    </div><!-- /nav-inner -->
+  </div><!-- /container -->
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <div class="container">
+      <nav class="nav-mobile-links" aria-label="Menú móvil">
+        <a href="#diagnostico-cultural" class="nav-mobile-link">Diagnóstico cultural</a>
+        <a href="#modulos" class="nav-mobile-link">Plataforma</a>
+        <a href="#beneficios" class="nav-mobile-link">Impacto real</a>
+        <a href="#diferenciador" class="nav-mobile-link">Por qué Valírica</a>
+        <a href="#seguridad" class="nav-mobile-link">Seguridad y datos</a>
+      </nav>
+      <div class="nav-mobile-actions">
+        <a href="https://app.valirica.com"
+           class="nav-mobile-login"
+           target="_blank"
+           rel="noopener noreferrer">
+          Iniciar sesión
+        </a>
+        <a href="https://app.valirica.com/registro.php"
+           class="nav-cta nav-mobile-cta"
+           target="_blank"
+           rel="noopener noreferrer">
+          Prueba gratuita
+          <svg class="nav-cta-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div><!-- /nav-mobile-menu -->
+
+</header>
+
 
   <!-- HERO -->
   <section class="hero">
@@ -300,6 +392,175 @@ content="Software para medir y mejorar clima laboral y cultura organizacional en
   </div>
 </section>
 
+
+
+
+
+<!-- SECCIÓN MÓDULOS · DIAGRAMA NEURONAL -->
+<section class="modulos section-fade" id="modulos">
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="modulos-header">
+      <div class="modulos-badge">Cómo funciona</div>
+      <h2 class="modulos-title">Todos los datos de tu equipo.<br>Una sola inteligencia.</h2>
+      <p class="modulos-subtext">
+        Valírica convierte señales operativas y culturales en inteligencia
+        accionable para RRHH y dirección — en tiempo real.
+      </p>
+    </div>
+
+    <!-- DIAGRAMA NEURONAL -->
+    <div class="diagram-wrapper" id="diagramWrapper">
+
+      <!-- SVG OVERLAY · LÍNEAS DE CONEXIÓN -->
+      <svg class="diagram-svg" id="diagramSvg" aria-hidden="true"></svg>
+
+      <div class="diagram-grid">
+
+        <!-- COLUMNA IZQUIERDA · INPUTS -->
+        <div class="diagram-col diagram-col--inputs">
+          <span class="col-label col-label--orange">Datos de entrada</span>
+
+          <div class="diagram-node diagram-node--input" id="node-in-0">
+            <div class="node-icon"><i data-lucide="clock"></i></div>
+            <div class="node-body">
+              <strong>Registro de jornada</strong>
+              <span>Control horario y normativa laboral</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+          <div class="diagram-node diagram-node--input" id="node-in-1">
+            <div class="node-icon"><i data-lucide="message-circle"></i></div>
+            <div class="node-body">
+              <strong>Comunicación interna</strong>
+              <span>Canales formales con trazabilidad</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+          <div class="diagram-node diagram-node--input" id="node-in-2">
+            <div class="node-icon"><i data-lucide="target"></i></div>
+            <div class="node-body">
+              <strong>Metas y proyectos</strong>
+              <span>Objetivos individuales y estratégicos</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+          <div class="diagram-node diagram-node--input" id="node-in-3">
+            <div class="node-icon"><i data-lucide="scan-line"></i></div>
+            <div class="node-body">
+              <strong>Radiografía cultural</strong>
+              <span>Hofstede, Maslow, motivación intrínseca</span>
+            </div>
+            <span class="node-dot node-dot--right" aria-hidden="true"></span>
+          </div>
+
+        </div>
+
+        <!-- COLUMNA CENTRAL · CEREBRO -->
+        <div class="diagram-col diagram-col--center">
+
+          <div class="brain-container" id="brainContainer">
+            <div class="brain-ring brain-ring--3"></div>
+            <div class="brain-ring brain-ring--2"></div>
+            <div class="brain-ring brain-ring--1"></div>
+            <div class="brain-glow"></div>
+            <div class="brain-inner">
+              <i data-lucide="brain-circuit" class="brain-icon-lucide" aria-label="Motor de inteligencia cultural Valírica"></i>
+            </div>
+          </div>
+
+          <p class="brain-label">Motor de inteligencia<br>cultural</p>
+
+        </div>
+
+        <!-- COLUMNA DERECHA · OUTPUTS -->
+        <div class="diagram-col diagram-col--outputs">
+          <span class="col-label col-label--teal">Inteligencia generada</span>
+
+          <div class="diagram-node diagram-node--output" id="node-out-0">
+            <span class="node-dot node-dot--left" aria-hidden="true"></span>
+            <div class="node-icon node-icon--teal"><i data-lucide="lightbulb"></i></div>
+            <div class="node-body">
+              <strong>Sugerencias para RRHH</strong>
+              <span>Acciones proactivas de gestión de personas</span>
+            </div>
+          </div>
+
+          <div class="diagram-node diagram-node--output" id="node-out-1">
+            <span class="node-dot node-dot--left" aria-hidden="true"></span>
+            <div class="node-icon node-icon--teal"><i data-lucide="shield-alert"></i></div>
+            <div class="node-body">
+              <strong>Alertas de riesgo de talento</strong>
+              <span>Burnout y fuga de personas clave</span>
+            </div>
+          </div>
+
+          <div class="diagram-node diagram-node--output" id="node-out-2">
+            <span class="node-dot node-dot--left" aria-hidden="true"></span>
+            <div class="node-icon node-icon--teal"><i data-lucide="trophy"></i></div>
+            <div class="node-body">
+              <strong>Eventos memorables</strong>
+              <span>Milestones, logros del equipo y fechas especiales</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- diagram-grid -->
+    </div><!-- diagram-wrapper -->
+
+  </div>
+</section>
+
+
+<!-- =====================================================
+     INSIGHT RETO — CTA intermedio gamificado
+===================================================== -->
+<section class="insight-reto" id="insight-reto">
+  <div class="reto-inner">
+
+    <span class="reto-badge">Una pregunta rápida</span>
+
+    <div class="reto-question-area" id="retoQuestionArea" aria-live="polite">
+      <p class="reto-question is-active" data-q="0">
+        ¿Sabes quiénes son los <em>top performers</em> de tu equipo<br>y por qué lo son?
+      </p>
+      <p class="reto-question" data-q="1">
+        ¿Conoces a las personas más alineadas a<br>la cultura que quieres construir?
+      </p>
+      <p class="reto-question" data-q="2">
+        ¿Sabrías identificar quién está a punto<br>de desconectarse antes de que sea tarde?
+      </p>
+      <p class="reto-question" data-q="3">
+        ¿Tienes claro quién puede convertirse en<br>el próximo líder de tu organización?
+      </p>
+    </div>
+
+    <div class="reto-dots" id="retoDots" role="tablist" aria-label="Preguntas">
+      <button class="reto-dot is-active" data-dot="0" aria-label="Pregunta 1" role="tab"></button>
+      <button class="reto-dot" data-dot="1" aria-label="Pregunta 2" role="tab"></button>
+      <button class="reto-dot" data-dot="2" aria-label="Pregunta 3" role="tab"></button>
+      <button class="reto-dot" data-dot="3" aria-label="Pregunta 4" role="tab"></button>
+    </div>
+
+    <p class="reto-sub">
+      Si no tienes respuesta inmediata, no estás solo.<br>
+      La mayoría de founders y directores tampoco la tiene.
+    </p>
+
+    <button class="btn btn-reto" id="retoOpenModal">
+      Descubrir mis respuestas gratis
+      <i data-lucide="arrow-right" class="btn-icon"></i>
+    </button>
+
+  </div>
+</section>
+
+
 <!-- SECCIÓN DIAGNÓSTICO -->
 <section class="diagnostico section-fade" id="diagnostico-cultural">
 
@@ -326,22 +587,22 @@ content="Software para medir y mejorar clima laboral y cultura organizacional en
 
         <div class="diag-card">
           <div class="diag-card-icon"><i data-lucide="layers"></i></div>
-          <h3 class="diag-card-title">Clima laboral sin medición estructurada</h3>
+          <h3 class="diag-card-title">Clima laboral fragmentado</h3>
         </div>
 
         <div class="diag-card">
           <div class="diag-card-icon"><i data-lucide="trending-down"></i></div>
-          <h3 class="diag-card-title">Alta rotación de talento</h3>
+          <h3 class="diag-card-title">Liderazgo sin métricas humanas</h3>
         </div>
 
         <div class="diag-card">
           <div class="diag-card-icon"><i data-lucide="alert-triangle"></i></div>
-          <h3 class="diag-card-title">Cumplimiento laboral reactivo</h3>
+          <h3 class="diag-card-title">Cumplimiento reactivo</h3>
         </div>
 
         <div class="diag-card">
           <div class="diag-card-icon"><i data-lucide="compass"></i></div>
-          <h3 class="diag-card-title">Decisiones sobre personas sin datos</h3>
+          <h3 class="diag-card-title">Decisiones intuitivas en lugar de estratégicas</h3>
         </div>
 
       </div>
@@ -394,12 +655,11 @@ content="Software para medir y mejorar clima laboral y cultura organizacional en
 
 </section>
 
-
-
-
+<!-- =====================================================
+     BENEFICIOS MEDIBLES
 
 
   <script src="main.js" defer></script>
 
 </body>
-</html>
+</html> 

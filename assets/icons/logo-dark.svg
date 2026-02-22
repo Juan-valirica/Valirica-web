@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 158 40" fill="none" role="img" aria-label="Valírica">
+  <defs>
+    <linearGradient id="bg-dark" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#013d5a"/>
+      <stop offset="100%" stop-color="#011726"/>
+    </linearGradient>
+    <linearGradient id="v-dark" x1="9" y1="10" x2="20" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.75"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon mark -->
+  <rect width="40" height="40" rx="9" fill="url(#bg-dark)"/>
+  <rect width="40" height="40" rx="9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <path d="M9.5 10.5 L20 27.5 L30.5 10.5"
+        stroke="url(#v-dark)"
+        stroke-width="2.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"/>
+  <circle cx="20" cy="27.5" r="2.8" fill="#ff9700"/>
+  <circle cx="20" cy="27.5" r="5" fill="rgba(255,151,0,0.15)"/>
+  <circle cx="13.7" cy="17.5" r="1.4" fill="rgba(255,255,255,0.55)"/>
+  <circle cx="26.3" cy="17.5" r="1.4" fill="rgba(255,255,255,0.55)"/>
+  <circle cx="9.5" cy="10.5" r="1.8" fill="rgba(0,196,224,0.6)"/>
+  <circle cx="30.5" cy="10.5" r="1.8" fill="rgba(0,196,224,0.6)"/>
+
+  <!-- Wordmark: Valírica — white, for dark backgrounds -->
+  <text x="50" y="27"
+        font-family="Gelica, Georgia, 'Times New Roman', serif"
+        font-size="22"
+        font-weight="700"
+        fill="#ffffff"
+        letter-spacing="-0.4">Valírica</text>
+</svg>

@@ -1,3 +1,127 @@
+/* =====================================================
+   NAVBAR — scroll state + mobile menu + active links
+===================================================== */
+
+(function initNavbar() {
+
+  const navbar     = document.getElementById("mainNav");
+  const burger     = document.getElementById("navBurger");
+  const mobileMenu = document.getElementById("navMobileMenu");
+  const navLinks   = document.querySelectorAll(".nav-link");
+  const mobileLinks = document.querySelectorAll(".nav-mobile-link");
+
+  if (!navbar) return;
+
+  /* ── Scroll: add/remove is-scrolled ── */
+
+  function onScroll() {
+    if (window.scrollY > 60) {
+      navbar.classList.add("is-scrolled");
+    } else {
+      navbar.classList.remove("is-scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll(); // run once on load
+
+  /* ── Active link highlight on scroll ── */
+
+  const sections = document.querySelectorAll(
+    "#diagnostico-cultural, #modulos, #beneficios, #diferenciador, #seguridad"
+  );
+
+  const linkMap = {};
+  navLinks.forEach(link => {
+    const target = link.getAttribute("href").replace("#", "");
+    linkMap[target] = link;
+  });
+
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      if (linkMap[id]) {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove("is-active"));
+          linkMap[id].classList.add("is-active");
+        }
+      }
+    });
+  }, { rootMargin: "-30% 0px -60% 0px" });
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+  /* ── Hamburger toggle ── */
+
+  function openMenu() {
+    mobileMenu.classList.add("is-open");
+    mobileMenu.setAttribute("aria-hidden", "false");
+    burger.setAttribute("aria-expanded", "true");
+    burger.setAttribute("aria-label", "Cerrar menú");
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.remove("is-open");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", "Abrir menú");
+  }
+
+  if (burger && mobileMenu) {
+    burger.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.contains("is-open");
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    /* Close on mobile link click */
+    mobileLinks.forEach(link => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    /* Close on outside click */
+    document.addEventListener("click", e => {
+      if (
+        mobileMenu.classList.contains("is-open") &&
+        !navbar.contains(e.target)
+      ) {
+        closeMenu();
+      }
+    });
+
+    /* Close on Escape */
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && mobileMenu.classList.contains("is-open")) {
+        closeMenu();
+        burger.focus();
+      }
+    });
+  }
+
+  /* ── Smooth scroll with navbar offset ── */
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", e => {
+      const targetId = anchor.getAttribute("href").slice(1);
+      if (!targetId) return;
+
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      e.preventDefault();
+
+      const navbarHeight = navbar.getBoundingClientRect().height + 14 + 10;
+      const y = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+
+      /* Close mobile menu if open */
+      if (mobileMenu.classList.contains("is-open")) closeMenu();
+    });
+  });
+
+})();
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
@@ -14,6 +138,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const demoModal = document.getElementById("demoModal");
 
   /* =====================================================
+     MOTION PREFERENCE
+  ===================================================== */
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  /* =====================================================
      LUCIDE
   ===================================================== */
 
@@ -23,10 +155,31 @@ document.addEventListener("DOMContentLoaded", () => {
      HERO ENTRANCE
   ===================================================== */
 
-  heroElements.forEach((el, index) => {
-    el.classList.add("reveal-init");
-    setTimeout(() => el.classList.add("reveal-active"), 150 + index * 150);
-  });
+  if (!prefersReducedMotion) {
+    heroElements.forEach((el, index) => {
+      el.classList.add("reveal-init");
+      setTimeout(() => el.classList.add("reveal-active"), 150 + index * 150);
+    });
+  }
+
+  /* =====================================================
+     SECTION FADE · SCROLL REVEAL
+  ===================================================== */
+
+  const fadeSections = document.querySelectorAll(".section-fade");
+
+  if (fadeSections.length && !prefersReducedMotion) {
+    const sectionObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+
+    fadeSections.forEach(section => sectionObserver.observe(section));
+  }
 
   /* =====================================================
      DASHBOARD CROSSFADE
@@ -69,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
      HERO PARALLAX
   ===================================================== */
 
-  if (hero && window.innerWidth > 1024) {
+  if (hero && window.innerWidth > 1024 && !prefersReducedMotion) {
 
     let mouseX = 0, mouseY = 0;
     let currentX = 0, currentY = 0;
@@ -116,6 +269,220 @@ document.addEventListener("DOMContentLoaded", () => {
     closeDemo.addEventListener("click", () => demoModal.classList.remove("active"));
 
 
+
+/* =====================================================
+   DIAGRAMA NEURONAL · REVEAL + CONEXIONES SVG
+===================================================== */
+
+(function initDiagram() {
+
+  const wrapper   = document.getElementById("diagramWrapper");
+  const svgEl     = document.getElementById("diagramSvg");
+  const brainEl   = document.getElementById("brainContainer");
+  const nodes     = document.querySelectorAll(".diagram-node");
+  const modSection = document.querySelector(".modulos");
+
+  if (!wrapper || !svgEl || !brainEl || !modSection) return;
+
+  const NS = "http://www.w3.org/2000/svg";
+  const INPUT_IDS  = ["node-in-0",  "node-in-1",  "node-in-2",  "node-in-3"];
+  const OUTPUT_IDS = ["node-out-0", "node-out-1", "node-out-2"];
+
+  let connectionsDrawn = false;
+
+  /* ---- helpers ---- */
+
+  function relRect(el) {
+    const er = el.getBoundingClientRect();
+    const wr = wrapper.getBoundingClientRect();
+    return {
+      left:   er.left   - wr.left,
+      top:    er.top    - wr.top,
+      right:  er.right  - wr.left,
+      bottom: er.bottom - wr.top,
+      cx:     er.left   - wr.left + er.width  / 2,
+      cy:     er.top    - wr.top  + er.height / 2,
+      w: er.width,
+      h: er.height
+    };
+  }
+
+  function makePath(d, stroke, opacity, dashArray, animName, delay) {
+    const p = document.createElementNS(NS, "path");
+    p.setAttribute("d", d);
+    p.setAttribute("stroke", stroke);
+    p.setAttribute("stroke-opacity", opacity);
+    p.setAttribute("stroke-width", "1.5");
+    p.setAttribute("fill", "none");
+    p.setAttribute("stroke-linecap", "round");
+    if (dashArray) {
+      svgEl.appendChild(p);                       // must be in DOM for getTotalLength
+      const len = Math.round(p.getTotalLength()) || 250;
+      p.setAttribute("stroke-dasharray", dashArray);
+      p.setAttribute("stroke-dashoffset", "0");
+      p.style.animation = `${animName} ${1.9}s linear infinite`;
+      p.style.animationDelay = `${delay}s`;
+    }
+    return p;
+  }
+
+  /* ---- draw all bezier connections ---- */
+
+  function drawConnections() {
+    svgEl.innerHTML = "";
+
+    // Only draw on desktop (diagram-svg is hidden via CSS on mobile)
+    if (window.innerWidth <= 768) return;
+
+    const wr = wrapper.getBoundingClientRect();
+    svgEl.setAttribute("viewBox", `0 0 ${wr.width} ${wr.height}`);
+    svgEl.setAttribute("width",   wr.width);
+    svgEl.setAttribute("height",  wr.height);
+
+    const br = relRect(brainEl);
+
+    // attachment points on brain edges (inset 22px from extremes)
+    const brainLeft  = { x: br.left  + 22, y: br.cy };
+    const brainRight = { x: br.right - 22, y: br.cy };
+
+    /* INPUT → BRAIN (orange) */
+    INPUT_IDS.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const nr = relRect(el);
+      const from = { x: nr.right, y: nr.cy };
+      const to   = brainLeft;
+      const dx   = to.x - from.x;
+
+      const d = `M ${from.x} ${from.y} `
+              + `C ${from.x + dx * 0.55} ${from.y}, `
+              +   `${to.x   - dx * 0.35} ${to.y}, `
+              +   `${to.x} ${to.y}`;
+
+      // Static background
+      const bg = document.createElementNS(NS, "path");
+      bg.setAttribute("d", d);
+      bg.setAttribute("stroke", "#ff9700");
+      bg.setAttribute("stroke-opacity", "0.10");
+      bg.setAttribute("stroke-width", "1.5");
+      bg.setAttribute("fill", "none");
+      bg.setAttribute("stroke-linecap", "round");
+      svgEl.appendChild(bg);
+
+      // Animated flow dash
+      const flow = document.createElementNS(NS, "path");
+      flow.setAttribute("d", d);
+      flow.setAttribute("stroke", "#ff9700");
+      flow.setAttribute("stroke-opacity", "0.55");
+      flow.setAttribute("stroke-width", "1.5");
+      flow.setAttribute("fill", "none");
+      flow.setAttribute("stroke-linecap", "round");
+      svgEl.appendChild(flow);
+
+      const len = Math.round(flow.getTotalLength()) || 250;
+      flow.setAttribute("stroke-dasharray", `18 ${len - 18}`);
+      flow.setAttribute("stroke-dashoffset", "0");
+      flow.style.animation = `diagramFlowIn 2s linear infinite`;
+      flow.style.animationDelay = `${i * 0.38}s`;
+    });
+
+    /* BRAIN → OUTPUT (teal) */
+    OUTPUT_IDS.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const nr   = relRect(el);
+      const from = brainRight;
+      const to   = { x: nr.left, y: nr.cy };
+      const dx   = to.x - from.x;
+
+      const d = `M ${from.x} ${from.y} `
+              + `C ${from.x + dx * 0.35} ${from.y}, `
+              +   `${to.x   - dx * 0.55} ${to.y}, `
+              +   `${to.x} ${to.y}`;
+
+      const bg = document.createElementNS(NS, "path");
+      bg.setAttribute("d", d);
+      bg.setAttribute("stroke", "#007a96");
+      bg.setAttribute("stroke-opacity", "0.10");
+      bg.setAttribute("stroke-width", "1.5");
+      bg.setAttribute("fill", "none");
+      bg.setAttribute("stroke-linecap", "round");
+      svgEl.appendChild(bg);
+
+      const flow = document.createElementNS(NS, "path");
+      flow.setAttribute("d", d);
+      flow.setAttribute("stroke", "#007a96");
+      flow.setAttribute("stroke-opacity", "0.55");
+      flow.setAttribute("stroke-width", "1.5");
+      flow.setAttribute("fill", "none");
+      flow.setAttribute("stroke-linecap", "round");
+      svgEl.appendChild(flow);
+
+      const len = Math.round(flow.getTotalLength()) || 250;
+      flow.setAttribute("stroke-dasharray", `18 ${len - 18}`);
+      flow.setAttribute("stroke-dashoffset", "0");
+      flow.style.animation = `diagramFlowOut 2s linear infinite`;
+      flow.style.animationDelay = `${0.2 + i * 0.38}s`;
+    });
+
+    connectionsDrawn = true;
+  }
+
+  /* ---- reveal sequence (triggered once when section enters viewport) ---- */
+
+  function revealDiagram() {
+    if (prefersReducedMotion) {
+      nodes.forEach(n => n.classList.add("node-visible"));
+      brainEl.classList.add("brain-visible");
+      drawConnections();
+      return;
+    }
+
+    // Brain appears first
+    setTimeout(() => brainEl.classList.add("brain-visible"), 80);
+
+    // Input nodes: left column stagger
+    INPUT_IDS.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) setTimeout(() => el.classList.add("node-visible"), 200 + i * 100);
+    });
+
+    // Output nodes: right column stagger, offset
+    OUTPUT_IDS.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) setTimeout(() => el.classList.add("node-visible"), 280 + i * 110);
+    });
+
+    // Draw SVG connections after reveal is underway
+    setTimeout(drawConnections, 350);
+  }
+
+  /* ---- intersection observer ---- */
+
+  const sectionObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        revealDiagram();
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  sectionObserver.observe(modSection);
+
+  /* ---- resize: redraw connections ---- */
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (connectionsDrawn) drawConnections();
+    }, 200);
+  });
+
+})();
 
 /* =====================================================
    CULTURE QUADRANT
@@ -279,8 +646,8 @@ function drawQuadrant() {
     centerX /= greenPoints.length;
     centerY /= greenPoints.length;
 
-    const cohesionStrength = 0.0025;
-    const maxRadius = 140;
+    const cohesionStrength = 0.004;
+    const maxRadius = 100;
     const returnStrength = 0.01;
 
     greenPoints.forEach((p, i) => {
@@ -391,5 +758,192 @@ function drawQuadrant() {
   }
 
   animate();
+
+/* =====================================================
+   BENEFICIOS MEDIBLES — counter animation
+===================================================== */
+
+(function initBeneficios() {
+  const section = document.querySelector('.beneficios');
+  if (!section) return;
+
+  const cards  = section.querySelectorAll('.beneficio-card');
+  const values = section.querySelectorAll('.beneficio-value');
+
+  /* Format a number with locale thousand separators (es-ES uses dots) */
+  function formatNum(n, useSeparator) {
+    const rounded = Math.round(n);
+    if (!useSeparator) return rounded.toString();
+    return rounded.toLocaleString('es-ES');
+  }
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animateCounter(el) {
+    const target      = parseFloat(el.dataset.count) || 0;
+    const prefix      = el.dataset.prefix  || '';
+    const suffix      = el.dataset.suffix  || '';
+    const useSep      = !!el.dataset.separator;
+    const duration    = 1600;
+    const start       = performance.now();
+
+    function step(now) {
+      const t       = Math.min((now - start) / duration, 1);
+      const eased   = easeOutCubic(t);
+      el.textContent = prefix + formatNum(target * eased, useSep) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  let triggered = false;
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting || triggered) return;
+      triggered = true;
+
+      /* Stagger card reveal */
+      cards.forEach(function(card, i) {
+        setTimeout(function() {
+          card.classList.add('is-visible');
+        }, i * 90);
+      });
+
+      /* Start counters (slight extra delay so they begin while cards are fading in) */
+      values.forEach(function(el, i) {
+        setTimeout(function() { animateCounter(el); }, i * 90 + 120);
+      });
+
+      observer.disconnect();
+    });
+  }, { threshold: 0.12 });
+
+  observer.observe(section);
+})();
+
+/* =====================================================
+   DIFERENCIADOR + CASOS — staggered reveal
+===================================================== */
+
+(function initDiferenciador() {
+  const section = document.querySelector('.diferenciador');
+  if (!section) return;
+
+  const casosCards = section.querySelectorAll('.caso-card');
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      casosCards.forEach(function(card, i) {
+        setTimeout(function() {
+          card.classList.add('is-visible');
+        }, i * 110);
+      });
+      observer.disconnect();
+    });
+  }, { threshold: 0.08 });
+
+  observer.observe(section);
+})();
+
+/* =====================================================
+   INSIGHT RETO — question carousel + modal
+===================================================== */
+
+(function initInsightReto() {
+
+  /* ── Elements ── */
+  const section   = document.querySelector('.insight-reto');
+  const overlay   = document.getElementById('insightModal');
+  const openBtn   = document.getElementById('retoOpenModal');
+  const closeBtn  = document.getElementById('insightModalClose');
+  const questions = document.querySelectorAll('.reto-question');
+  const dots      = document.querySelectorAll('.reto-dot');
+
+  if (!section || !overlay) return;
+
+  /* ── Question carousel ── */
+  let current  = 0;
+  let timer    = null;
+  const DELAY  = 4200;
+
+  function goTo(index) {
+    questions[current].classList.remove('is-active');
+    dots[current].classList.remove('is-active');
+    current = (index + questions.length) % questions.length;
+    questions[current].classList.add('is-active');
+    dots[current].classList.add('is-active');
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(function() { goTo(current + 1); }, DELAY);
+  }
+
+  /* Dot clicks */
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      goTo(parseInt(dot.dataset.dot, 10));
+      startTimer(); /* reset auto-advance */
+    });
+  });
+
+  startTimer();
+
+  /* ── Modal open/close ── */
+  function openModal() {
+    overlay.removeAttribute('hidden');
+    /* Force reflow so the transition fires */
+    overlay.getBoundingClientRect();
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    /* Wait for fade-out before hiding */
+    overlay.addEventListener('transitionend', function handler(e) {
+      if (e.target !== overlay) return;
+      overlay.setAttribute('hidden', '');
+      overlay.removeEventListener('transitionend', handler);
+      openBtn.focus();
+    });
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  /* Click outside card closes modal */
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+
+  /* Escape key */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+
+  /* ── Focus trap inside modal ── */
+  overlay.addEventListener('keydown', function(e) {
+    if (e.key !== 'Tab') return;
+    const focusable = Array.from(
+      overlay.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])')
+    ).filter(function(el) { return !el.hidden; });
+    const first = focusable[0];
+    const last  = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+})();
 
 });
