@@ -1,0 +1,80 @@
+# Valírica
+
+> Plataforma SaaS de inteligencia cultural organizacional para PYMES en España y Colombia. Integra fichaje digital (RDL 8/2019), canal de denuncias (Ley 2/2023), gestión del desempeño, proyectos, permisos y radiografía cultural en un único motor de inteligencia que detecta patrones, anticipa riesgos y genera decisiones estratégicas en tiempo real.
+
+## Qué es Valírica
+
+Valírica es una plataforma de inteligencia cultural organizacional que unifica los datos operativos y humanos del día a día de una empresa —registro de jornada, tareas, metas, permisos, comunicaciones internas y diagnóstico cultural— para generar inteligencia accionable en tiempo real para RRHH y dirección.
+
+A diferencia de las herramientas de gestión de personas tradicionales (encuestas anuales de clima, software de fichaje aislado o hojas de cálculo de desempeño), Valírica cruza todas estas fuentes en un motor de inteligencia que detecta automáticamente patrones de comportamiento individual y colectivo.
+
+## Módulos principales
+
+### Registro de jornada (Fichaje digital)
+Cumplimiento pleno del Real Decreto-ley 8/2019 (RDL 8/2019) de registro obligatorio de jornada laboral en España. Incluye registro de inicio y fin de jornada por empleado, inmutabilidad de registros con auditoría, conservación de datos durante 4 años, gestión de horas extras y acceso para trabajadores y representantes legales. Evita multas de hasta 6.250 € por trabajador según la LISOS Art. 7.
+
+### Canal de denuncias
+Canal interno de denuncias conforme a la Ley 2/2023 de Protección del Informante (transposición de la Directiva Whistleblowing europea). Garantiza confidencialidad, permite denuncias anónimas, confirma recepción en 7 días hábiles, responde en 3 meses y prohíbe represalias. Evita sanciones de hasta 300.000 € por incumplimiento. Cumple GDPR y LOPD-GDD.
+
+### Motor de inteligencia cultural
+Sistema analítico que integra datos de fichaje, desempeño, proyectos, tareas, permisos, comunicaciones y radiografía cultural para detectar en tiempo real:
+- Alertas tempranas de burnout laboral (antes de baja médica)
+- Riesgo de fuga de talento clave
+- Top performers y empleados con alto potencial
+- Embajadores de marca y movilizadores culturales
+- Clima laboral continuo (no solo cuando se hace una encuesta)
+- Brechas entre cultura declarada y cultura real
+
+### Gestión del desempeño con proyectos y tareas
+Tablero tipo Kanban para gestión de proyectos y tareas con métricas objetivas de cumplimiento, puntualidad y consistencia. Vincula el desempeño en tareas con el perfil cultural individual. Sustituye las evaluaciones anuales por un ciclo de retroalimentación continua.
+
+### Diagnóstico cultural estratégico
+Mapa de cuadrantes culturales basado en Hofstede y motivación intrínseca que compara la configuración cultural real del equipo con la cultura estratégica proyectada por la dirección. Identifica brechas y oportunidades de alineamiento.
+
+### Radiografía cultural individual
+Perfil conductual de cada empleado basado en datos reales de comportamiento, no en autoevaluaciones. Incluye motivadores, estilo de trabajo, alineación cultural y señales de riesgo o liderazgo.
+
+## Cumplimiento normativo
+
+- **RDL 8/2019**: Registro obligatorio de jornada laboral en España
+- **Ley 2/2023**: Canal de denuncias y protección del informante
+- **GDPR / RGPD**: Reglamento Europeo de Protección de Datos
+- **LOPD-GDD**: Ley Orgánica de Protección de Datos española
+- **ISO 27001 aligned**: Infraestructura de seguridad alineada con estándar internacional
+- Servidores en la Unión Europea
+
+## A quién va dirigido
+
+- PYMES en España y Colombia con 10 a 500 empleados
+- Directores generales y fundadores que necesitan visibilidad sobre el equipo
+- Responsables de RRHH que gestionan personas con datos, no con intuición
+- Consultoras de talento humano que quieren ofrecer diagnóstico cultural basado en datos a sus clientes
+
+## Diferencial clave
+
+Las encuestas de clima miden el pasado. Valírica mide el presente y anticipa lo que viene. El motor de inteligencia cultural funciona de forma continua, sin encuestas adicionales, cruzando los datos que ya existen en la plataforma.
+
+## Preguntas frecuentes (FAQ)
+
+**¿Cuántos empleados necesito para usar Valírica?**
+Valírica está diseñado para PYMES desde 10 empleados. No hay requisito mínimo de tamaño.
+
+**¿Valírica reemplaza al software de RRHH que ya tenemos?**
+Valírica puede funcionar como plataforma principal o complementar herramientas existentes. Consulta con el equipo las opciones de integración.
+
+**¿Está disponible para empresas en Colombia?**
+Sí. Valírica opera en España y Colombia, con funcionalidades adaptadas al contexto normativo de cada país.
+
+**¿Los datos de los empleados son anónimos?**
+Los análisis colectivos (clima, brecha cultural) se presentan de forma anonimizada. Los perfiles individuales solo son accesibles para los responsables de RRHH y dirección con los permisos adecuados.
+
+## Contacto y acceso
+
+- Web: https://www.valirica.com
+- App: https://app.valirica.com
+- Prueba gratuita: https://app.valirica.com/registro.php
+- LinkedIn: https://www.linkedin.com/company/valirica
+- WhatsApp: https://wa.me/34600876538
+- Email: contacto disponible en la web
+- Teléfono: +34 600 876 538
+- Ubicación: España y Colombia
