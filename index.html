@@ -50,13 +50,16 @@
   <link rel="preconnect" href="https://p.typekit.net" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
 
-  <link rel="stylesheet" href="https://use.typekit.net/qrv8fyz.css">
+  <!-- LCP image preload -->
+  <link rel="preload" as="image" href="assets/images/dashboard-preview.webp" type="image/webp" fetchpriority="high">
 
+  <!-- Typekit non-blocking: no render-blocking font CSS -->
+  <link rel="preload" href="https://use.typekit.net/qrv8fyz.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://use.typekit.net/qrv8fyz.css"></noscript>
 
   <script src="https://unpkg.com/lucide@latest" defer></script>
 
   <link rel="stylesheet" href="styles.css">
-
 
   <script type="application/ld+json">
   {
@@ -66,7 +69,9 @@
         "@type": ["Organization", "LocalBusiness"],
         "@id": "https://www.valirica.com/#organization",
         "name": "Valírica",
+        "legalName": "Valírica",
         "url": "https://www.valirica.com",
+        "email": "vale@valirica.com",
         "logo": {
           "@type": "ImageObject",
           "url": "https://www.valirica.com/assets/icons/logo-light.svg",
@@ -377,6 +382,7 @@
             <img src="assets/images/dashboard-preview.png"
                  class="dashboard-img img-1 active"
                  alt="Dashboard cultural Valírica"
+                 width="1280" height="720"
                  fetchpriority="high">
           </picture>
 
@@ -385,6 +391,7 @@
             <img src="assets/images/dashboard-preview2.png"
                  class="dashboard-img img-2"
                  alt="Panel de inteligencia organizacional"
+                 width="1280" height="720"
                  loading="lazy">
           </picture>
         </div>
@@ -437,7 +444,7 @@
         </div>
 
 
-        <div class="floating-card card-1" data-depth="3" aria-hidden="true">
+        <div class="floating-card card-1" aria-hidden="true">
           <div class="card-icon"><i data-lucide="clock"></i></div>
           <div class="card-text">
             <strong>Registro de jornada</strong>
@@ -445,7 +452,7 @@
           </div>
         </div>
 
-        <div class="floating-card card-2" data-depth="4" aria-hidden="true">
+        <div class="floating-card card-2" aria-hidden="true">
           <div class="card-icon"><i data-lucide="clipboard-list"></i></div>
           <div class="card-text">
             <strong>Proyectos y metas</strong>
@@ -453,7 +460,7 @@
           </div>
         </div>
 
-        <div class="floating-card card-3" data-depth="5" aria-hidden="true">
+        <div class="floating-card card-3" aria-hidden="true">
           <div class="card-icon"><i data-lucide="users"></i></div>
           <div class="card-text">
             <strong>Análisis individual</strong>
@@ -461,7 +468,7 @@
           </div>
         </div>
 
-        <div class="floating-card card-4" data-depth="6" aria-hidden="true">
+        <div class="floating-card card-4" aria-hidden="true">
           <div class="card-icon"><i data-lucide="activity"></i></div>
           <div class="card-text">
             <strong>Radar cultural</strong>
@@ -469,7 +476,7 @@
           </div>
         </div>
 
-        <div class="floating-card card-5" data-depth="5" aria-hidden="true">
+        <div class="floating-card card-5" aria-hidden="true">
           <div class="card-icon"><i data-lucide="shield-alert"></i></div>
           <div class="card-text">
             <strong>Canales de denuncias y quejas</strong>
