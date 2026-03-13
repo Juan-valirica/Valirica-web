@@ -76,7 +76,7 @@ function format_date_es($dt){
 function iso_date($dt){ return date('c', strtotime($dt)); }
 
 // ─── Meta & SEO vars ───────────────────────────────────────────────────────
-$base_url    = 'https://valirica.com';
+$base_url    = 'https://www.valirica.com';
 $post_url    = $base_url . '/blog/' . $post['slug'];
 $seo_title   = $post['seo_title']   ?: ($post['title'] . ' | Blog Valírica');
 $seo_desc    = $post['seo_description'] ?: substr(strip_tags($post['excerpt']), 0, 160);
@@ -129,12 +129,7 @@ $jsonld_article = [
         'name'  => $post['author_name'],
         'url'   => $base_url,
     ],
-    'publisher'        => [
-        '@type' => 'Organization',
-        'name'  => 'Valírica',
-        'url'   => $base_url,
-        'logo'  => ['@type' => 'ImageObject', 'url' => 'https://app.valirica.com/uploads/logo-192.png'],
-    ],
+    'publisher'        => ['@id' => $base_url . '/#organization'],
     'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => $post_url],
     'wordCount'        => str_word_count(strip_tags($post['content'])),
     'about'            => [['@type' => 'Thing', 'name' => $post['category']]],
@@ -151,18 +146,33 @@ $jsonld_breadcrumb = [
 ];
 $jsonld_org = [
     '@context'    => 'https://schema.org',
-    '@type'       => 'Organization',
+    '@type'       => ['Organization', 'LocalBusiness'],
+    '@id'         => $base_url . '/#organization',
     'name'        => 'Valírica',
     'url'         => $base_url,
-    'logo'        => 'https://app.valirica.com/uploads/logo-192.png',
-    'description' => 'Plataforma de cultura organizacional, equipos y talento para empresas.',
-    'sameAs'      => ['https://www.linkedin.com/company/valirica'],
-    'contactPoint'=> ['@type' => 'ContactPoint', 'email' => 'soporte@valirica.com', 'contactType' => 'customer support'],
+    'logo'        => ['@type' => 'ImageObject', 'url' => $base_url . '/assets/icons/logo-light.svg', 'width' => 134, 'height' => 34],
+    'description' => 'Plataforma SaaS de inteligencia cultural organizacional para PYMES en España y Colombia. Fichaje digital (RDL 8/2019), canal de denuncias (Ley 2/2023), gestión del desempeño y motor de inteligencia cultural en tiempo real.',
+    'sameAs'      => [
+        'https://www.linkedin.com/company/valirica',
+        'https://www.instagram.com/valirica.rrhh',
+        'https://www.youtube.com/channel/UC6DmXMbAuyX-5QxYlv7WnLA',
+    ],
+    'contactPoint'=> ['@type' => 'ContactPoint', 'telephone' => '+34-600-876-538', 'email' => 'vale@valirica.com', 'contactType' => 'customer service', 'availableLanguage' => ['Spanish']],
+    'areaServed'  => [['@type' => 'Country', 'name' => 'España'], ['@type' => 'Country', 'name' => 'Colombia']],
 ];
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- ── Google Analytics ── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH7VP37W6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZZH7VP37W6');
+  </script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -198,13 +208,14 @@ $jsonld_org = [
   <meta name="twitter:image"       content="<?= h($cover_image) ?>">
 
   <!-- ── Recursos ── -->
-  <link rel="manifest"         href="/manifest.json">
-  <link rel="icon"             type="image/png" sizes="192x192" href="https://app.valirica.com/uploads/logo-192.png">
-  <link rel="apple-touch-icon" href="https://app.valirica.com/uploads/logo-192.png">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon-light.svg">
   <meta name="theme-color" content="#012133">
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="preload" href="https://use.typekit.net/qrv8fyz.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://use.typekit.net/qrv8fyz.css"></noscript>
+  <link rel="preconnect" href="https://unpkg.com">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
-  <link rel="stylesheet" href="https://use.typekit.net/qrv8fyz.css">
 
   <!-- ── JSON-LD Structured Data ── -->
   <script type="application/ld+json"><?= json_encode($jsonld_article,    JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?></script>
@@ -220,7 +231,7 @@ $jsonld_org = [
       --c-primary:   #012133;
       --c-secondary: #184656;
       --c-teal:      #007a96;
-      --c-accent:    #EF7F1B;
+      --c-accent:    #ff9700;
       --c-soft:      #FFF5F0;
       --font: "gelica", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --transition: 0.22s ease;
@@ -243,44 +254,52 @@ $jsonld_org = [
 
     /* ── NAV ── */
     .vl-nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(1,25,41,0.88);
-      backdrop-filter: blur(16px) saturate(1.4);
-      -webkit-backdrop-filter: blur(16px) saturate(1.4);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      position: sticky; top: 0; z-index: 9900;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(24px) saturate(200%);
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      border-bottom: 1px solid rgba(1,33,51,0.08);
+      box-shadow: 0 4px 24px rgba(1,33,51,0.09);
       padding: 0 24px;
     }
     .vl-nav-inner {
       max-width: 1160px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px; gap: 16px;
+      display: flex; align-items: center; gap: 8px;
+      height: 64px;
     }
     .vl-nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none; color: #fff; flex-shrink: 0;
+      display: flex; align-items: center;
+      text-decoration: none; flex-shrink: 0; margin-right: 8px;
     }
-    .vl-nav-logo img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
-    .vl-nav-logo span { font-size: 16px; font-weight: 800; letter-spacing: -0.3px; }
+    .vl-nav-logo img { height: 34px; width: auto; }
     .vl-nav-title {
-      font-size: 13px; color: rgba(255,255,255,0.45); font-weight: 500;
+      font-size: 13px; color: rgba(1,33,51,0.45); font-weight: 500;
       overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
       flex: 1; min-width: 0;
     }
-    .vl-nav-links { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+    .vl-nav-links { display: flex; gap: 2px; align-items: center; flex-shrink: 0; }
     .vl-nav-link {
-      padding: 7px 14px; border-radius: 10px; font-size: 13px; font-weight: 600;
-      text-decoration: none; color: rgba(255,255,255,0.62);
-      transition: color var(--transition), background var(--transition);
+      padding: 7px 12px; border-radius: 9px; font-size: 13.5px; font-weight: 600;
+      text-decoration: none; color: rgba(1,33,51,0.65);
+      transition: color 180ms ease, background 180ms ease; white-space: nowrap;
     }
-    .vl-nav-link:hover { color: #fff; background: rgba(255,255,255,0.09); }
+    .vl-nav-link:hover { color: #012133; background: rgba(1,33,51,0.055); }
+    .vl-nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .vl-nav-login {
+      padding: 8px 14px; border-radius: 9px; font-size: 13.5px; font-weight: 600;
+      color: rgba(1,33,51,0.65); text-decoration: none;
+      transition: color 180ms ease, background 180ms ease; white-space: nowrap;
+    }
+    .vl-nav-login:hover { color: #012133; background: rgba(1,33,51,0.055); }
     .vl-nav-cta {
-      padding: 8px 18px; border-radius: 10px; font-size: 13px; font-weight: 700;
-      background: linear-gradient(135deg, var(--c-accent), #d96b0a);
-      color: #fff; text-decoration: none; margin-left: 8px;
-      box-shadow: 0 4px 14px rgba(239,127,27,0.30);
-      transition: opacity var(--transition), transform var(--transition);
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 16px; border-radius: 10px; font-size: 13.5px; font-weight: 700;
+      background: var(--c-accent); color: #fff; text-decoration: none;
+      box-shadow: 0 6px 20px rgba(255,151,0,0.30);
+      transition: transform 220ms ease, box-shadow 220ms ease; white-space: nowrap;
     }
-    .vl-nav-cta:hover { opacity: 0.88; transform: scale(0.98); }
+    .vl-nav-cta:hover { transform: scale(0.97); box-shadow: 0 4px 14px rgba(255,151,0,0.25); }
+    .vl-nav-cta svg { width: 14px; height: 14px; flex-shrink: 0; }
 
     /* ── COVER ── */
     .post-cover {
@@ -315,12 +334,12 @@ $jsonld_org = [
     /* ── POST HEADER ── */
     .post-cat-pill {
       display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(239,127,27,0.15); border: 1px solid rgba(239,127,27,0.30);
+      background: rgba(255,151,0,0.15); border: 1px solid rgba(255,151,0,0.30);
       color: #f5a23d; font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
       text-transform: uppercase; padding: 5px 13px; border-radius: 100px;
       text-decoration: none; margin-bottom: 16px; display: inline-flex;
     }
-    .post-cat-pill:hover { background: rgba(239,127,27,0.22); }
+    .post-cat-pill:hover { background: rgba(255,151,0,0.22); }
     h1.post-title {
       font-size: clamp(28px, 4.5vw, 46px); font-weight: 900; color: #fff;
       line-height: 1.1; letter-spacing: -1px; margin-bottom: 18px;
@@ -365,7 +384,7 @@ $jsonld_org = [
     .post-content ul li::marker { color: var(--c-accent); }
     .post-content ol li::marker { color: var(--c-teal); font-weight: 700; }
     .post-content blockquote {
-      background: rgba(239,127,27,0.07); border-left: 3px solid var(--c-accent);
+      background: rgba(255,151,0,0.07); border-left: 3px solid var(--c-accent);
       border-radius: 0 12px 12px 0; padding: 18px 22px;
       margin: 28px 0; color: rgba(255,255,255,0.80); font-style: italic; font-size: 17px;
     }
@@ -472,7 +491,7 @@ $jsonld_org = [
       transition: background var(--transition), color var(--transition);
     }
     .toc-list li a:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.82); }
-    .toc-list li a.active { background: rgba(239,127,27,0.10); color: #f5a23d; }
+    .toc-list li a.active { background: rgba(255,151,0,0.10); color: #f5a23d; }
     .toc-list li a::before {
       content: ''; flex-shrink: 0; width: 5px; height: 5px;
       border-radius: 50%; background: rgba(255,255,255,0.25);
@@ -497,8 +516,8 @@ $jsonld_org = [
     .sidebar-cta-btn {
       display: flex; align-items: center; justify-content: center; gap: 8px;
       padding: 12px 18px; border-radius: 12px; font-size: 13px; font-weight: 700;
-      background: linear-gradient(135deg, var(--c-accent), #d96b0a); color: #fff;
-      text-decoration: none; box-shadow: 0 4px 14px rgba(239,127,27,0.30); width: 100%;
+      background: linear-gradient(135deg, var(--c-accent), #e07800); color: #fff;
+      text-decoration: none; box-shadow: 0 4px 14px rgba(255,151,0,0.30); width: 100%;
       transition: opacity var(--transition), transform var(--transition);
     }
     .sidebar-cta-btn:hover { opacity: 0.88; transform: scale(0.98); }
@@ -529,11 +548,30 @@ $jsonld_org = [
     /* ── FOOTER ── */
     .blog-footer {
       border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 28px 24px; text-align: center;
-      font-size: 13px; color: rgba(255,255,255,0.30);
+      padding: 36px 24px;
     }
-    .blog-footer a { color: rgba(255,255,255,0.42); text-decoration: none; }
-    .blog-footer a:hover { color: rgba(255,255,255,0.65); }
+    .blog-footer-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center;
+    }
+    .blog-footer-brand p {
+      font-size: 12px; color: rgba(255,255,255,0.30); margin-top: 8px; line-height: 1.5;
+    }
+    .blog-footer-links {
+      display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+    }
+    .blog-footer-links a {
+      padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      color: rgba(255,255,255,0.45); text-decoration: none;
+      transition: color var(--transition), background var(--transition);
+    }
+    .blog-footer-links a:hover { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.06); }
+    .blog-footer-legal {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      font-size: 12px; color: rgba(255,255,255,0.25);
+    }
+    .blog-footer-legal a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .blog-footer-legal a:hover { color: rgba(255,255,255,0.55); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
@@ -545,8 +583,11 @@ $jsonld_org = [
       .post-cover { min-height: 280px; padding: 32px 20px; }
       h1.post-title { font-size: 28px; }
       .related-grid { grid-template-columns: 1fr; }
-      .vl-nav-links { display: none; }
       .vl-nav-title { display: none; }
+    }
+    @media (max-width: 480px) {
+      .vl-nav-links { display: none; }
+      .vl-nav-login { display: none; }
     }
     @media (max-width: 480px) {
       .post-layout { padding: 32px 16px 60px; }
@@ -559,14 +600,19 @@ $jsonld_org = [
 <!-- ══ NAV ══════════════════════════════════════════════════════════════════ -->
 <nav class="vl-nav" role="navigation" aria-label="Navegación principal">
   <div class="vl-nav-inner">
-    <a href="/" class="vl-nav-logo" aria-label="Valírica inicio">
-      <img src="https://app.valirica.com/uploads/logo-192.png" alt="Logo Valírica" width="34" height="34">
-      <span>Valírica</span>
+    <a href="https://www.valirica.com" class="vl-nav-logo" aria-label="Valírica — inicio">
+      <img src="assets/icons/logo-light.svg" alt="Valírica" height="34" width="127" loading="eager">
     </a>
     <div class="vl-nav-title"><?= h($post['title']) ?></div>
     <div class="vl-nav-links">
       <a href="/blog" class="vl-nav-link"><i class="ph ph-arrow-left"></i> Blog</a>
-      <a href="/registro.php" class="vl-nav-cta">Empezar gratis</a>
+    </div>
+    <div class="vl-nav-actions">
+      <a href="https://app.valirica.com" class="vl-nav-login" target="_blank" rel="noopener noreferrer">Acceder</a>
+      <a href="https://app.valirica.com/registro.php" class="vl-nav-cta" target="_blank" rel="noopener noreferrer">
+        Prueba gratuita
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </div>
 </nav>
@@ -711,10 +757,10 @@ $jsonld_org = [
     <div class="sidebar-card">
       <h3><i class="ph ph-rocket-launch"></i> Valírica</h3>
       <p style="font-size:13px;color:rgba(255,255,255,0.50);line-height:1.6;margin-bottom:16px;">
-        Mide y activa la cultura de tu equipo con datos reales: DISC, Hofstede, valores y mucho más.
+        Inteligencia cultural para PYMES: fichaje, canal de denuncias, diagnóstico DISC y Hofstede, y detección de burnout en tiempo real.
       </p>
-      <a href="/registro.php" class="sidebar-cta-btn">
-        <i class="ph ph-arrow-right"></i> Empezar gratis
+      <a href="https://app.valirica.com/registro.php" class="sidebar-cta-btn" target="_blank" rel="noopener noreferrer">
+        <i class="ph ph-arrow-right"></i> Prueba gratuita
       </a>
     </div>
 
@@ -749,7 +795,25 @@ $jsonld_org = [
 
 <!-- ══ FOOTER ════════════════════════════════════════════════════════════════ -->
 <footer class="blog-footer" role="contentinfo">
-  <p>© <?= date('Y') ?> Valírica · <a href="mailto:soporte@valirica.com">soporte@valirica.com</a> · <a href="/legal/privacidad">Privacidad</a> · <a href="/legal/terminos">Términos</a></p>
+  <div class="blog-footer-inner">
+    <div class="blog-footer-brand">
+      <img src="assets/icons/logo-light.svg" alt="Valírica" height="28" width="105" loading="lazy" style="opacity:0.55;filter:invert(1);">
+      <p>Inteligencia cultural organizacional para PYMES · España y Colombia</p>
+    </div>
+    <div class="blog-footer-links">
+      <a href="https://www.valirica.com">Web</a>
+      <a href="/blog">Blog</a>
+      <a href="https://app.valirica.com/registro.php" target="_blank" rel="noopener noreferrer">Prueba gratuita</a>
+      <a href="https://www.linkedin.com/company/valirica" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.instagram.com/valirica.rrhh" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+    <div class="blog-footer-legal">
+      <span>© <?= date('Y') ?> Valírica</span>
+      <a href="mailto:vale@valirica.com">vale@valirica.com</a>
+      <a href="/legal/privacidad">Privacidad</a>
+      <a href="/legal/terminos">Términos</a>
+    </div>
+  </div>
 </footer>
 
 <script>

@@ -1,5 +1,14 @@
 RewriteEngine On
 
+# ── Blog URL routing ─────────────────────────────────────────────────────────
+# /blog           → blog.php
+# /blog/SLUG      → blog-post.php?slug=SLUG
+RewriteRule ^blog/?$ blog.php [L,QSA]
+RewriteRule ^blog/([a-z0-9-]+)/?$ blog-post.php?slug=$1 [L,QSA]
+
+# ── Sitemap dinámico ────────────────────────────────────────────────────────
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
 # ── Un solo redirect: cualquier variante HTTP/non-www → https://www.valirica.com ──
 # Cubre los 4 casos en un único 301 (sin doble redirect):
 #   http://valirica.com      → https://www.valirica.com

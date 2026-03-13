@@ -144,7 +144,7 @@ $preset_grads = [
     'Naranja' => 'linear-gradient(135deg, #012133 0%, #2a1a0a 60%, #8a4709 100%)',
     'Azul'   => 'linear-gradient(135deg, #011929 0%, #034461 50%, #2e7d9e 100%)',
     'Oscuro' => 'linear-gradient(135deg, #012133 0%, #103340 50%, #205869 100%)',
-    'Mixto'  => 'linear-gradient(135deg, #012133 0%, #1a3a4a 40%, #EF7F1B 100%)',
+    'Mixto'  => 'linear-gradient(135deg, #012133 0%, #1a3a4a 40%, #ff9700 100%)',
 ];
 ?>
 <!DOCTYPE html>
@@ -163,7 +163,7 @@ $preset_grads = [
       --c-primary:   #012133;
       --c-secondary: #184656;
       --c-teal:      #007a96;
-      --c-accent:    #EF7F1B;
+      --c-accent:    #ff9700;
       --c-surface:   rgba(255,255,255,0.04);
       --c-border:    rgba(255,255,255,0.09);
       --font: "gelica", system-ui, sans-serif;
@@ -191,7 +191,7 @@ $preset_grads = [
     .adm-logo img { width: 32px; height: 32px; border-radius: 50%; }
     .adm-logo span { font-weight: 800; font-size: 15px; }
     .adm-badge {
-      background: rgba(239,127,27,0.15); border: 1px solid rgba(239,127,27,0.30);
+      background: rgba(255,151,0,0.15); border: 1px solid rgba(255,151,0,0.30);
       color: #f5a23d; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
       text-transform: uppercase; padding: 3px 10px; border-radius: 100px;
     }
@@ -237,7 +237,7 @@ $preset_grads = [
     /* ── BUTTONS ── */
     .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 700; font-family: var(--font); cursor: pointer; text-decoration: none; border: none; transition: opacity var(--tr), transform var(--tr); }
     .btn:hover { opacity: 0.88; transform: scale(0.98); }
-    .btn-primary { background: linear-gradient(135deg, var(--c-accent), #d96b0a); color: #fff; box-shadow: 0 4px 14px rgba(239,127,27,0.30); }
+    .btn-primary { background: linear-gradient(135deg, var(--c-accent), #e07800); color: #fff; box-shadow: 0 4px 14px rgba(255,151,0,0.30); }
     .btn-ghost { background: var(--c-surface); border: 1px solid var(--c-border); color: rgba(255,255,255,0.65); }
     .btn-ghost:hover { background: rgba(255,255,255,0.08); color: #fff; }
     .btn-danger { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.30); color: #fca5a5; }
@@ -270,7 +270,7 @@ $preset_grads = [
 
     .featured-badge {
       display: inline-flex; align-items: center; gap: 4px;
-      background: rgba(239,127,27,0.12); border: 1px solid rgba(239,127,27,0.25);
+      background: rgba(255,151,0,0.12); border: 1px solid rgba(255,151,0,0.25);
       color: #f5a23d; padding: 3px 9px; border-radius: 100px; font-size: 11px; font-weight: 700;
     }
 
@@ -281,7 +281,7 @@ $preset_grads = [
     .adm-form-group { display: flex; flex-direction: column; gap: 6px; }
     .adm-form-group.full { grid-column: 1 / -1; }
     .adm-form-label { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.50); letter-spacing: 0.5px; }
-    .adm-form-label span { color: rgba(239,127,27,0.8); }
+    .adm-form-label span { color: rgba(255,151,0,0.8); }
     .adm-input, .adm-select, .adm-textarea {
       background: rgba(255,255,255,0.05); border: 1px solid var(--c-border);
       border-radius: 10px; padding: 10px 14px; font-size: 14px; font-family: var(--font);
@@ -357,7 +357,7 @@ $preset_grads = [
   <div class="adm-header-inner">
     <div style="display:flex;align-items:center;gap:14px">
       <a href="/" class="adm-logo">
-        <img src="https://app.valirica.com/uploads/logo-192.png" alt="Valírica">
+        <img src="assets/icons/logo-light.svg" alt="Valírica" height="30" width="auto">
         <span>Valírica</span>
       </a>
       <span class="adm-badge"><i class="ph ph-pencil-line"></i> Blog Admin</span>
