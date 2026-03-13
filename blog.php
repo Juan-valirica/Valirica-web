@@ -10,7 +10,7 @@ $page       = max(1, (int)($_GET['p'] ?? 1));
 $category   = trim($_GET['cat'] ?? '');
 $per_page   = 9;
 $offset     = ($page - 1) * $per_page;
-$base_url   = 'https://valirica.com';
+$base_url   = 'https://www.valirica.com';
 $canonical  = $base_url . '/blog' . ($page > 1 ? '?p=' . $page : '') . ($category ? ($page > 1 ? '&' : '?') . 'cat=' . urlencode($category) : '');
 
 // ─── Consulta posts ────────────────────────────────────────────────────────
@@ -64,22 +64,31 @@ if ($page === 1 && !$category && !empty($posts) && $posts[0]['featured']) {
 }
 
 // ─── JSON-LD ───────────────────────────────────────────────────────────────
+$jsonld_org = [
+    '@context'    => 'https://schema.org',
+    '@type'       => ['Organization', 'LocalBusiness'],
+    '@id'         => $base_url . '/#organization',
+    'name'        => 'Valírica',
+    'url'         => $base_url,
+    'logo'        => ['@type' => 'ImageObject', 'url' => $base_url . '/assets/icons/logo-light.svg', 'width' => 134, 'height' => 34],
+    'description' => 'Plataforma SaaS de inteligencia cultural organizacional para PYMES en España y Colombia. Fichaje digital (RDL 8/2019), canal de denuncias (Ley 2/2023), gestión del desempeño y motor de inteligencia cultural en tiempo real.',
+    'sameAs'      => [
+        'https://www.linkedin.com/company/valirica',
+        'https://www.instagram.com/valirica.rrhh',
+        'https://www.youtube.com/channel/UC6DmXMbAuyX-5QxYlv7WnLA',
+    ],
+    'contactPoint' => ['@type' => 'ContactPoint', 'telephone' => '+34-600-876-538', 'email' => 'vale@valirica.com', 'contactType' => 'customer service', 'availableLanguage' => ['Spanish']],
+    'areaServed'  => [['@type' => 'Country', 'name' => 'España'], ['@type' => 'Country', 'name' => 'Colombia']],
+];
 $jsonld_website = [
     '@context'        => 'https://schema.org',
     '@type'           => 'WebSite',
+    '@id'             => $base_url . '/#website',
     'name'            => 'Valírica',
     'url'             => $base_url,
-    'description'     => 'Plataforma de cultura organizacional, equipos y talento.',
-    'publisher'       => [
-        '@type'  => 'Organization',
-        'name'   => 'Valírica',
-        'url'    => $base_url,
-        'logo'   => [
-            '@type' => 'ImageObject',
-            'url'   => 'https://app.valirica.com/uploads/logo-192.png',
-        ],
-        'sameAs' => ['https://www.linkedin.com/company/valirica'],
-    ],
+    'description'     => 'Plataforma SaaS de inteligencia cultural organizacional para PYMES en España y Colombia.',
+    'publisher'       => ['@id' => $base_url . '/#organization'],
+    'inLanguage'      => 'es',
     'potentialAction' => [
         '@type'       => 'SearchAction',
         'target'      => $base_url . '/blog?q={search_term_string}',
@@ -90,10 +99,10 @@ $jsonld_blog = [
     '@context'    => 'https://schema.org',
     '@type'       => 'Blog',
     'name'        => 'Blog de Cultura Organizacional — Valírica',
-    'description' => 'Artículos, guías y recursos sobre cultura organizacional, liderazgo de equipos, gestión del talento y people analytics.',
+    'description' => 'Artículos, guías y recursos sobre cultura organizacional, inteligencia cultural, gestión del talento, DISC, Hofstede y liderazgo de equipos para PYMES.',
     'url'         => $base_url . '/blog',
     'inLanguage'  => 'es',
-    'publisher'   => ['@type' => 'Organization', 'name' => 'Valírica', 'url' => $base_url],
+    'publisher'   => ['@id' => $base_url . '/#organization'],
 ];
 $jsonld_breadcrumb = [
     '@context'        => 'https://schema.org',
@@ -122,6 +131,15 @@ function format_date_es($dt){
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- ── Google Analytics ── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH7VP37W6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZZH7VP37W6');
+  </script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -153,15 +171,17 @@ function format_date_es($dt){
   <?php if ($page < $total_pages): ?><link rel="next" href="<?= h($base_url . '/blog?p=' . ($page + 1) . ($category ? '&cat=' . urlencode($category) : '')) ?>"><?php endif; ?>
 
   <!-- ── Recursos ── -->
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" type="image/png" sizes="192x192" href="https://app.valirica.com/uploads/logo-192.png">
-  <link rel="apple-touch-icon" href="https://app.valirica.com/uploads/logo-192.png">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon-light.svg">
   <meta name="theme-color" content="#012133">
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="preload" href="https://use.typekit.net/qrv8fyz.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://use.typekit.net/qrv8fyz.css"></noscript>
+  <link rel="preconnect" href="https://unpkg.com">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
-  <link rel="stylesheet" href="https://use.typekit.net/qrv8fyz.css">
 
   <!-- ── JSON-LD Structured Data ── -->
+  <script type="application/ld+json"><?= json_encode($jsonld_org,        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?></script>
   <script type="application/ld+json"><?= json_encode($jsonld_website,    JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?></script>
   <script type="application/ld+json"><?= json_encode($jsonld_blog,       JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?></script>
   <script type="application/ld+json"><?= json_encode($jsonld_breadcrumb, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?></script>
@@ -172,7 +192,7 @@ function format_date_es($dt){
       --c-primary:   #012133;
       --c-secondary: #184656;
       --c-teal:      #007a96;
-      --c-accent:    #EF7F1B;
+      --c-accent:    #ff9700;
       --c-soft:      #FFF5F0;
       --font: "gelica", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --radius-card: 20px;
@@ -189,41 +209,49 @@ function format_date_es($dt){
 
     /* ── NAV ── */
     .vl-nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(1,25,41,0.85);
-      backdrop-filter: blur(16px) saturate(1.4);
-      -webkit-backdrop-filter: blur(16px) saturate(1.4);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      position: sticky; top: 0; z-index: 9900;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(24px) saturate(200%);
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      border-bottom: 1px solid rgba(1,33,51,0.08);
+      box-shadow: 0 4px 24px rgba(1,33,51,0.09);
       padding: 0 24px;
     }
     .vl-nav-inner {
       max-width: 1160px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
+      display: flex; align-items: center; gap: 8px;
+      height: 64px;
     }
     .vl-nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none; color: #fff;
+      display: flex; align-items: center;
+      text-decoration: none; flex-shrink: 0; margin-right: 8px;
     }
-    .vl-nav-logo img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
-    .vl-nav-logo span { font-size: 16px; font-weight: 800; letter-spacing: -0.3px; }
-    .vl-nav-links { display: flex; gap: 6px; align-items: center; }
+    .vl-nav-logo img { height: 34px; width: auto; }
+    .vl-nav-links { display: flex; gap: 2px; align-items: center; flex: 1; }
     .vl-nav-link {
-      padding: 7px 14px; border-radius: 10px; font-size: 13px; font-weight: 600;
-      text-decoration: none; color: rgba(255,255,255,0.62);
-      transition: color var(--transition), background var(--transition);
+      padding: 7px 12px; border-radius: 9px; font-size: 13.5px; font-weight: 600;
+      text-decoration: none; color: rgba(1,33,51,0.65);
+      transition: color 180ms ease, background 180ms ease;
+      white-space: nowrap;
     }
-    .vl-nav-link:hover, .vl-nav-link.active {
-      color: #fff; background: rgba(255,255,255,0.09);
+    .vl-nav-link:hover { color: #012133; background: rgba(1,33,51,0.055); }
+    .vl-nav-link.active { color: #007a96; background: rgba(0,122,150,0.07); }
+    .vl-nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .vl-nav-login {
+      padding: 8px 14px; border-radius: 9px; font-size: 13.5px; font-weight: 600;
+      color: rgba(1,33,51,0.65); text-decoration: none;
+      transition: color 180ms ease, background 180ms ease; white-space: nowrap;
     }
+    .vl-nav-login:hover { color: #012133; background: rgba(1,33,51,0.055); }
     .vl-nav-cta {
-      padding: 8px 18px; border-radius: 10px; font-size: 13px; font-weight: 700;
-      background: linear-gradient(135deg, var(--c-accent), #d96b0a);
-      color: #fff; text-decoration: none; margin-left: 8px;
-      box-shadow: 0 4px 14px rgba(239,127,27,0.30);
-      transition: opacity var(--transition), transform var(--transition);
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 16px; border-radius: 10px; font-size: 13.5px; font-weight: 700;
+      background: var(--c-accent); color: #fff; text-decoration: none;
+      box-shadow: 0 6px 20px rgba(255,151,0,0.30);
+      transition: transform 220ms ease, box-shadow 220ms ease; white-space: nowrap;
     }
-    .vl-nav-cta:hover { opacity: 0.88; transform: scale(0.98); }
+    .vl-nav-cta:hover { transform: scale(0.97); box-shadow: 0 4px 14px rgba(255,151,0,0.25); }
+    .vl-nav-cta svg { width: 14px; height: 14px; flex-shrink: 0; }
 
     /* ── HERO ── */
     .blog-hero {
@@ -236,7 +264,7 @@ function format_date_es($dt){
       position: absolute; inset: 0;
       background:
         radial-gradient(ellipse at 70% 0%,  rgba(0,122,150,0.35) 0%, transparent 55%),
-        radial-gradient(ellipse at 15% 90%, rgba(239,127,27,0.18) 0%, transparent 48%);
+        radial-gradient(ellipse at 15% 90%, rgba(255,151,0,0.18) 0%, transparent 48%);
       pointer-events: none;
     }
     /* Decorative rings */
@@ -244,12 +272,12 @@ function format_date_es($dt){
       position: absolute; border-radius: 50%; border: 1px solid rgba(0,122,150,0.13); pointer-events: none;
     }
     .blog-hero .r1 { width: 500px; height: 500px; top: -220px; right: -150px; }
-    .blog-hero .r2 { width: 360px; height: 360px; bottom: -130px; left: -100px; border-color: rgba(239,127,27,0.09); }
+    .blog-hero .r2 { width: 360px; height: 360px; bottom: -130px; left: -100px; border-color: rgba(255,151,0,0.09); }
 
     .blog-hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
     .blog-hero-tag {
       display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(239,127,27,0.12); border: 1px solid rgba(239,127,27,0.25);
+      background: rgba(255,151,0,0.12); border: 1px solid rgba(255,151,0,0.25);
       color: #f5a23d; font-size: 11px; font-weight: 700; letter-spacing: 2px;
       text-transform: uppercase; padding: 6px 14px; border-radius: 100px;
       margin-bottom: 22px;
@@ -296,7 +324,7 @@ function format_date_es($dt){
     }
     .vl-filter-btn:hover { background: rgba(255,255,255,0.10); color: #fff; border-color: rgba(255,255,255,0.25); }
     .vl-filter-btn.active {
-      background: rgba(239,127,27,0.15); border-color: rgba(239,127,27,0.40);
+      background: rgba(255,151,0,0.15); border-color: rgba(255,151,0,0.40);
       color: #f5a23d;
     }
     .vl-filter-count {
@@ -339,7 +367,7 @@ function format_date_es($dt){
     .blog-featured-badge {
       position: relative; z-index: 1;
       display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(239,127,27,0.20); border: 1px solid rgba(239,127,27,0.35);
+      background: rgba(255,151,0,0.20); border: 1px solid rgba(255,151,0,0.35);
       color: #f5a23d; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
       text-transform: uppercase; padding: 5px 12px; border-radius: 100px;
     }
@@ -463,7 +491,7 @@ function format_date_es($dt){
       transition: all var(--transition);
     }
     .vl-pag-btn:hover { background: rgba(255,255,255,0.10); color: #fff; border-color: rgba(255,255,255,0.25); }
-    .vl-pag-btn.active { background: var(--c-accent); border-color: var(--c-accent); color: #fff; box-shadow: 0 4px 14px rgba(239,127,27,0.30); }
+    .vl-pag-btn.active { background: var(--c-accent); border-color: var(--c-accent); color: #fff; box-shadow: 0 4px 14px rgba(255,151,0,0.30); }
     .vl-pag-btn:disabled, .vl-pag-btn.disabled { opacity: 0.3; pointer-events: none; }
     .vl-pag-btn i { font-size: 16px; }
 
@@ -477,7 +505,7 @@ function format_date_es($dt){
     .blog-cta::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(239,127,27,0.12) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,151,0,0.12) 0%, transparent 65%);
       pointer-events: none;
     }
     .blog-cta-inner { position: relative; z-index: 1; max-width: 540px; margin: 0 auto; }
@@ -488,8 +516,8 @@ function format_date_es($dt){
     .btn-primary {
       display: inline-flex; align-items: center; gap: 7px;
       padding: 13px 26px; border-radius: 12px; font-size: 14px; font-weight: 700;
-      background: linear-gradient(135deg, var(--c-accent), #d96b0a); color: #fff;
-      text-decoration: none; box-shadow: 0 4px 18px rgba(239,127,27,0.35);
+      background: linear-gradient(135deg, var(--c-accent), #e07800); color: #fff;
+      text-decoration: none; box-shadow: 0 4px 18px rgba(255,151,0,0.35);
       transition: opacity var(--transition), transform var(--transition);
     }
     .btn-primary:hover { opacity: 0.88; transform: scale(0.98); }
@@ -505,11 +533,30 @@ function format_date_es($dt){
     /* ── FOOTER ── */
     .blog-footer {
       border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 28px 24px; text-align: center;
-      font-size: 13px; color: rgba(255,255,255,0.30);
+      padding: 36px 24px;
     }
-    .blog-footer a { color: rgba(255,255,255,0.42); text-decoration: none; }
-    .blog-footer a:hover { color: rgba(255,255,255,0.65); }
+    .blog-footer-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center;
+    }
+    .blog-footer-brand p {
+      font-size: 12px; color: rgba(255,255,255,0.30); margin-top: 8px; line-height: 1.5;
+    }
+    .blog-footer-links {
+      display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+    }
+    .blog-footer-links a {
+      padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      color: rgba(255,255,255,0.45); text-decoration: none;
+      transition: color var(--transition), background var(--transition);
+    }
+    .blog-footer-links a:hover { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.06); }
+    .blog-footer-legal {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      font-size: 12px; color: rgba(255,255,255,0.25);
+    }
+    .blog-footer-legal a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .blog-footer-legal a:hover { color: rgba(255,255,255,0.55); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
@@ -524,6 +571,7 @@ function format_date_es($dt){
     }
     @media (max-width: 480px) {
       .vl-nav-links { display: none; }
+      .vl-nav-login { display: none; }
       .blog-cta { padding: 36px 24px; }
     }
   </style>
@@ -533,14 +581,19 @@ function format_date_es($dt){
 <!-- ══ NAV ══════════════════════════════════════════════════════════════════ -->
 <nav class="vl-nav" role="navigation" aria-label="Navegación principal">
   <div class="vl-nav-inner">
-    <a href="/" class="vl-nav-logo" aria-label="Valírica inicio">
-      <img src="https://app.valirica.com/uploads/logo-192.png" alt="Logo Valírica" width="34" height="34">
-      <span>Valírica</span>
+    <a href="https://www.valirica.com" class="vl-nav-logo" aria-label="Valírica — inicio">
+      <img src="assets/icons/logo-light.svg" alt="Valírica" height="34" width="127" loading="eager">
     </a>
     <div class="vl-nav-links">
-      <a href="/" class="vl-nav-link">Inicio</a>
+      <a href="https://www.valirica.com" class="vl-nav-link">Inicio</a>
       <a href="/blog" class="vl-nav-link active" aria-current="page">Blog</a>
-      <a href="/login.php" class="vl-nav-cta"><i class="ph ph-arrow-right"></i> Acceder</a>
+    </div>
+    <div class="vl-nav-actions">
+      <a href="https://app.valirica.com" class="vl-nav-login" target="_blank" rel="noopener noreferrer">Acceder</a>
+      <a href="https://app.valirica.com/registro.php" class="vl-nav-cta" target="_blank" rel="noopener noreferrer">
+        Prueba gratuita
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </div>
 </nav>
@@ -699,11 +752,15 @@ function format_date_es($dt){
     <!-- ── CTA Banner ── -->
     <aside class="blog-cta" aria-label="Llamada a la acción">
       <div class="blog-cta-inner">
-        <h2>¿Listo para <span>medir tu cultura</span> con datos reales?</h2>
-        <p>Valírica te ayuda a entender y transformar la cultura de tu equipo con modelos validados como DISC y Hofstede, dashboards en tiempo real y análisis de alineación de valores.</p>
+        <h2>¿Listo para <span>activar tu cultura</span> con datos reales?</h2>
+        <p>Valírica es la plataforma de inteligencia cultural para PYMES. Fichaje digital, canal de denuncias, diagnóstico DISC y Hofstede, y detección de burnout en tiempo real — todo en uno.</p>
         <div class="blog-cta-btns">
-          <a href="/registro.php" class="btn-primary"><i class="ph ph-rocket-launch"></i> Empezar gratis</a>
-          <a href="/login.php"    class="btn-secondary"><i class="ph ph-sign-in"></i> Ya tengo cuenta</a>
+          <a href="https://app.valirica.com/registro.php" class="btn-primary" target="_blank" rel="noopener noreferrer">
+            <i class="ph ph-rocket-launch"></i> Prueba gratuita
+          </a>
+          <a href="https://app.valirica.com" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+            <i class="ph ph-sign-in"></i> Ya tengo cuenta
+          </a>
         </div>
       </div>
     </aside>
@@ -713,7 +770,25 @@ function format_date_es($dt){
 
 <!-- ══ FOOTER ════════════════════════════════════════════════════════════════ -->
 <footer class="blog-footer" role="contentinfo">
-  <p>© <?= date('Y') ?> Valírica · <a href="mailto:soporte@valirica.com">soporte@valirica.com</a> · <a href="/legal/privacidad">Privacidad</a> · <a href="/legal/terminos">Términos</a></p>
+  <div class="blog-footer-inner">
+    <div class="blog-footer-brand">
+      <img src="assets/icons/logo-light.svg" alt="Valírica" height="28" width="105" loading="lazy" style="opacity:0.55;filter:invert(1);">
+      <p>Inteligencia cultural organizacional para PYMES · España y Colombia</p>
+    </div>
+    <div class="blog-footer-links">
+      <a href="https://www.valirica.com">Web</a>
+      <a href="/blog">Blog</a>
+      <a href="https://app.valirica.com/registro.php" target="_blank" rel="noopener noreferrer">Prueba gratuita</a>
+      <a href="https://www.linkedin.com/company/valirica" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.instagram.com/valirica.rrhh" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+    <div class="blog-footer-legal">
+      <span>© <?= date('Y') ?> Valírica</span>
+      <a href="mailto:vale@valirica.com">vale@valirica.com</a>
+      <a href="/legal/privacidad">Privacidad</a>
+      <a href="/legal/terminos">Términos</a>
+    </div>
+  </div>
 </footer>
 
 </body>

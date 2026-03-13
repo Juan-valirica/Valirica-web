@@ -2,7 +2,7 @@
 /**
  * Blog Module — Migration & Seed
  * Crea tabla blog_posts e inserta artículos iniciales SEO-optimizados
- * Ejecutar una sola vez: https://app.valirica.com/blog-migration.php
+ * Ejecutar una sola vez: https://www.valirica.com/blog-migration.php
  */
 require_once 'config.php';
 

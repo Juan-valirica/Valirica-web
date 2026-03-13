@@ -51,4 +51,4 @@ Allow: /blog
 Allow: /blog/
 
 # Sitemap
-Sitemap: https://valirica.com/sitemap.xml
+Sitemap: https://www.valirica.com/sitemap.xml

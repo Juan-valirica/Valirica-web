@@ -9,7 +9,7 @@ require_once __DIR__ . '/config.php';
 header('Content-Type: application/xml; charset=UTF-8');
 header('X-Robots-Tag: noindex');
 
-$base = 'https://valirica.com';
+$base = 'https://www.valirica.com';
 $today = date('Y-m-d');
 
 // Posts publicados
