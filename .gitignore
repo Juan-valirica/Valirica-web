@@ -1,0 +1,16 @@
+# Credenciales — nunca subir al repositorio
+config.php
+
+# Entornos locales
+.env
+.env.local
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

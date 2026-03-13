@@ -443,7 +443,7 @@ $posts = [
     'content'          => '
 <h2>¿Quién fue Geert Hofstede?</h2>
 <p>Geert Hofstede (1928–2020) fue un psicólogo social neerlandés que realizó uno de los estudios más amplios de la historia sobre diferencias culturales en el mundo organizacional. Trabajando con datos de más de 100.000 empleados de IBM en 70 países durante la década de 1970, identificó dimensiones culturales que explicaban diferencias sistemáticas en valores, actitudes y comportamientos.</p>
-<p>Su obra más influyente, "Culture's Consequences" (1980), revolucionó el campo de la gestión internacional y sigue siendo una de las referencias más citadas en la investigación sobre comportamiento organizacional.</p>
+<p>Su obra más influyente, "Culture\'s Consequences" (1980), revolucionó el campo de la gestión internacional y sigue siendo una de las referencias más citadas en la investigación sobre comportamiento organizacional.</p>
 
 <h2>Las 6 dimensiones del modelo Hofstede</h2>
 
