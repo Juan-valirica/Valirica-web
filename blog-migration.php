@@ -4,6 +4,10 @@
  * Crea tabla blog_posts e inserta artículos iniciales SEO-optimizados
  * Ejecutar una sola vez: https://www.valirica.com/blog-migration.php
  */
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+set_time_limit(300);
+ini_set('memory_limit', '256M');
 require_once 'config.php';
 
 $errors = [];
