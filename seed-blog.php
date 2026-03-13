@@ -392,7 +392,7 @@ if (!$stmt) {
 
 foreach ($posts as $p) {
     $stmt->bind_param(
-        'ssssssssssisssiss',
+        'ssssssssssisssis',
         $p['slug'], $p['title'], $p['excerpt'], $p['content'],
         $p['cover_gradient'], $p['author_name'], $p['author_title'], $p['category'],
         $p['tags'], $p['status'], $p['featured'],
