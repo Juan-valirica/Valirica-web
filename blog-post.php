@@ -255,17 +255,22 @@ $jsonld_org = [
     /* ── NAV ── */
     .vl-nav {
       position: sticky; top: 0; z-index: 9900;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(24px) saturate(200%);
-      -webkit-backdrop-filter: blur(24px) saturate(200%);
-      border-bottom: 1px solid rgba(1,33,51,0.08);
-      box-shadow: 0 4px 24px rgba(1,33,51,0.09);
-      padding: 0 24px;
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(22px) saturate(180%);
+      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.52);
+      box-shadow: 0 4px 24px rgba(1,33,51,0.07);
+      padding: 8px 0;
     }
     .vl-nav-inner {
-      max-width: 1160px; margin: 0 auto;
+      width: 90%; max-width: 1240px; margin: 0 auto;
       display: flex; align-items: center; gap: 8px;
-      height: 64px;
+      height: 56px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: 0 8px 32px rgba(1,33,51,0.07), 0 2px 8px rgba(1,33,51,0.04), inset 0 1px 0 rgba(255,255,255,0.85);
+      padding: 0 20px;
     }
     .vl-nav-logo {
       display: flex; align-items: center;
@@ -601,7 +606,7 @@ $jsonld_org = [
 <nav class="vl-nav" role="navigation" aria-label="Navegación principal">
   <div class="vl-nav-inner">
     <a href="https://www.valirica.com" class="vl-nav-logo" aria-label="Valírica — inicio">
-      <img src="assets/icons/logo-light.svg" alt="Valírica" height="34" width="127" loading="eager">
+      <img src="/assets/icons/logo-light.svg" alt="Valírica" height="34" width="127" loading="eager">
     </a>
     <div class="vl-nav-title"><?= h($post['title']) ?></div>
     <div class="vl-nav-links">
@@ -797,7 +802,7 @@ $jsonld_org = [
 <footer class="blog-footer" role="contentinfo">
   <div class="blog-footer-inner">
     <div class="blog-footer-brand">
-      <img src="assets/icons/logo-light.svg" alt="Valírica" height="28" width="105" loading="lazy" style="opacity:0.55;filter:invert(1);">
+      <img src="/assets/icons/logo-light.svg" alt="Valírica" height="28" width="105" loading="lazy" style="opacity:0.55;filter:invert(1);">
       <p>Inteligencia cultural organizacional para PYMES · España y Colombia</p>
     </div>
     <div class="blog-footer-links">
