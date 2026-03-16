@@ -208,7 +208,7 @@ $jsonld_org = [
   <meta name="twitter:image"       content="<?= h($cover_image) ?>">
 
   <!-- ── Recursos ── -->
-  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon-light.svg">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon-light.svg">
   <meta name="theme-color" content="#012133">
   <link rel="preconnect" href="https://use.typekit.net" crossorigin>
   <link rel="preload" href="https://use.typekit.net/qrv8fyz.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -608,9 +608,13 @@ $jsonld_org = [
     <a href="https://www.valirica.com" class="vl-nav-logo" aria-label="Valírica — inicio">
       <img src="/assets/icons/logo-light.svg" alt="Valírica" height="34" width="127" loading="eager">
     </a>
-    <div class="vl-nav-title"><?= h($post['title']) ?></div>
-    <div class="vl-nav-links">
-      <a href="/blog" class="vl-nav-link"><i class="ph ph-arrow-left"></i> Blog</a>
+    <div class="vl-nav-links" style="flex:1;margin-left:8px;">
+      <a href="https://www.valirica.com/#modulos" class="vl-nav-link">Plataforma</a>
+      <a href="https://www.valirica.com/#diagnostico-cultural" class="vl-nav-link">Diagnóstico</a>
+      <a href="https://www.valirica.com/#beneficios" class="vl-nav-link">Impacto</a>
+      <a href="https://www.valirica.com/#diferenciador" class="vl-nav-link">Por qué Valírica</a>
+      <a href="https://www.valirica.com/#seguridad" class="vl-nav-link">Seguridad</a>
+      <a href="/blog" class="vl-nav-link"><i class="ph ph-article"></i> Blog</a>
     </div>
     <div class="vl-nav-actions">
       <a href="https://app.valirica.com" class="vl-nav-login" target="_blank" rel="noopener noreferrer">Acceder</a>
@@ -624,8 +628,12 @@ $jsonld_org = [
 
 <!-- ══ COVER ════════════════════════════════════════════════════════════════ -->
 <header class="post-cover" style="background: <?= h($post['cover_gradient']) ?>">
-  <?php if ($post['cover_image']): ?>
-  <img class="cover-img" src="<?= h($post['cover_image']) ?>" alt="<?= h($post['title']) ?>" loading="eager" fetchpriority="high">
+  <?php
+    $post_ci = $post['cover_image'] ?? '';
+    if (str_starts_with($post_ci, 'icon:')): ?>
+  <i class="ph <?= h(substr($post_ci, 5)) ?>" style="position:absolute;top:50%;right:5%;transform:translateY(-50%);font-size:180px;opacity:0.10;color:#fff;pointer-events:none;" aria-hidden="true"></i>
+  <?php elseif ($post_ci): ?>
+  <img class="cover-img" src="<?= h($post_ci) ?>" alt="<?= h($post['title']) ?>" loading="eager" fetchpriority="high">
   <?php endif; ?>
   <div class="post-cover-inner">
     <nav aria-label="Breadcrumb" class="vl-breadcrumb">
@@ -802,7 +810,7 @@ $jsonld_org = [
 <footer class="blog-footer" role="contentinfo">
   <div class="blog-footer-inner">
     <div class="blog-footer-brand">
-      <img src="/assets/icons/logo-light.svg" alt="Valírica" height="28" width="105" loading="lazy" style="opacity:0.55;filter:invert(1);">
+      <img src="/assets/icons/logo-dark.svg" alt="Valírica" height="28" width="105" loading="lazy" style="opacity:0.75;">
       <p>Inteligencia cultural organizacional para PYMES · España y Colombia</p>
     </div>
     <div class="blog-footer-links">

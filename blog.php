@@ -171,7 +171,7 @@ function format_date_es($dt){
   <?php if ($page < $total_pages): ?><link rel="next" href="<?= h($base_url . '/blog?p=' . ($page + 1) . ($category ? '&cat=' . urlencode($category) : '')) ?>"><?php endif; ?>
 
   <!-- ── Recursos ── -->
-  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon-light.svg">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon-light.svg">
   <meta name="theme-color" content="#012133">
   <link rel="preconnect" href="https://use.typekit.net" crossorigin>
   <link rel="preload" href="https://use.typekit.net/qrv8fyz.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -590,7 +590,11 @@ function format_date_es($dt){
       <img src="/assets/icons/logo-light.svg" alt="Valírica" height="34" width="127" loading="eager">
     </a>
     <div class="vl-nav-links">
-      <a href="https://www.valirica.com" class="vl-nav-link">Inicio</a>
+      <a href="https://www.valirica.com/#modulos" class="vl-nav-link">Plataforma</a>
+      <a href="https://www.valirica.com/#diagnostico-cultural" class="vl-nav-link">Diagnóstico</a>
+      <a href="https://www.valirica.com/#beneficios" class="vl-nav-link">Impacto</a>
+      <a href="https://www.valirica.com/#diferenciador" class="vl-nav-link">Por qué Valírica</a>
+      <a href="https://www.valirica.com/#seguridad" class="vl-nav-link">Seguridad</a>
       <a href="/blog" class="vl-nav-link active" aria-current="page">Blog</a>
     </div>
     <div class="vl-nav-actions">
@@ -676,8 +680,12 @@ function format_date_es($dt){
       <article>
         <a href="/blog/<?= h($featured_post['slug']) ?>" class="blog-featured" aria-label="Artículo destacado: <?= h($featured_post['title']) ?>">
           <div class="blog-featured-cover" style="background: <?= h($featured_post['cover_gradient']) ?>">
-            <?php if ($featured_post['cover_image']): ?>
-              <img src="<?= h($featured_post['cover_image']) ?>" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4;" loading="eager">
+            <?php
+              $fi_ci = $featured_post['cover_image'] ?? '';
+              if (str_starts_with($fi_ci, 'icon:')): ?>
+              <i class="ph <?= h(substr($fi_ci, 5)) ?>" style="position:absolute;top:50%;right:8%;transform:translateY(-50%);font-size:110px;opacity:0.15;color:#fff;pointer-events:none;" aria-hidden="true"></i>
+            <?php elseif ($fi_ci): ?>
+              <img src="<?= h($fi_ci) ?>" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4;" loading="eager">
             <?php endif; ?>
             <span class="blog-featured-badge"><i class="ph-fill ph-star"></i> Artículo destacado</span>
           </div>
@@ -704,8 +712,12 @@ function format_date_es($dt){
           <article>
             <a href="/blog/<?= h($post['slug']) ?>" class="blog-card" aria-label="<?= h($post['title']) ?>">
               <div class="blog-card-cover" style="background: <?= h($post['cover_gradient']) ?>">
-                <?php if ($post['cover_image']): ?>
-                  <img src="<?= h($post['cover_image']) ?>" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="lazy">
+                <?php
+                  $card_ci = $post['cover_image'] ?? '';
+                  if (str_starts_with($card_ci, 'icon:')): ?>
+                  <i class="ph <?= h(substr($card_ci, 5)) ?>" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:64px;opacity:0.18;color:#fff;pointer-events:none;" aria-hidden="true"></i>
+                <?php elseif ($card_ci): ?>
+                  <img src="<?= h($card_ci) ?>" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="lazy">
                 <?php endif; ?>
                 <span class="blog-card-cat"><?= h($post['category']) ?></span>
               </div>
@@ -777,7 +789,7 @@ function format_date_es($dt){
 <footer class="blog-footer" role="contentinfo">
   <div class="blog-footer-inner">
     <div class="blog-footer-brand">
-      <img src="/assets/icons/logo-light.svg" alt="Valírica" height="28" width="105" loading="lazy" style="opacity:0.55;filter:invert(1);">
+      <img src="/assets/icons/logo-dark.svg" alt="Valírica" height="28" width="105" loading="lazy" style="opacity:0.75;">
       <p>Inteligencia cultural organizacional para PYMES · España y Colombia</p>
     </div>
     <div class="blog-footer-links">
