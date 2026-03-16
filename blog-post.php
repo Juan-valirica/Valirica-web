@@ -606,15 +606,15 @@ $jsonld_org = [
 <nav class="vl-nav" role="navigation" aria-label="Navegación principal">
   <div class="vl-nav-inner">
     <a href="https://www.valirica.com" class="vl-nav-logo" aria-label="Valírica — inicio">
-      <img src="/assets/icons/logo-light.svg" alt="Valírica" height="34" width="127" loading="eager">
+      <img src="/assets/icons/logo-light.svg" alt="Valírica HR Software" height="34" width="127" loading="eager">
     </a>
-    <div class="vl-nav-links" style="flex:1;margin-left:8px;">
+    <div class="vl-nav-links">
       <a href="https://www.valirica.com/#modulos" class="vl-nav-link">Plataforma</a>
       <a href="https://www.valirica.com/#diagnostico-cultural" class="vl-nav-link">Diagnóstico</a>
       <a href="https://www.valirica.com/#beneficios" class="vl-nav-link">Impacto</a>
       <a href="https://www.valirica.com/#diferenciador" class="vl-nav-link">Por qué Valírica</a>
       <a href="https://www.valirica.com/#seguridad" class="vl-nav-link">Seguridad</a>
-      <a href="/blog" class="vl-nav-link"><i class="ph ph-article"></i> Blog</a>
+      <a href="/blog" class="vl-nav-link active" aria-current="page">Blog</a>
     </div>
     <div class="vl-nav-actions">
       <a href="https://app.valirica.com" class="vl-nav-login" target="_blank" rel="noopener noreferrer">Acceder</a>
@@ -629,12 +629,17 @@ $jsonld_org = [
 <!-- ══ COVER ════════════════════════════════════════════════════════════════ -->
 <header class="post-cover" style="background: <?= h($post['cover_gradient']) ?>">
   <?php
-    $post_ci = $post['cover_image'] ?? '';
-    if (str_starts_with($post_ci, 'icon:')): ?>
-  <i class="ph <?= h(substr($post_ci, 5)) ?>" style="position:absolute;top:50%;right:5%;transform:translateY(-50%);font-size:180px;opacity:0.10;color:#fff;pointer-events:none;" aria-hidden="true"></i>
-  <?php elseif ($post_ci): ?>
-  <img class="cover-img" src="<?= h($post_ci) ?>" alt="<?= h($post['title']) ?>" loading="eager" fetchpriority="high">
-  <?php endif; ?>
+    $post_ci  = $post['cover_image'] ?? '';
+    $post_cat = strtolower($post['category'] ?? '');
+    $post_cat_icon_map = ['burnout'=>'ph-fire','liderazgo'=>'ph-crown','cultura'=>'ph-building-office','equipo'=>'ph-users-three','desempe'=>'ph-trend-up','talento'=>'ph-star','clima'=>'ph-chart-bar','innovaci'=>'ph-lightbulb','rrhh'=>'ph-briefcase','recurso'=>'ph-briefcase'];
+    if (str_starts_with($post_ci, 'icon:')) {
+      $post_icon = h(substr($post_ci, 5));
+    } else {
+      $post_icon = 'ph-article';
+      foreach ($post_cat_icon_map as $k => $v) { if (strpos($post_cat, $k) !== false) { $post_icon = $v; break; } }
+    }
+  ?>
+  <i class="ph <?= $post_icon ?>" style="position:absolute;top:50%;right:5%;transform:translateY(-50%);font-size:180px;opacity:0.10;color:#fff;pointer-events:none;" aria-hidden="true"></i>
   <div class="post-cover-inner">
     <nav aria-label="Breadcrumb" class="vl-breadcrumb">
       <a href="/">Inicio</a>
@@ -810,7 +815,7 @@ $jsonld_org = [
 <footer class="blog-footer" role="contentinfo">
   <div class="blog-footer-inner">
     <div class="blog-footer-brand">
-      <img src="/assets/icons/logo-dark.svg" alt="Valírica" height="28" width="105" loading="lazy" style="opacity:0.75;">
+      <img src="/assets/icons/logo-dark.svg" alt="Valírica HR Software" height="28" width="105" loading="lazy" style="opacity:0.75;">
       <p>Inteligencia cultural organizacional para PYMES · España y Colombia</p>
     </div>
     <div class="blog-footer-links">

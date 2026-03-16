@@ -86,7 +86,7 @@ $jsonld_website = [
     '@id'             => $base_url . '/#website',
     'name'            => 'Valírica',
     'url'             => $base_url,
-    'description'     => 'Plataforma SaaS de inteligencia cultural organizacional para PYMES en España y Colombia.',
+    'description'     => 'Plataforma SaaS de RRHH e inteligencia cultural para PYMES en España y Colombia: clima laboral en tiempo real, prevención de burnout, registro de jornada laboral y retención de talento.',
     'publisher'       => ['@id' => $base_url . '/#organization'],
     'inLanguage'      => 'es',
     'potentialAction' => [
@@ -98,8 +98,8 @@ $jsonld_website = [
 $jsonld_blog = [
     '@context'    => 'https://schema.org',
     '@type'       => 'Blog',
-    'name'        => 'Blog de Cultura Organizacional — Valírica',
-    'description' => 'Artículos, guías y recursos sobre cultura organizacional, inteligencia cultural, gestión del talento, DISC, Hofstede y liderazgo de equipos para PYMES.',
+    'name'        => 'Blog de Cultura Organizacional, Clima Laboral y Burnout — Valírica',
+    'description' => 'Artículos, guías y recursos sobre cultura organizacional, clima laboral, prevención del burnout, software de RRHH para PYMES, registro de jornada laboral, retención de talento y Employee Wellbeing en España y Colombia. Liderazgo de equipos, DISC, Hofstede y people analytics.',
     'url'         => $base_url . '/blog',
     'inLanguage'  => 'es',
     'publisher'   => ['@id' => $base_url . '/#organization'],
@@ -144,9 +144,9 @@ function format_date_es($dt){
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
   <!-- ── SEO primario ── -->
-  <title><?= $category ? h($category) . ' — Blog Valírica' : 'Blog de Cultura Organizacional y Equipos | Valírica' ?></title>
-  <meta name="description" content="<?= $category ? 'Artículos sobre ' . h($category) . ' en Valírica.' : 'Descubre guías, estrategias y recursos sobre cultura organizacional, liderazgo de equipos, DISC, Hofstede y gestión del talento.' ?>">
-  <meta name="keywords" content="cultura organizacional, liderazgo equipos, gestión talento, DISC, Hofstede, people analytics, employee engagement, recursos humanos">
+  <title><?= $category ? h($category) . ' — Blog Valírica HR Software' : 'Blog de Cultura Organizacional, Clima Laboral y Prevención de Burnout | Valírica' ?></title>
+  <meta name="description" content="<?= $category ? 'Artículos sobre ' . h($category) . ' para equipos de RRHH en Valírica. Software de clima laboral y prevención de burnout para PYMES en España y Colombia.' : 'Descubre guías, estrategias y recursos sobre cultura organizacional, clima laboral, prevención del burnout, software RRHH para PYMES, registro de jornada y retención de talento en España y Colombia.' ?>">
+  <meta name="keywords" content="cultura organizacional, clima laboral, burnout laboral, prevención burnout, software RRHH España, HR software PYMES, registro de jornada laboral, Employee Wellbeing Platform, retención de talento, liderazgo equipos, gestión talento, DISC, Hofstede, people analytics, employee engagement">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="author" content="Equipo Valírica">
   <link rel="canonical" href="<?= h($canonical) ?>">
@@ -448,8 +448,8 @@ function format_date_es($dt){
     }
     .blog-card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
     .blog-card-title {
-      font-size: 17px; font-weight: 800; color: #fff;
-      line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 10px;
+      font-size: 20px; font-weight: 800; color: #fff;
+      line-height: 1.35; letter-spacing: -0.3px; margin-bottom: 10px;
       display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
     .blog-card-excerpt {
@@ -587,7 +587,7 @@ function format_date_es($dt){
 <nav class="vl-nav" role="navigation" aria-label="Navegación principal">
   <div class="vl-nav-inner">
     <a href="https://www.valirica.com" class="vl-nav-logo" aria-label="Valírica — inicio">
-      <img src="/assets/icons/logo-light.svg" alt="Valírica" height="34" width="127" loading="eager">
+      <img src="/assets/icons/logo-light.svg" alt="Valírica HR Software" height="34" width="127" loading="eager">
     </a>
     <div class="vl-nav-links">
       <a href="https://www.valirica.com/#modulos" class="vl-nav-link">Plataforma</a>
@@ -681,12 +681,17 @@ function format_date_es($dt){
         <a href="/blog/<?= h($featured_post['slug']) ?>" class="blog-featured" aria-label="Artículo destacado: <?= h($featured_post['title']) ?>">
           <div class="blog-featured-cover" style="background: <?= h($featured_post['cover_gradient']) ?>">
             <?php
-              $fi_ci = $featured_post['cover_image'] ?? '';
-              if (str_starts_with($fi_ci, 'icon:')): ?>
-              <i class="ph <?= h(substr($fi_ci, 5)) ?>" style="position:absolute;top:50%;right:8%;transform:translateY(-50%);font-size:110px;opacity:0.15;color:#fff;pointer-events:none;" aria-hidden="true"></i>
-            <?php elseif ($fi_ci): ?>
-              <img src="<?= h($fi_ci) ?>" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4;" loading="eager">
-            <?php endif; ?>
+              $fi_ci  = $featured_post['cover_image'] ?? '';
+              $fi_cat = strtolower($featured_post['category'] ?? '');
+              $cat_icon_map = ['burnout'=>'ph-fire','liderazgo'=>'ph-crown','cultura'=>'ph-building-office','equipo'=>'ph-users-three','desempe'=>'ph-trend-up','talento'=>'ph-star','clima'=>'ph-chart-bar','innovaci'=>'ph-lightbulb','rrhh'=>'ph-briefcase','recurso'=>'ph-briefcase'];
+              if (str_starts_with($fi_ci, 'icon:')) {
+                $fi_icon = h(substr($fi_ci, 5));
+              } else {
+                $fi_icon = 'ph-article';
+                foreach ($cat_icon_map as $k => $v) { if (strpos($fi_cat, $k) !== false) { $fi_icon = $v; break; } }
+              }
+            ?>
+              <i class="ph <?= $fi_icon ?>" style="position:absolute;top:50%;right:8%;transform:translateY(-50%);font-size:110px;opacity:0.15;color:#fff;pointer-events:none;" aria-hidden="true"></i>
             <span class="blog-featured-badge"><i class="ph-fill ph-star"></i> Artículo destacado</span>
           </div>
           <div class="blog-featured-body">
@@ -713,12 +718,16 @@ function format_date_es($dt){
             <a href="/blog/<?= h($post['slug']) ?>" class="blog-card" aria-label="<?= h($post['title']) ?>">
               <div class="blog-card-cover" style="background: <?= h($post['cover_gradient']) ?>">
                 <?php
-                  $card_ci = $post['cover_image'] ?? '';
-                  if (str_starts_with($card_ci, 'icon:')): ?>
-                  <i class="ph <?= h(substr($card_ci, 5)) ?>" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:64px;opacity:0.18;color:#fff;pointer-events:none;" aria-hidden="true"></i>
-                <?php elseif ($card_ci): ?>
-                  <img src="<?= h($card_ci) ?>" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="lazy">
-                <?php endif; ?>
+                  $card_ci  = $post['cover_image'] ?? '';
+                  $card_cat = strtolower($post['category'] ?? '');
+                  if (str_starts_with($card_ci, 'icon:')) {
+                    $card_icon = h(substr($card_ci, 5));
+                  } else {
+                    $card_icon = 'ph-article';
+                    foreach ($cat_icon_map as $k => $v) { if (strpos($card_cat, $k) !== false) { $card_icon = $v; break; } }
+                  }
+                ?>
+                <i class="ph <?= $card_icon ?>" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:64px;opacity:0.18;color:#fff;pointer-events:none;" aria-hidden="true"></i>
                 <span class="blog-card-cat"><?= h($post['category']) ?></span>
               </div>
               <div class="blog-card-body">
@@ -789,7 +798,7 @@ function format_date_es($dt){
 <footer class="blog-footer" role="contentinfo">
   <div class="blog-footer-inner">
     <div class="blog-footer-brand">
-      <img src="/assets/icons/logo-dark.svg" alt="Valírica" height="28" width="105" loading="lazy" style="opacity:0.75;">
+      <img src="/assets/icons/logo-dark.svg" alt="Valírica HR Software" height="28" width="105" loading="lazy" style="opacity:0.75;">
       <p>Inteligencia cultural organizacional para PYMES · España y Colombia</p>
     </div>
     <div class="blog-footer-links">
