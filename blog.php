@@ -146,10 +146,13 @@ function format_date_es($dt){
   <!-- ── SEO primario ── -->
   <title><?= $category ? h($category) . ' — Blog Valírica HR Software' : 'Blog de Cultura Organizacional, Clima Laboral y Prevención de Burnout | Valírica' ?></title>
   <meta name="description" content="<?= $category ? 'Artículos sobre ' . h($category) . ' para equipos de RRHH en Valírica. Software de clima laboral y prevención de burnout para PYMES en España y Colombia.' : 'Descubre guías, estrategias y recursos sobre cultura organizacional, clima laboral, prevención del burnout, software RRHH para PYMES, registro de jornada y retención de talento en España y Colombia.' ?>">
-  <meta name="keywords" content="cultura organizacional, clima laboral, burnout laboral, prevención burnout, software RRHH España, HR software PYMES, registro de jornada laboral, Employee Wellbeing Platform, retención de talento, liderazgo equipos, gestión talento, DISC, Hofstede, people analytics, employee engagement">
+  <meta name="keywords" content="cultura organizacional, clima laboral, burnout laboral, prevención burnout, software RRHH España, software RRHH Colombia, HR software PYMES, registro de jornada laboral, canal de denuncias ley 2/2023, ley 1010 Colombia, Employee Wellbeing Platform, retención de talento, liderazgo equipos, gestión talento, DISC, Hofstede, people analytics, employee engagement, riesgo fuga talento, inteligencia cultural organizacional">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="author" content="Equipo Valírica">
   <link rel="canonical" href="<?= h($canonical) ?>">
+  <link rel="alternate" hreflang="es-ES" href="https://www.valirica.com/blog">
+  <link rel="alternate" hreflang="es-CO" href="https://www.valirica.com/blog">
+  <link rel="alternate" hreflang="es" href="https://www.valirica.com/blog">
 
   <!-- ── Open Graph ── -->
   <meta property="og:type"        content="website">
@@ -159,6 +162,7 @@ function format_date_es($dt){
   <meta property="og:url"         content="<?= h($canonical) ?>">
   <meta property="og:image"       content="https://app.valirica.com/uploads/logo-192.png">
   <meta property="og:locale"      content="es_ES">
+  <meta property="og:locale:alternate" content="es_CO">
 
   <!-- ── Twitter Card ── -->
   <meta name="twitter:card"        content="summary_large_image">
@@ -339,54 +343,56 @@ function format_date_es($dt){
 
     /* ── FEATURED CARD ── */
     .blog-featured {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      display: block;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.10);
       border-radius: 26px; overflow: hidden;
       margin-bottom: 48px;
-      transition: transform var(--transition), box-shadow var(--transition);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
       text-decoration: none; color: inherit;
-      position: relative;
     }
     .blog-featured:hover {
       transform: translateY(-4px);
-      box-shadow: 0 24px 64px rgba(0,122,150,0.18);
+      box-shadow: 0 24px 64px rgba(0,122,150,0.20);
       border-color: rgba(0,122,150,0.30);
     }
-    .blog-featured-cover {
-      min-height: 340px;
-      display: flex; align-items: flex-end;
-      padding: 28px;
-      position: relative;
+    .blog-featured-accent { height: 4px; width: 100%; display: block; }
+    .blog-featured-body {
+      padding: 40px 48px 44px;
+      display: flex; flex-direction: column;
     }
-    .blog-featured-cover::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(1,33,51,0.7) 0%, transparent 60%);
+    .blog-featured-top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 24px; flex-wrap: wrap;
     }
     .blog-featured-badge {
-      position: relative; z-index: 1;
       display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(255,151,0,0.20); border: 1px solid rgba(255,151,0,0.35);
+      background: rgba(255,151,0,0.15); border: 1px solid rgba(255,151,0,0.28);
       color: #f5a23d; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
       text-transform: uppercase; padding: 5px 12px; border-radius: 100px;
+      flex-shrink: 0;
     }
     .blog-featured-badge i { font-size: 13px; }
-    .blog-featured-body { padding: 36px 40px 36px 0; display: flex; flex-direction: column; justify-content: center; }
     .blog-cat-pill {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-      color: #4dd6f0; margin-bottom: 14px;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(77,214,240,0.10); border: 1px solid rgba(77,214,240,0.20);
+      padding: 5px 14px; border-radius: 100px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase;
+      color: #4dd6f0;
     }
-    .blog-cat-pill i { font-size: 13px; }
+    .blog-cat-pill i { font-size: 14px; }
     .blog-featured-title {
-      font-size: clamp(22px, 2.5vw, 30px); font-weight: 900;
-      color: #fff; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 14px;
+      font-size: clamp(24px, 3vw, 36px); font-weight: 900;
+      color: #fff; line-height: 1.18; letter-spacing: -0.5px; margin-bottom: 16px;
     }
     .blog-featured-excerpt {
-      font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7;
-      margin-bottom: 24px; flex: 1;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      font-size: 15px; color: rgba(255,255,255,0.52); line-height: 1.7;
+      margin-bottom: 32px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .blog-featured-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
     }
     .blog-meta {
       display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
@@ -398,9 +404,10 @@ function format_date_es($dt){
       display: inline-flex; align-items: center; gap: 7px;
       padding: 11px 22px; border-radius: 12px; font-size: 13px; font-weight: 700;
       background: linear-gradient(135deg, var(--c-teal), #005f74);
-      color: #fff; text-decoration: none; align-self: flex-start;
+      color: #fff; text-decoration: none;
       box-shadow: 0 4px 14px rgba(0,122,150,0.30);
       transition: opacity var(--transition), transform var(--transition);
+      flex-shrink: 0;
     }
     .blog-read-more:hover { opacity: 0.88; transform: scale(0.98); }
     .blog-read-more i { font-size: 16px; }
@@ -426,30 +433,33 @@ function format_date_es($dt){
       box-shadow: 0 20px 50px rgba(0,0,0,0.25);
       border-color: rgba(255,255,255,0.18);
     }
-    .blog-card-cover {
-      height: 180px; position: relative;
-      display: flex; align-items: flex-end; padding: 16px;
-    }
-    .blog-card-cover::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(1,33,51,0.55) 0%, transparent 65%);
+    .blog-card-accent { height: 4px; width: 100%; flex-shrink: 0; display: block; }
+    .blog-card-body { padding: 22px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+    .blog-card-meta-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
     }
     .blog-card-cat {
-      position: relative; z-index: 1;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-      color: rgba(255,255,255,0.75);
-      background: rgba(0,0,0,0.30); backdrop-filter: blur(8px);
-      padding: 4px 10px; border-radius: 100px;
+      color: #4dd6f0;
+      display: flex; align-items: center; gap: 5px;
     }
-    .blog-card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+    .blog-card-cat i { font-size: 13px; }
+    .blog-card-icon-badge {
+      width: 32px; height: 32px; border-radius: 10px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.10);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.45); font-size: 16px;
+      flex-shrink: 0;
+    }
     .blog-card-title {
-      font-size: 20px; font-weight: 800; color: #fff;
-      line-height: 1.35; letter-spacing: -0.3px; margin-bottom: 10px;
+      font-size: 19px; font-weight: 800; color: #fff;
+      line-height: 1.32; letter-spacing: -0.3px; margin-bottom: 10px;
       display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
     .blog-card-excerpt {
-      font-size: 13px; color: rgba(255,255,255,0.48); line-height: 1.6;
-      flex: 1; margin-bottom: 18px;
+      font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6;
+      flex: 1; margin-bottom: 16px;
       display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
     }
     .blog-card-footer {
@@ -465,7 +475,8 @@ function format_date_es($dt){
       background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
       display: flex; align-items: center; justify-content: center;
       color: rgba(255,255,255,0.55); font-size: 15px;
-      transition: background var(--transition), color var(--transition);
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+      flex-shrink: 0;
     }
     .blog-card:hover .blog-card-arrow { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
 
@@ -574,9 +585,8 @@ function format_date_es($dt){
       .blog-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
-      .blog-featured { grid-template-columns: 1fr; }
-      .blog-featured-cover { min-height: 220px; }
-      .blog-featured-body { padding: 24px; }
+      .blog-featured-body { padding: 24px 24px 28px; }
+      .blog-featured-footer { flex-direction: column; align-items: flex-start; gap: 14px; }
       .blog-grid { grid-template-columns: 1fr; }
       .blog-hero { padding: 56px 20px 48px; }
     }
@@ -752,32 +762,34 @@ function format_date_es($dt){
       <!-- ── Featured post ── -->
       <?php if ($featured_post): ?>
       <article>
+        <?php
+          $fi_ci  = $featured_post['cover_image'] ?? '';
+          $fi_cat = strtolower($featured_post['category'] ?? '');
+          $cat_icon_map = ['burnout'=>'ph-fire','liderazgo'=>'ph-crown','cultura'=>'ph-building-office','equipo'=>'ph-users-three','desempe'=>'ph-trend-up','talento'=>'ph-star','clima'=>'ph-chart-bar','innovaci'=>'ph-lightbulb','rrhh'=>'ph-briefcase','recurso'=>'ph-briefcase'];
+          if (str_starts_with($fi_ci, 'icon:')) {
+            $fi_icon = h(substr($fi_ci, 5));
+          } else {
+            $fi_icon = 'ph-article';
+            foreach ($cat_icon_map as $k => $v) { if (strpos($fi_cat, $k) !== false) { $fi_icon = $v; break; } }
+          }
+        ?>
         <a href="/blog/<?= h($featured_post['slug']) ?>" class="blog-featured" aria-label="Artículo destacado: <?= h($featured_post['title']) ?>">
-          <div class="blog-featured-cover" style="background: <?= h($featured_post['cover_gradient']) ?>">
-            <?php
-              $fi_ci  = $featured_post['cover_image'] ?? '';
-              $fi_cat = strtolower($featured_post['category'] ?? '');
-              $cat_icon_map = ['burnout'=>'ph-fire','liderazgo'=>'ph-crown','cultura'=>'ph-building-office','equipo'=>'ph-users-three','desempe'=>'ph-trend-up','talento'=>'ph-star','clima'=>'ph-chart-bar','innovaci'=>'ph-lightbulb','rrhh'=>'ph-briefcase','recurso'=>'ph-briefcase'];
-              if (str_starts_with($fi_ci, 'icon:')) {
-                $fi_icon = h(substr($fi_ci, 5));
-              } else {
-                $fi_icon = 'ph-article';
-                foreach ($cat_icon_map as $k => $v) { if (strpos($fi_cat, $k) !== false) { $fi_icon = $v; break; } }
-              }
-            ?>
-              <i class="ph <?= $fi_icon ?>" style="position:absolute;top:50%;right:8%;transform:translateY(-50%);font-size:110px;opacity:0.15;color:#fff;pointer-events:none;" aria-hidden="true"></i>
-            <span class="blog-featured-badge"><i class="ph-fill ph-star"></i> Artículo destacado</span>
-          </div>
+          <span class="blog-featured-accent" style="background: <?= h($featured_post['cover_gradient']) ?>"></span>
           <div class="blog-featured-body">
-            <div class="blog-cat-pill"><i class="ph ph-tag"></i> <?= h($featured_post['category']) ?></div>
+            <div class="blog-featured-top">
+              <span class="blog-featured-badge"><i class="ph-fill ph-star"></i> Artículo destacado</span>
+              <span class="blog-cat-pill"><i class="ph <?= $fi_icon ?>"></i> <?= h($featured_post['category']) ?></span>
+            </div>
             <h2 class="blog-featured-title"><?= h($featured_post['title']) ?></h2>
             <p class="blog-featured-excerpt"><?= h($featured_post['excerpt']) ?></p>
-            <div class="blog-meta" style="margin-bottom:24px">
-              <span><i class="ph ph-user"></i> <?= h($featured_post['author_name']) ?></span>
-              <span><i class="ph ph-calendar"></i> <?= format_date_es($featured_post['published_at']) ?></span>
-              <span><i class="ph ph-clock"></i> <?= (int)$featured_post['reading_time'] ?> min de lectura</span>
+            <div class="blog-featured-footer">
+              <div class="blog-meta">
+                <span><i class="ph ph-user"></i> <?= h($featured_post['author_name']) ?></span>
+                <span><i class="ph ph-calendar"></i> <?= format_date_es($featured_post['published_at']) ?></span>
+                <span><i class="ph ph-clock"></i> <?= (int)$featured_post['reading_time'] ?> min de lectura</span>
+              </div>
+              <span class="blog-read-more">Leer artículo <i class="ph ph-arrow-right"></i></span>
             </div>
-            <span class="blog-read-more">Leer artículo <i class="ph ph-arrow-right"></i></span>
           </div>
         </a>
       </article>
@@ -789,22 +801,23 @@ function format_date_es($dt){
         <div class="blog-grid">
           <?php foreach ($posts as $post): ?>
           <article>
+            <?php
+              $card_ci  = $post['cover_image'] ?? '';
+              $card_cat = strtolower($post['category'] ?? '');
+              if (str_starts_with($card_ci, 'icon:')) {
+                $card_icon = h(substr($card_ci, 5));
+              } else {
+                $card_icon = 'ph-article';
+                foreach ($cat_icon_map as $k => $v) { if (strpos($card_cat, $k) !== false) { $card_icon = $v; break; } }
+              }
+            ?>
             <a href="/blog/<?= h($post['slug']) ?>" class="blog-card" aria-label="<?= h($post['title']) ?>">
-              <div class="blog-card-cover" style="background: <?= h($post['cover_gradient']) ?>">
-                <?php
-                  $card_ci  = $post['cover_image'] ?? '';
-                  $card_cat = strtolower($post['category'] ?? '');
-                  if (str_starts_with($card_ci, 'icon:')) {
-                    $card_icon = h(substr($card_ci, 5));
-                  } else {
-                    $card_icon = 'ph-article';
-                    foreach ($cat_icon_map as $k => $v) { if (strpos($card_cat, $k) !== false) { $card_icon = $v; break; } }
-                  }
-                ?>
-                <i class="ph <?= $card_icon ?>" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:64px;opacity:0.18;color:#fff;pointer-events:none;" aria-hidden="true"></i>
-                <span class="blog-card-cat"><?= h($post['category']) ?></span>
-              </div>
+              <span class="blog-card-accent" style="background: <?= h($post['cover_gradient']) ?>"></span>
               <div class="blog-card-body">
+                <div class="blog-card-meta-top">
+                  <span class="blog-card-cat"><i class="ph <?= $card_icon ?>"></i> <?= h($post['category']) ?></span>
+                  <div class="blog-card-icon-badge" aria-hidden="true"><i class="ph <?= $card_icon ?>"></i></div>
+                </div>
                 <h2 class="blog-card-title"><?= h($post['title']) ?></h2>
                 <p class="blog-card-excerpt"><?= h($post['excerpt']) ?></p>
                 <div class="blog-card-footer">

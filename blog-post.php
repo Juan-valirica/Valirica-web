@@ -84,14 +84,24 @@ $cover_image = $post['cover_image']  ?: 'https://app.valirica.com/uploads/logo-1
 $tags_arr    = array_filter(array_map('trim', explode(',', $post['tags'] ?? '')));
 
 // ─── Extraer FAQs del contenido para JSON-LD FAQPage ──────────────────────
+// Captura H3 y H4 que terminen en '?' como preguntas AEO
 $faq_items = [];
-preg_match_all('/<h3[^>]*>(.*?)<\/h3>\s*<p[^>]*>(.*?)<\/p>/si', $post['content'], $faq_matches, PREG_SET_ORDER);
+preg_match_all('/<(h3|h4)[^>]*>(.*?)<\/\1>\s*<p[^>]*>(.*?)<\/p>/si', $post['content'], $faq_matches, PREG_SET_ORDER);
 foreach ($faq_matches as $m) {
-    $q = trim(strip_tags($m[1]));
-    $a = trim(strip_tags($m[2]));
+    $q = trim(strip_tags($m[2]));
+    $a = trim(strip_tags($m[3]));
     if ($q && $a && str_ends_with($q, '?')) {
         $faq_items[] = ['@type' => 'Question', 'name' => $q, 'acceptedAnswer' => ['@type' => 'Answer', 'text' => $a]];
     }
+}
+// Si no se extrajeron FAQs desde el contenido, usar el excerpt como respuesta fallback
+if (empty($faq_items) && !empty($post['excerpt'])) {
+    $implied_q = '\u00bfQu\u00e9 es ' . strip_tags($post['category']) . ' y c\u00f3mo puede ayudar a tu empresa?';
+    $faq_items[] = [
+        '@type'          => 'Question',
+        'name'           => $implied_q,
+        'acceptedAnswer' => ['@type' => 'Answer', 'text' => trim(strip_tags($post['excerpt']))]
+    ];
 }
 
 // ─── Extraer TOC (H2) del contenido ───────────────────────────────────────
@@ -183,6 +193,9 @@ $jsonld_org = [
   <meta name="author"  content="<?= h($post['author_name']) ?>">
   <meta name="robots"  content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="<?= h($post_url) ?>">
+  <link rel="alternate" hreflang="es-ES" href="<?= h($post_url) ?>">
+  <link rel="alternate" hreflang="es-CO" href="<?= h($post_url) ?>">
+  <link rel="alternate" hreflang="es" href="<?= h($post_url) ?>">
 
   <!-- ── Open Graph ── -->
   <meta property="og:type"              content="article">
@@ -193,6 +206,7 @@ $jsonld_org = [
   <meta property="og:image"             content="<?= h($cover_image) ?>">
   <meta property="og:image:alt"         content="<?= h($post['title']) ?>">
   <meta property="og:locale"            content="es_ES">
+  <meta property="og:locale:alternate" content="es_CO">
   <meta property="article:published_time" content="<?= iso_date($post['published_at']) ?>">
   <meta property="article:modified_time"  content="<?= iso_date($post['updated_at']) ?>">
   <meta property="article:author"         content="<?= h($post['author_name']) ?>">
@@ -531,16 +545,49 @@ $jsonld_org = [
     .related-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
       border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit;
-      transition: transform var(--transition), box-shadow var(--transition);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
       display: flex; flex-direction: column;
     }
     .related-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.20); border-color: rgba(255,255,255,0.16); }
-    .related-card-cover { height: 140px; position: relative; }
-    .related-card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; }
-    .related-card-cat { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #4dd6f0; margin-bottom: 8px; }
-    .related-card-title { font-size: 15px; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 10px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .related-card-meta { font-size: 12px; color: rgba(255,255,255,0.38); display: flex; align-items: center; gap: 8px; }
+    .related-card-accent { height: 4px; width: 100%; flex-shrink: 0; display: block; }
+    .related-card-body { padding: 18px 20px 20px; flex: 1; display: flex; flex-direction: column; }
+    .related-card-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .related-card-cat {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #4dd6f0; display: flex; align-items: center; gap: 5px; margin: 0;
+    }
+    .related-card-cat i { font-size: 13px; }
+    .related-card-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.10);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.40); font-size: 14px; flex-shrink: 0;
+    }
+    .related-card-title {
+      font-size: 15px; font-weight: 800; color: #fff; line-height: 1.35;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      flex: 1; padding-bottom: 14px;
+    }
+    .related-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; color: rgba(255,255,255,0.38);
+      border-top: 1px solid rgba(255,255,255,0.07); padding-top: 12px;
+    }
+    .related-card-meta { display: flex; align-items: center; gap: 8px; }
+    .related-card-meta span { display: flex; align-items: center; gap: 4px; }
     .related-card-meta i { font-size: 13px; }
+    .related-card-arrow {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.55); font-size: 13px;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+      flex-shrink: 0;
+    }
+    .related-card:hover .related-card-arrow { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
 
     /* ── FOOTER (idéntico a index.html / styles.css) ── */
     .footer{background:#012133;color:rgba(255,255,255,0.72)}
@@ -859,16 +906,28 @@ $jsonld_org = [
   <div class="related-inner">
     <h2 id="related-heading"><i class="ph ph-article"></i> Artículos relacionados</h2>
     <div class="related-grid">
-      <?php foreach ($related as $rel): ?>
+      <?php
+        $rel_icon_map = ['burnout'=>'ph-fire','liderazgo'=>'ph-crown','cultura'=>'ph-building-office','equipo'=>'ph-users-three','desempe'=>'ph-trend-up','talento'=>'ph-star','clima'=>'ph-chart-bar','innovaci'=>'ph-lightbulb','rrhh'=>'ph-briefcase','recurso'=>'ph-briefcase'];
+        foreach ($related as $rel):
+          $rel_cat  = strtolower($rel['category'] ?? '');
+          $rel_icon = 'ph-article';
+          foreach ($rel_icon_map as $k => $v) { if (strpos($rel_cat, $k) !== false) { $rel_icon = $v; break; } }
+      ?>
       <article>
         <a href="/blog/<?= h($rel['slug']) ?>" class="related-card" aria-label="<?= h($rel['title']) ?>">
-          <div class="related-card-cover" style="background: <?= h($rel['cover_gradient']) ?>"></div>
+          <span class="related-card-accent" style="background: <?= h($rel['cover_gradient']) ?>"></span>
           <div class="related-card-body">
-            <p class="related-card-cat"><?= h($rel['category']) ?></p>
+            <div class="related-card-top">
+              <p class="related-card-cat"><i class="ph <?= $rel_icon ?>"></i> <?= h($rel['category']) ?></p>
+              <div class="related-card-icon" aria-hidden="true"><i class="ph <?= $rel_icon ?>"></i></div>
+            </div>
             <h3 class="related-card-title"><?= h($rel['title']) ?></h3>
-            <div class="related-card-meta">
-              <span><i class="ph ph-clock"></i> <?= (int)$rel['reading_time'] ?> min</span>
-              <span><i class="ph ph-calendar"></i> <?= format_date_es($rel['published_at']) ?></span>
+            <div class="related-card-footer">
+              <div class="related-card-meta">
+                <span><i class="ph ph-clock"></i> <?= (int)$rel['reading_time'] ?> min</span>
+                <span><i class="ph ph-calendar"></i> <?= format_date_es($rel['published_at']) ?></span>
+              </div>
+              <div class="related-card-arrow" aria-hidden="true"><i class="ph ph-arrow-right"></i></div>
             </div>
           </div>
         </a>
