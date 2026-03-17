@@ -252,63 +252,54 @@ $jsonld_org = [
       transition: width 0.1s linear;
     }
 
-    /* ── NAV ── */
-    .vl-nav {
-      position: sticky; top: 0; z-index: 9900;
-      background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(22px) saturate(180%);
-      -webkit-backdrop-filter: blur(22px) saturate(180%);
-      border-bottom: 1px solid rgba(255,255,255,0.52);
-      box-shadow: 0 4px 24px rgba(1,33,51,0.07);
-      padding: 8px 0;
-    }
-    .vl-nav-inner {
-      width: 90%; max-width: 1240px; margin: 0 auto;
-      display: flex; align-items: center; gap: 8px;
-      height: 56px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(255,255,255,0.72);
-      box-shadow: 0 8px 32px rgba(1,33,51,0.07), 0 2px 8px rgba(1,33,51,0.04), inset 0 1px 0 rgba(255,255,255,0.85);
-      padding: 0 20px;
-    }
-    .vl-nav-logo {
-      display: flex; align-items: center;
-      text-decoration: none; flex-shrink: 0; margin-right: 8px;
-    }
-    .vl-nav-logo img { height: 34px; width: auto; }
-    .vl-nav-title {
-      font-size: 13px; color: rgba(1,33,51,0.45); font-weight: 500;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-      flex: 1; min-width: 0;
-    }
-    .vl-nav-links { display: flex; gap: 2px; align-items: center; flex-shrink: 0; }
-    .vl-nav-link {
-      padding: 7px 12px; border-radius: 9px; font-size: 13.5px; font-weight: 600;
-      text-decoration: none; color: rgba(1,33,51,0.65);
-      transition: color 180ms ease, background 180ms ease; white-space: nowrap;
-    }
-    .vl-nav-link:hover { color: #012133; background: rgba(1,33,51,0.055); }
-    .vl-nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-    .vl-nav-login {
-      padding: 8px 14px; border-radius: 9px; font-size: 13.5px; font-weight: 600;
-      color: rgba(1,33,51,0.65); text-decoration: none;
-      transition: color 180ms ease, background 180ms ease; white-space: nowrap;
-    }
-    .vl-nav-login:hover { color: #012133; background: rgba(1,33,51,0.055); }
-    .vl-nav-cta {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 9px 16px; border-radius: 10px; font-size: 13.5px; font-weight: 700;
-      background: var(--c-accent); color: #fff; text-decoration: none;
-      box-shadow: 0 6px 20px rgba(255,151,0,0.30);
-      transition: transform 220ms ease, box-shadow 220ms ease; white-space: nowrap;
-    }
-    .vl-nav-cta:hover { transform: scale(0.97); box-shadow: 0 4px 14px rgba(255,151,0,0.25); }
-    .vl-nav-cta svg { width: 14px; height: 14px; flex-shrink: 0; }
+    /* ── CONTAINER ── */
+    .container{width:90%;max-width:1240px;margin:0 auto}
+
+    /* ── NAV (idéntico a index.html / styles.css) ── */
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:9900;padding:16px 0;pointer-events:none}
+    .nav-inner{pointer-events:all;display:flex;align-items:center;gap:8px;padding:15px 12px 15px 14px;border-radius:18px;background:rgba(255,255,255,0.82);backdrop-filter:blur(24px) saturate(200%);-webkit-backdrop-filter:blur(24px) saturate(200%);border:1px solid rgba(255,255,255,0.72);box-shadow:0 8px 32px rgba(1,33,51,0.07),0 2px 8px rgba(1,33,51,0.04),inset 0 1px 0 rgba(255,255,255,0.85);transition:background 350ms ease,box-shadow 350ms ease,border-color 350ms ease}
+    .navbar.is-scrolled .nav-inner{background:rgba(255,255,255,0.94);border-color:rgba(255,255,255,0.90);box-shadow:0 12px 40px rgba(1,33,51,0.11),0 2px 8px rgba(1,33,51,0.06),inset 0 1px 0 rgba(255,255,255,0.98)}
+    .nav-logo{display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0;margin-right:4px}
+    .nav-logo-img{height:34px;width:auto;display:block}
+    .nav-links{display:flex;align-items:center;gap:4px;flex:1;justify-content:center}
+    .nav-link{display:inline-block;padding:7px 12px;border-radius:9px;font-size:13.5px;font-weight:600;color:rgba(1,33,51,0.68);text-decoration:none;transition:color 180ms ease,background 180ms ease;white-space:nowrap;letter-spacing:-0.01em}
+    .nav-link:hover{color:#012133;background:rgba(1,33,51,0.055)}
+    .nav-link.is-active{color:#007a96;background:rgba(0,122,150,0.07)}
+    .nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:4px}
+    .nav-login{padding:8px 14px;border-radius:9px;font-size:13.5px;font-weight:600;color:rgba(1,33,51,0.65);text-decoration:none;transition:color 180ms ease,background 180ms ease;white-space:nowrap}
+    .nav-login:hover{color:#012133;background:rgba(1,33,51,0.055)}
+    .nav-cta{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:10px;background:#ff9700;color:#ffffff;font-size:13.5px;font-weight:700;text-decoration:none;box-shadow:0 6px 20px rgba(255,151,0,0.30);transition:transform 220ms ease,box-shadow 220ms ease;white-space:nowrap;letter-spacing:-0.01em}
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(255,151,0,0.42)}
+    .nav-cta:active{transform:scale(0.97);transition-duration:60ms}
+    .nav-cta-arrow{width:14px;height:14px;flex-shrink:0;transition:transform 220ms ease}
+    .nav-cta:hover .nav-cta-arrow{transform:translateX(2px)}
+    .nav-burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:38px;height:38px;border:none;background:rgba(1,33,51,0.05);border-radius:9px;cursor:pointer;padding:0;flex-shrink:0;transition:background 200ms ease;margin-left:4px}
+    .nav-burger:hover{background:rgba(1,33,51,0.09)}
+    .burger-line{display:block;height:1.8px;background:#012133;border-radius:2px;transition:transform 300ms cubic-bezier(.4,0,.2,1),opacity 300ms ease,width 300ms ease}
+    .burger-line:nth-child(1){width:18px}
+    .burger-line:nth-child(2){width:13px}
+    .burger-line:nth-child(3){width:18px}
+    .nav-burger[aria-expanded="true"] .burger-line:nth-child(1){width:18px;transform:translateY(6.8px) rotate(45deg)}
+    .nav-burger[aria-expanded="true"] .burger-line:nth-child(2){opacity:0;transform:scaleX(0)}
+    .nav-burger[aria-expanded="true"] .burger-line:nth-child(3){width:18px;transform:translateY(-6.8px) rotate(-45deg)}
+    .nav-mobile-menu{max-height:0;overflow:hidden;transition:max-height 380ms cubic-bezier(.4,0,.2,1);pointer-events:none}
+    .nav-mobile-menu.is-open{max-height:500px;pointer-events:all}
+    .nav-mobile-menu .container{background:rgba(255,255,255,0.96);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid rgba(255,255,255,0.78);border-top:none;border-radius:0 0 16px 16px;padding:10px 20px 20px;box-shadow:0 16px 40px rgba(1,33,51,0.10);margin-top:2px}
+    .nav-mobile-links{display:flex;flex-direction:column;gap:2px;padding-bottom:14px;border-bottom:1px solid rgba(1,33,51,0.07);margin-bottom:14px}
+    .nav-mobile-link{display:block;padding:10px 12px;border-radius:9px;font-size:15px;font-weight:600;color:rgba(1,33,51,0.72);text-decoration:none;transition:color 160ms ease,background 160ms ease}
+    .nav-mobile-link:hover,.nav-mobile-link:active{color:#012133;background:rgba(1,33,51,0.05)}
+    .nav-mobile-actions{display:flex;gap:10px;align-items:center}
+    .nav-mobile-login{padding:10px 16px;border-radius:9px;font-size:14px;font-weight:600;color:rgba(1,33,51,0.65);text-decoration:none;background:rgba(1,33,51,0.05);flex:1;text-align:center;transition:background 160ms ease,color 160ms ease}
+    .nav-mobile-login:hover{background:rgba(1,33,51,0.09);color:#012133}
+    .nav-mobile-cta{flex:1;justify-content:center;padding:10px 16px;font-size:14px}
+    @media (max-width:1024px){.nav-link{font-size:13px;padding:7px 9px}.nav-login{font-size:13px;padding:8px 11px}.nav-cta{font-size:13px;padding:9px 13px}}
+    @media (max-width:768px){.navbar{pointer-events:all;padding:0;background:rgba(255,255,255,0.65);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.52);box-shadow:0 4px 24px rgba(1,33,51,0.07),inset 0 -1px 0 rgba(255,255,255,0.45);overflow:hidden}.navbar.is-scrolled{background:rgba(255,255,255,0.82);border-bottom-color:rgba(255,255,255,0.70);box-shadow:0 6px 32px rgba(1,33,51,0.10),inset 0 -1px 0 rgba(255,255,255,0.60)}.nav-inner{width:100%;background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-radius:0;border:none;box-shadow:none;padding:11px 16px;border-bottom:1px solid rgba(1,33,51,0.06)}.navbar .container{width:100%;max-width:100%;padding:0}.nav-links{display:none}.nav-burger{display:none}.nav-mobile-menu{display:none!important}.nav-actions{display:flex;gap:7px;margin-left:auto;flex-shrink:0}.nav-login{padding:7px 13px;font-size:13px;border-radius:9px;background:rgba(1,33,51,0.06);color:rgba(1,33,51,0.72)}.nav-cta{padding:7px 13px;font-size:13px;gap:5px}.nav-cta-arrow{width:12px;height:12px}.nav-logo-img{height:34px}.nav-strip{display:flex;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;gap:6px;padding:8px 16px 10px;max-height:52px;opacity:1;transition:max-height 300ms cubic-bezier(.4,0,.2,1),opacity 220ms ease,padding-top 300ms ease,padding-bottom 300ms ease}.nav-strip::-webkit-scrollbar{display:none}.nav-strip.is-hidden{max-height:0;opacity:0;padding-top:0;padding-bottom:0;pointer-events:none}.nav-strip-link{flex-shrink:0;display:inline-block;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;color:rgba(1,33,51,0.65);text-decoration:none;white-space:nowrap;background:rgba(1,33,51,0.055);transition:color 160ms ease,background 160ms ease;letter-spacing:-0.01em}.nav-strip-link:active{color:#012133;background:rgba(1,33,51,0.10)}.nav-strip-link.is-active{color:#007a96;background:rgba(0,122,150,0.10)}}
+    @media (min-width:769px){.nav-strip{display:none}}
+    @media (max-width:480px){.nav-logo-img{height:34px}.nav-cta{padding:7px 11px;font-size:12.5px}.nav-cta-arrow{display:none}}
 
     /* ── COVER ── */
     .post-cover {
-      width: 100%; min-height: 420px;
+      width: 100%; min-height: 520px;
       display: flex; align-items: flex-end;
       padding: 48px 24px;
       position: relative; overflow: hidden;
@@ -588,11 +579,6 @@ $jsonld_org = [
       .post-cover { min-height: 280px; padding: 32px 20px; }
       h1.post-title { font-size: 28px; }
       .related-grid { grid-template-columns: 1fr; }
-      .vl-nav-title { display: none; }
-    }
-    @media (max-width: 480px) {
-      .vl-nav-links { display: none; }
-      .vl-nav-login { display: none; }
     }
     @media (max-width: 480px) {
       .post-layout { padding: 32px 16px 60px; }
@@ -603,28 +589,98 @@ $jsonld_org = [
 <div id="reading-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
 <!-- ══ NAV ══════════════════════════════════════════════════════════════════ -->
-<nav class="vl-nav" role="navigation" aria-label="Navegación principal">
-  <div class="vl-nav-inner">
-    <a href="https://www.valirica.com" class="vl-nav-logo" aria-label="Valírica — inicio">
-      <img src="/assets/icons/logo-light.svg" alt="Valírica HR Software" height="34" width="127" loading="eager">
-    </a>
-    <div class="vl-nav-links">
-      <a href="https://www.valirica.com/#modulos" class="vl-nav-link">Plataforma</a>
-      <a href="https://www.valirica.com/#diagnostico-cultural" class="vl-nav-link">Diagnóstico</a>
-      <a href="https://www.valirica.com/#beneficios" class="vl-nav-link">Impacto</a>
-      <a href="https://www.valirica.com/#diferenciador" class="vl-nav-link">Por qué Valírica</a>
-      <a href="https://www.valirica.com/#seguridad" class="vl-nav-link">Seguridad</a>
-      <a href="/blog" class="vl-nav-link active" aria-current="page">Blog</a>
-    </div>
-    <div class="vl-nav-actions">
-      <a href="https://app.valirica.com" class="vl-nav-login" target="_blank" rel="noopener noreferrer">Acceder</a>
-      <a href="https://app.valirica.com/registro.php" class="vl-nav-cta" target="_blank" rel="noopener noreferrer">
-        Prueba gratuita
-        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<header class="navbar" id="mainNav" role="banner">
+  <div class="container">
+    <div class="nav-inner">
+
+      <a href="/" class="nav-logo" aria-label="Valírica — inicio">
+        <img src="/assets/icons/logo-light.svg"
+             alt="Valírica HR Software"
+             class="nav-logo-img"
+             width="134"
+             height="34">
       </a>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="https://www.valirica.com/#modulos" class="nav-link">Plataforma</a>
+        <a href="https://www.valirica.com/#diagnostico-cultural" class="nav-link">Diagnóstico</a>
+        <a href="https://www.valirica.com/#beneficios" class="nav-link">Impacto</a>
+        <a href="https://www.valirica.com/#diferenciador" class="nav-link">Por qué Valírica</a>
+        <a href="https://www.valirica.com/#seguridad" class="nav-link">Seguridad</a>
+        <a href="/blog" class="nav-link is-active" aria-current="page">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://app.valirica.com"
+           class="nav-login"
+           target="_blank"
+           rel="noopener noreferrer">
+          Acceder
+        </a>
+        <a href="https://app.valirica.com/registro.php"
+           class="nav-cta"
+           target="_blank"
+           rel="noopener noreferrer">
+          Prueba gratuita
+          <svg class="nav-cta-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <button class="nav-burger"
+              id="navBurger"
+              aria-label="Abrir menú"
+              aria-expanded="false"
+              aria-controls="navMobileMenu"
+              type="button">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+
     </div>
   </div>
-</nav>
+
+  <nav class="nav-strip" id="navStrip" aria-label="Secciones">
+    <a href="https://www.valirica.com/#modulos"               class="nav-strip-link">Plataforma</a>
+    <a href="https://www.valirica.com/#diagnostico-cultural"  class="nav-strip-link">Diagnóstico</a>
+    <a href="https://www.valirica.com/#beneficios"            class="nav-strip-link">Impacto</a>
+    <a href="https://www.valirica.com/#diferenciador"         class="nav-strip-link">Por qué Valírica</a>
+    <a href="https://www.valirica.com/#seguridad"             class="nav-strip-link">Seguridad</a>
+  </nav>
+
+  <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <div class="container">
+      <nav class="nav-mobile-links" aria-label="Menú móvil">
+        <a href="https://www.valirica.com/#diagnostico-cultural" class="nav-mobile-link">Diagnóstico cultural</a>
+        <a href="https://www.valirica.com/#modulos" class="nav-mobile-link">Plataforma</a>
+        <a href="https://www.valirica.com/#beneficios" class="nav-mobile-link">Impacto real</a>
+        <a href="https://www.valirica.com/#diferenciador" class="nav-mobile-link">Por qué Valírica</a>
+        <a href="https://www.valirica.com/#seguridad" class="nav-mobile-link">Seguridad y datos</a>
+        <a href="/blog" class="nav-mobile-link is-active">Blog</a>
+      </nav>
+      <div class="nav-mobile-actions">
+        <a href="https://app.valirica.com"
+           class="nav-mobile-login"
+           target="_blank"
+           rel="noopener noreferrer">
+          Iniciar sesión
+        </a>
+        <a href="https://app.valirica.com/registro.php"
+           class="nav-cta nav-mobile-cta"
+           target="_blank"
+           rel="noopener noreferrer">
+          Prueba gratuita
+          <svg class="nav-cta-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</header>
 
 <!-- ══ COVER ════════════════════════════════════════════════════════════════ -->
 <header class="post-cover" style="background: <?= h($post['cover_gradient']) ?>">
@@ -882,5 +938,7 @@ function copyUrl(){
   });
 }
 </script>
+
+<script src="/main.min.js" defer></script>
 </body>
 </html>
