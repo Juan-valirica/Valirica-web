@@ -179,6 +179,7 @@ function format_date_es($dt){
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
 
   <!-- ── JSON-LD Structured Data ── -->
   <script type="application/ld+json"><?= json_encode($jsonld_org,        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?></script>
@@ -529,33 +530,44 @@ function format_date_es($dt){
     }
     .btn-secondary:hover { background: rgba(255,255,255,0.11); border-color: rgba(255,255,255,0.25); }
 
-    /* ── FOOTER ── */
-    .blog-footer {
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 36px 24px;
-    }
-    .blog-footer-inner {
-      max-width: 1160px; margin: 0 auto;
-      display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center;
-    }
-    .blog-footer-brand p {
-      font-size: 12px; color: rgba(255,255,255,0.30); margin-top: 8px; line-height: 1.5;
-    }
-    .blog-footer-links {
-      display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
-    }
-    .blog-footer-links a {
-      padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;
-      color: rgba(255,255,255,0.45); text-decoration: none;
-      transition: color var(--transition), background var(--transition);
-    }
-    .blog-footer-links a:hover { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.06); }
-    .blog-footer-legal {
-      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
-      font-size: 12px; color: rgba(255,255,255,0.25);
-    }
-    .blog-footer-legal a { color: rgba(255,255,255,0.35); text-decoration: none; }
-    .blog-footer-legal a:hover { color: rgba(255,255,255,0.55); }
+    /* ── FOOTER (idéntico a index.html / styles.css) ── */
+    .footer{background:#012133;color:rgba(255,255,255,0.72)}
+    .footer-top{padding:80px 0 60px;border-bottom:1px solid rgba(255,255,255,0.07)}
+    .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:40px 60px;align-items:start}
+    .footer-brand{display:flex;flex-direction:column;gap:18px}
+    .footer-logo{display:inline-block;text-decoration:none}
+    .footer-logo-img{height:100px;width:auto;display:block}
+    .footer-tagline{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.50);max-width:290px}
+    .footer-social{display:flex;gap:10px}
+    .footer-social-link{width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.55);text-decoration:none;transition:background 200ms ease,color 200ms ease,border-color 200ms ease}
+    .footer-social-link:hover{background:rgba(255,255,255,0.10);color:#ffffff;border-color:rgba(255,255,255,0.22)}
+    .footer-social-link svg{width:16px;height:16px;stroke-width:1.8}
+    .footer-col{display:flex;flex-direction:column;gap:16px}
+    .footer-col-title{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:4px}
+    .footer-col-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .footer-col-list a{font-size:14px;color:rgba(255,255,255,0.60);text-decoration:none;transition:color 200ms ease;display:inline-block}
+    .footer-col-list a:hover{color:#ffffff}
+    .footer-contact-list{gap:12px}
+    .footer-contact-item{display:inline-flex;align-items:center;gap:9px;font-size:14px;color:rgba(255,255,255,0.60);text-decoration:none;transition:color 200ms ease}
+    .footer-contact-item:hover{color:#ffffff}
+    .footer-locations{display:flex;align-items:center;gap:9px;font-size:14px;color:rgba(255,255,255,0.40)}
+    .footer-contact-icon{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.09);flex-shrink:0}
+    .footer-contact-icon svg{width:14px;height:14px;stroke-width:1.8}
+    .footer-cta-btn{margin-top:8px;display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:9px;background:#ff9700;color:#ffffff;font-size:13.5px;font-weight:700;text-decoration:none;box-shadow:0 8px 28px rgba(255,151,0,0.30);transition:transform 240ms ease,box-shadow 240ms ease;align-self:flex-start}
+    .footer-cta-btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(255,151,0,0.42)}
+    .footer-cta-btn:active{transform:scale(0.97)}
+    .footer-cta-icon{display:inline-flex}
+    .footer-cta-icon svg{width:14px;height:14px;stroke-width:2.2}
+    .footer-bottom{padding:20px 0}
+    .footer-bottom-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .footer-copyright{font-size:12.5px;color:rgba(255,255,255,0.50)}
+    .footer-bottom-links{display:flex;gap:20px}
+    .footer-bottom-links a{font-size:12.5px;color:rgba(255,255,255,0.52);text-decoration:none;transition:color 200ms ease}
+    .footer-bottom-links a:hover{color:rgba(255,255,255,0.85)}
+    .footer-made{font-size:12.5px;color:rgba(255,255,255,0.42)}
+    @media (max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr;gap:40px 48px}.footer-brand{grid-column:1 / -1}.footer-tagline{max-width:100%}}
+    @media (max-width:768px){.footer-top{padding:60px 0 48px}.footer-grid{grid-template-columns:1fr 1fr;gap:32px 24px}.footer-col--contact{grid-column:1 / -1}.footer-cta-btn{align-self:stretch;justify-content:center}.footer-bottom-inner{flex-direction:column;align-items:flex-start;gap:10px}.footer-made{display:none}}
+    @media (max-width:480px){.footer-grid{grid-template-columns:1fr;gap:28px}.footer-col--contact{grid-column:unset}.footer-bottom-links{gap:14px}}
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
@@ -857,26 +869,126 @@ function format_date_es($dt){
 </main>
 
 <!-- ══ FOOTER ════════════════════════════════════════════════════════════════ -->
-<footer class="blog-footer" role="contentinfo">
-  <div class="blog-footer-inner">
-    <div class="blog-footer-brand">
-      <img src="/assets/icons/logo-dark.svg" alt="Valírica HR Software" height="28" width="105" loading="lazy" style="opacity:0.75;">
-      <p>Inteligencia cultural organizacional para PYMES · España y Colombia</p>
-    </div>
-    <div class="blog-footer-links">
-      <a href="https://www.valirica.com">Web</a>
-      <a href="/blog">Blog</a>
-      <a href="https://app.valirica.com/registro.php" target="_blank" rel="noopener noreferrer">Prueba gratuita</a>
-      <a href="https://www.linkedin.com/company/valirica" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://www.instagram.com/valirica.rrhh" target="_blank" rel="noopener noreferrer">Instagram</a>
-    </div>
-    <div class="blog-footer-legal">
-      <span>© <?= date('Y') ?> Valírica</span>
-      <a href="mailto:vale@valirica.com">vale@valirica.com</a>
-      <a href="/legal/privacidad">Privacidad</a>
-      <a href="/legal/terminos">Términos</a>
+<footer class="footer" role="contentinfo">
+
+  <div class="footer-top">
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+        <a href="/" class="footer-logo" aria-label="Valírica — inicio">
+          <img src="/assets/icons/logo-dark.svg"
+               alt="Valírica HR Software"
+               class="footer-logo-img"
+               width="134"
+               height="34"
+               loading="lazy">
+        </a>
+        <p class="footer-tagline">Inteligencia cultural organizacional para PYMES que lideran con datos, no con intuición.</p>
+        <div class="footer-social" aria-label="Redes sociales">
+          <a href="https://wa.me/34600876538?text=Hola%2C%20me%20interesa%20saber%20c%C3%B3mo%20Val%C3%ADrica%20puede%20ayudar%20a%20mi%20equipo."
+             class="footer-social-link"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Contactar por WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/company/valirica"
+             class="footer-social-link"
+             target="_blank"
+             rel="me noopener noreferrer"
+             aria-label="Seguir a Valírica en LinkedIn">
+            <i data-lucide="linkedin"></i>
+          </a>
+          <a href="https://www.instagram.com/valirica.rrhh"
+             class="footer-social-link"
+             target="_blank"
+             rel="me noopener noreferrer"
+             aria-label="Seguir a Valírica en Instagram (@valirica.rrhh)">
+            <i data-lucide="instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UC6DmXMbAuyX-5QxYlv7WnLA"
+             class="footer-social-link"
+             target="_blank"
+             rel="me noopener noreferrer"
+             aria-label="Ver el canal de Valírica en YouTube (@valirica-rh)">
+            <i data-lucide="youtube"></i>
+          </a>
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Plataforma">
+        <h4 class="footer-col-title">Plataforma</h4>
+        <ul class="footer-col-list">
+          <li><a href="https://app.valirica.com/registro.php" target="_blank" rel="noopener noreferrer">Crear cuenta gratis</a></li>
+          <li><a href="https://app.valirica.com" target="_blank" rel="noopener noreferrer">Iniciar sesión</a></li>
+          <li><a href="https://www.valirica.com/#diagnostico-cultural">Diagnóstico cultural</a></li>
+          <li><a href="https://www.valirica.com/#modulos">Cómo funciona</a></li>
+          <li><a href="https://www.valirica.com/#beneficios">Impacto real</a></li>
+          <li><a href="https://www.valirica.com/#pqr">Preguntas frecuentes</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Legal">
+        <h4 class="footer-col-title">Legal</h4>
+        <ul class="footer-col-list">
+          <li><a href="https://app.valirica.com/legal/terminos" target="_blank" rel="noopener noreferrer">Términos de servicio</a></li>
+          <li><a href="https://app.valirica.com/legal/privacidad" target="_blank" rel="noopener noreferrer">Política de privacidad</a></li>
+          <li><a href="https://app.valirica.com/legal/cookies" target="_blank" rel="noopener noreferrer">Política de cookies</a></li>
+          <li><a href="https://www.valirica.com/#seguridad">Seguridad</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col footer-col--contact">
+        <h4 class="footer-col-title">Contacto</h4>
+        <ul class="footer-col-list footer-contact-list">
+          <li>
+            <a href="https://wa.me/34600876538?text=Hola%2C%20me%20interesa%20saber%20c%C3%B3mo%20Val%C3%ADrica%20puede%20ayudar%20a%20mi%20equipo."
+               target="_blank" rel="noopener noreferrer" class="footer-contact-item">
+              <span class="footer-contact-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+              </span>
+              <span>+34 600 876 538</span>
+            </a>
+          </li>
+          <li>
+            <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item">
+              <span class="footer-contact-icon"><i data-lucide="mail"></i></span>
+              <span>&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;</span>
+            </a>
+          </li>
+          <li class="footer-locations">
+            <span class="footer-contact-icon"><i data-lucide="map-pin"></i></span>
+            <span>España &amp; Colombia</span>
+          </li>
+        </ul>
+        <a href="https://app.valirica.com/registro.php"
+           class="footer-cta-btn"
+           target="_blank"
+           rel="noopener noreferrer">
+          Prueba gratuita
+          <i data-lucide="arrow-right" class="footer-cta-icon"></i>
+        </a>
+      </div>
+
     </div>
   </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <span class="footer-copyright">© <?= date('Y') ?> Valírica. Todos los derechos reservados.</span>
+      <nav class="footer-bottom-links" aria-label="Links legales pie de página">
+        <a href="https://app.valirica.com/legal/privacidad" target="_blank" rel="noopener noreferrer">Privacidad</a>
+        <a href="https://app.valirica.com/legal/terminos" target="_blank" rel="noopener noreferrer">Términos</a>
+        <a href="https://app.valirica.com/legal/cookies" target="_blank" rel="noopener noreferrer">Cookies</a>
+      </nav>
+      <span class="footer-made">Hecho con intención · España &amp; Colombia</span>
+    </div>
+  </div>
+
 </footer>
 
 
