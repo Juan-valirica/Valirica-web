@@ -221,6 +221,9 @@ $jsonld_org = [
   <meta name="twitter:description" content="<?= h($seo_desc) ?>">
   <meta name="twitter:image"       content="<?= h($cover_image) ?>">
 
+  <!-- ── Sitemap discovery ── -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
   <!-- ── Recursos ── -->
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon-light.svg">
   <meta name="theme-color" content="#012133">

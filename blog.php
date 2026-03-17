@@ -174,6 +174,9 @@ function format_date_es($dt){
   <?php if ($page > 1): ?><link rel="prev" href="<?= h($base_url . '/blog?p=' . ($page - 1) . ($category ? '&cat=' . urlencode($category) : '')) ?>"><?php endif; ?>
   <?php if ($page < $total_pages): ?><link rel="next" href="<?= h($base_url . '/blog?p=' . ($page + 1) . ($category ? '&cat=' . urlencode($category) : '')) ?>"><?php endif; ?>
 
+  <!-- ── Sitemap discovery ── -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
   <!-- ── Recursos ── -->
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon-light.svg">
   <meta name="theme-color" content="#012133">
