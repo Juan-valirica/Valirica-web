@@ -144,8 +144,8 @@ function format_date_es($dt){
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
   <!-- ── SEO primario ── -->
-  <title><?= $category ? h($category) . ' — Blog Valírica HR Software' : 'Blog de Cultura Organizacional, Clima Laboral y Prevención de Burnout | Valírica' ?></title>
-  <meta name="description" content="<?= $category ? 'Artículos sobre ' . h($category) . ' para equipos de RRHH en Valírica. Software de clima laboral y prevención de burnout para PYMES en España y Colombia.' : 'Descubre guías, estrategias y recursos sobre cultura organizacional, clima laboral, prevención del burnout, software RRHH para PYMES, registro de jornada y retención de talento en España y Colombia.' ?>">
+  <title><?= $category ? h($category) . ' — Blog RRHH | Valírica' : 'Blog de RRHH y Cultura Organizacional | Valírica' ?></title>
+  <meta name="description" content="<?= $category ? 'Artículos sobre ' . h($category) . ' para equipos de RRHH. Recursos de cultura laboral y gestión del talento para PYMES en España y Colombia.' : 'Guías y estrategias sobre cultura organizacional, clima laboral, burnout y retención de talento para PYMES en España y Colombia. Blog RRHH Valírica.' ?>">
   <meta name="keywords" content="cultura organizacional, clima laboral, burnout laboral, prevención burnout, software RRHH España, software RRHH Colombia, HR software PYMES, registro de jornada laboral, canal de denuncias ley 2/2023, ley 1010 Colombia, Employee Wellbeing Platform, retención de talento, liderazgo equipos, gestión talento, DISC, Hofstede, people analytics, employee engagement, riesgo fuga talento, inteligencia cultural organizacional">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="author" content="Equipo Valírica">
