@@ -4,70 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ficha Técnica de Producto — Valírica</title>
+
+  <!-- Gelica via Adobe Fonts / Typekit -->
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="stylesheet" href="https://use.typekit.net/qrv8fyz.css">
+
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+
   <style>
     /* ============================================================
        VARIABLES & RESET
     ============================================================ */
     :root {
-      --color-accent:       #7B5EA7;
-      --color-accent-light: #9B7EC8;
-      --color-accent-glow:  rgba(123, 94, 167, 0.15);
-      --color-bg:           #0D0D0D;
-      --color-surface-1:    #141414;
-      --color-surface-2:    #1A1A1A;
-      --color-surface-3:    #212121;
-      --color-border:       rgba(255, 255, 255, 0.06);
-      --color-border-hover: rgba(255, 255, 255, 0.12);
-      --color-text:         #F0F0F0;
-      --color-text-muted:   #888888;
-      --color-text-faint:   #555555;
+      /* Backgrounds */
+      --bg-base:       #0D0D0D;
+      --bg-surface:    #141414;
+      --bg-raised:     #1A1A1A;
+      --bg-overlay:    #202020;
 
-      --sidebar-width:      260px;
-      --sidebar-collapsed:  0px;
+      /* Brand palette */
+      --accent-purple: #7B5EA7;
+      --accent-purple-dim: rgba(123, 94, 167, 0.12);
+      --accent-purple-glow: rgba(123, 94, 167, 0.25);
+      --accent-orange: #ff9700;
+      --accent-orange-dim: rgba(255, 151, 0, 0.12);
+      --accent-teal:   #007a96;
+      --accent-teal-dim: rgba(0, 122, 150, 0.12);
 
-      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter',
-                   Helvetica, Arial, sans-serif;
-      --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      /* Text */
+      --text-primary:   #F0F0F0;
+      --text-secondary: #888888;
+      --text-muted:     #555555;
+      --text-inverse:   #012133;
 
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 14px;
+      /* Borders */
+      --border-subtle:  rgba(255, 255, 255, 0.06);
+      --border-default: rgba(255, 255, 255, 0.10);
+      --border-strong:  rgba(255, 255, 255, 0.18);
 
-      --transition-fast: 150ms ease;
-      --transition-base: 200ms ease;
-      --transition-slow: 350ms ease;
+      /* Layout */
+      --sidebar-w: 260px;
+      --topbar-h: 60px;
+
+      /* Typography */
+      --font-brand: "Gelica", Georgia, "Times New Roman", serif;
+
+      /* Transitions */
+      --ease: 200ms ease;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      font-family: var(--font-sans);
-      line-height: 1.6;
+      font-family: var(--font-brand);
+      background: var(--bg-base);
+      color: var(--text-primary);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
       overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
     }
 
     /* ============================================================
        LAYOUT SHELL
     ============================================================ */
-    .layout {
+    .doc-shell {
       display: flex;
       min-height: 100vh;
     }
@@ -79,177 +83,170 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: var(--sidebar-width);
+      width: var(--sidebar-w);
       height: 100vh;
-      background: var(--color-surface-1);
-      border-right: 1px solid var(--color-border);
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-subtle);
       display: flex;
       flex-direction: column;
       z-index: 100;
-      transition: transform var(--transition-slow);
-      overflow-y: auto;
+      transition: transform var(--ease);
     }
 
+    /* Sidebar header */
     .sidebar-header {
       padding: 24px 20px 20px;
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       flex-shrink: 0;
     }
 
     .sidebar-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 4px;
+      display: block;
+      height: 32px;
+      width: auto;
     }
 
-    .sidebar-logo-mark {
-      width: 28px;
-      height: 28px;
-      background: var(--color-accent);
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.5px;
-      flex-shrink: 0;
-    }
-
-    .sidebar-logo-name {
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: -0.4px;
-      color: var(--color-text);
-    }
-
-    .sidebar-doc-label {
-      font-size: 11px;
-      color: var(--color-text-faint);
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      margin-top: 2px;
-      padding-left: 38px;
-    }
-
-    .sidebar-nav {
-      padding: 16px 12px;
-      flex: 1;
-    }
-
-    .sidebar-nav-section-label {
+    .sidebar-doc-badge {
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--color-text-faint);
+      color: var(--text-muted);
+      background: var(--bg-raised);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 3px 7px;
+      white-space: nowrap;
+    }
+
+    /* Sidebar nav */
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 12px;
+      overflow-y: auto;
+    }
+
+    .sidebar-nav::-webkit-scrollbar { width: 0; }
+
+    .sidebar-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
       padding: 12px 8px 6px;
     }
 
-    .sidebar-nav-item {
+    .sidebar-link {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 10px;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: background var(--transition-base),
-                  color var(--transition-base);
-      color: var(--color-text-muted);
+      padding: 9px 10px;
+      border-radius: 8px;
       font-size: 13.5px;
-      font-weight: 450;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: background var(--ease), color var(--ease), border-color var(--ease);
+      border: 1px solid transparent;
       position: relative;
     }
 
-    .sidebar-nav-item:hover {
-      background: var(--color-surface-2);
-      color: var(--color-text);
+    .sidebar-link:hover {
+      background: var(--bg-raised);
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
     }
 
-    .sidebar-nav-item.active {
-      background: var(--color-accent-glow);
-      color: var(--color-accent-light);
+    .sidebar-link.is-active {
+      background: var(--accent-purple-dim);
+      color: var(--text-primary);
+      border-color: rgba(123, 94, 167, 0.2);
     }
 
-    .sidebar-nav-item.active::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 20%;
-      bottom: 20%;
-      width: 2px;
-      background: var(--color-accent);
-      border-radius: 2px;
+    .sidebar-link.is-active .sidebar-link-icon {
+      color: var(--accent-purple);
     }
 
-    .sidebar-nav-icon {
-      font-size: 15px;
-      width: 18px;
-      text-align: center;
+    .sidebar-link-icon {
+      width: 16px;
+      height: 16px;
       flex-shrink: 0;
+      color: var(--text-muted);
+      transition: color var(--ease);
     }
 
-    .sidebar-nav-number {
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--color-text-faint);
+    .sidebar-link:hover .sidebar-link-icon {
+      color: var(--text-secondary);
+    }
+
+    .sidebar-link-num {
       margin-left: auto;
-      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 400;
     }
 
+    /* Sidebar footer */
     .sidebar-footer {
       padding: 16px 20px;
-      border-top: 1px solid var(--color-border);
+      border-top: 1px solid var(--border-subtle);
       flex-shrink: 0;
     }
 
-    .sidebar-version-badge {
-      display: inline-flex;
+    .sidebar-version-row {
+      display: flex;
       align-items: center;
-      gap: 6px;
-      background: var(--color-surface-2);
-      border: 1px solid var(--color-border);
-      border-radius: 20px;
-      padding: 4px 10px;
-      font-size: 11px;
-      color: var(--color-text-muted);
-      font-family: var(--font-mono);
+      justify-content: space-between;
     }
 
-    .sidebar-version-dot {
+    .sidebar-version {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .sidebar-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #4caf8a;
+    }
+
+    .sidebar-status-dot {
       width: 6px;
       height: 6px;
-      background: var(--color-accent);
       border-radius: 50%;
+      background: #4caf8a;
+      box-shadow: 0 0 6px rgba(76, 175, 138, 0.5);
     }
 
     /* ============================================================
        MAIN CONTENT
     ============================================================ */
     .main-content {
-      margin-left: var(--sidebar-width);
+      margin-left: var(--sidebar-w);
       flex: 1;
-      min-width: 0;
+      min-height: 100vh;
     }
 
     /* ============================================================
        TOP BAR
     ============================================================ */
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(13, 13, 13, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--color-border);
-      padding: 0 40px;
-      height: 56px;
+      height: var(--topbar-h);
+      border-bottom: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 40px;
+      background: var(--bg-base);
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
     .topbar-breadcrumb {
@@ -257,76 +254,45 @@
       align-items: center;
       gap: 8px;
       font-size: 13px;
-      color: var(--color-text-muted);
+      color: var(--text-muted);
     }
 
     .topbar-breadcrumb-sep {
-      color: var(--color-text-faint);
+      opacity: 0.35;
     }
 
     .topbar-breadcrumb-current {
-      color: var(--color-text);
-      font-weight: 500;
+      color: var(--text-secondary);
     }
 
     .topbar-meta {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
     }
 
-    .topbar-tag {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: var(--color-accent-light);
-      background: var(--color-accent-glow);
-      border: 1px solid rgba(123, 94, 167, 0.25);
-      border-radius: 20px;
-      padding: 3px 10px;
-    }
-
-    .topbar-date {
+    .topbar-meta-item {
       font-size: 12px;
-      color: var(--color-text-faint);
-      font-family: var(--font-mono);
+      color: var(--text-muted);
     }
 
-    /* Hamburger (mobile) */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
-    }
-
-    .hamburger-line {
-      width: 20px;
-      height: 1.5px;
-      background: var(--color-text-muted);
-      border-radius: 2px;
-      transition: transform var(--transition-base),
-                  opacity var(--transition-base);
+    .topbar-meta-item span {
+      color: var(--text-secondary);
     }
 
     /* ============================================================
-       SECTIONS WRAPPER
+       CONTENT AREA
     ============================================================ */
-    .sections-wrapper {
-      padding: 0 40px 80px;
-      max-width: 1000px;
+    .content-area {
+      padding: 56px 64px 80px;
+      max-width: 960px;
     }
 
     /* ============================================================
-       HERO SECTION (Dashboard)
+       DASHBOARD HERO
     ============================================================ */
-    .hero {
-      padding: 72px 0 64px;
-      border-bottom: 1px solid var(--color-border);
+    .dashboard-hero {
+      margin-bottom: 56px;
     }
 
     .hero-eyebrow {
@@ -335,53 +301,70 @@
       gap: 8px;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 1px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--color-accent-light);
+      color: var(--accent-purple);
+      background: var(--accent-purple-dim);
+      border: 1px solid rgba(123, 94, 167, 0.2);
+      border-radius: 20px;
+      padding: 5px 12px;
       margin-bottom: 24px;
     }
 
-    .hero-eyebrow-line {
-      width: 24px;
-      height: 1px;
-      background: var(--color-accent);
+    .hero-eyebrow-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-purple);
     }
 
     .hero-title {
-      font-size: clamp(36px, 5vw, 52px);
-      font-weight: 800;
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-      color: var(--color-text);
-      margin-bottom: 20px;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
     }
 
     .hero-title-accent {
-      color: var(--color-accent-light);
+      background: linear-gradient(135deg, #9B7EC8 0%, #7B5EA7 50%, #5a4080 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero-subtitle {
-      font-size: 18px;
-      color: var(--color-text-muted);
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--text-secondary);
       max-width: 560px;
-      line-height: 1.7;
       margin-bottom: 28px;
     }
 
-    .hero-tagline {
-      display: inline-flex;
+    .hero-meta-row {
+      display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: var(--color-text-muted);
-      background: var(--color-surface-2);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      padding: 10px 16px;
+      gap: 6px;
+      flex-wrap: wrap;
     }
 
-    .hero-tagline-icon {
-      font-size: 16px;
+    .hero-tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-raised);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 4px 10px;
+    }
+
+    .hero-tag-sep {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      opacity: 0.4;
     }
 
     /* ============================================================
@@ -391,130 +374,160 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: var(--color-border);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
+      background: var(--border-subtle);
+      border-radius: 16px;
       overflow: hidden;
-      margin: 48px 0;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 56px;
     }
 
-    .metric-item {
-      background: var(--color-surface-1);
+    .metric-card {
+      background: var(--bg-surface);
       padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       position: relative;
-      transition: background var(--transition-base);
+      overflow: hidden;
     }
 
-    .metric-item:hover {
-      background: var(--color-surface-2);
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
     }
+
+    .metric-card:nth-child(1)::before { background: var(--accent-purple); }
+    .metric-card:nth-child(2)::before { background: var(--accent-orange); }
+    .metric-card:nth-child(3)::before { background: var(--accent-teal); }
 
     .metric-number {
       font-size: 56px;
-      font-weight: 800;
-      letter-spacing: -2px;
+      font-weight: 700;
       line-height: 1;
-      color: var(--color-text);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: baseline;
-      gap: 2px;
+      letter-spacing: -0.04em;
     }
 
-    .metric-number-prefix {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--color-accent-light);
-    }
+    .metric-card:nth-child(1) .metric-number { color: var(--accent-purple); }
+    .metric-card:nth-child(2) .metric-number { color: var(--accent-orange); }
+    .metric-card:nth-child(3) .metric-number { color: var(--accent-teal); }
 
     .metric-label {
       font-size: 13px;
-      color: var(--color-text-muted);
-      font-weight: 500;
-      line-height: 1.4;
-    }
-
-    .metric-sublabel {
-      font-size: 11px;
-      color: var(--color-text-faint);
+      font-weight: 600;
+      color: var(--text-primary);
       margin-top: 4px;
     }
 
-    .metric-accent-bar {
-      position: absolute;
-      bottom: 0;
-      left: 28px;
-      right: 28px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--color-accent) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity var(--transition-base);
-    }
-
-    .metric-item:hover .metric-accent-bar {
-      opacity: 1;
+    .metric-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
 
     /* ============================================================
-       NAVIGATION CARDS GRID
+       SECTION CARDS GRID
     ============================================================ */
-    .nav-cards-heading {
+    .section-cards-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .section-cards-title {
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.7px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--color-text-faint);
-      margin-bottom: 16px;
+      color: var(--text-muted);
+    }
+
+    .section-cards-count {
+      font-size: 12px;
+      color: var(--text-muted);
     }
 
     .nav-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin-bottom: 64px;
     }
 
     .nav-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 22px 22px 20px;
+      text-decoration: none;
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      background: var(--color-surface-1);
-      border: 1px solid var(--color-border);
-      border-left: 3px solid transparent;
-      border-radius: var(--radius-md);
-      padding: 20px;
+      gap: 16px;
+      transition:
+        background var(--ease),
+        border-color var(--ease),
+        transform var(--ease),
+        box-shadow var(--ease);
+      position: relative;
+      overflow: hidden;
       cursor: pointer;
-      transition: background var(--transition-base),
-                  border-color var(--transition-base),
-                  transform var(--transition-base),
-                  box-shadow var(--transition-base);
-      text-align: left;
+    }
+
+    .nav-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent-purple);
+      opacity: 0;
+      transition: opacity var(--ease);
+      border-radius: 3px 0 0 3px;
     }
 
     .nav-card:hover {
-      background: var(--color-surface-2);
-      border-left-color: var(--color-accent);
-      border-color: var(--color-border-hover);
+      background: var(--bg-raised);
+      border-color: var(--border-default);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35),
-                  0 0 0 0 transparent;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-card:hover::before {
+      opacity: 1;
     }
 
     .nav-card-icon-wrap {
-      width: 38px;
-      height: 38px;
-      background: var(--color-surface-3);
-      border-radius: var(--radius-sm);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
       flex-shrink: 0;
-      transition: background var(--transition-base);
+      transition: background var(--ease), border-color var(--ease);
     }
 
     .nav-card:hover .nav-card-icon-wrap {
-      background: var(--color-accent-glow);
+      background: var(--accent-purple-dim);
+      border-color: rgba(123, 94, 167, 0.25);
+    }
+
+    .nav-card-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--text-secondary);
+      transition: color var(--ease);
+    }
+
+    .nav-card:hover .nav-card-icon {
+      color: var(--accent-purple);
     }
 
     .nav-card-body {
@@ -522,184 +535,167 @@
       min-width: 0;
     }
 
-    .nav-card-number {
+    .nav-card-num {
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.5px;
-      color: var(--color-text-faint);
-      font-family: var(--font-mono);
-      margin-bottom: 4px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 5px;
     }
 
     .nav-card-title {
       font-size: 14px;
-      font-weight: 650;
-      color: var(--color-text);
+      font-weight: 600;
+      color: var(--text-primary);
       margin-bottom: 5px;
-      letter-spacing: -0.2px;
+      line-height: 1.3;
     }
 
     .nav-card-desc {
       font-size: 12.5px;
-      color: var(--color-text-muted);
-      line-height: 1.5;
+      color: var(--text-muted);
+      line-height: 1.55;
     }
 
     .nav-card-arrow {
-      font-size: 14px;
-      color: var(--color-text-faint);
-      align-self: center;
-      transition: transform var(--transition-base),
-                  color var(--transition-base);
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
       flex-shrink: 0;
+      margin-top: 2px;
+      transition: color var(--ease), transform var(--ease);
     }
 
     .nav-card:hover .nav-card-arrow {
-      transform: translateX(3px);
-      color: var(--color-accent-light);
+      color: var(--accent-purple);
+      transform: translate(2px, -2px);
     }
 
     /* ============================================================
        PLACEHOLDER SECTIONS
     ============================================================ */
     .doc-section {
-      padding: 80px 0 40px;
-      border-bottom: 1px solid var(--color-border);
+      padding-top: 80px;
+      margin-top: -1px;
     }
 
-    .doc-section:last-child {
-      border-bottom: none;
+    .section-divider {
+      height: 1px;
+      background: var(--border-subtle);
+      margin-bottom: 48px;
     }
 
-    .doc-section-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    .doc-section-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--color-surface-2);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .doc-section-title-group {
-      flex: 1;
-    }
-
-    .doc-section-num {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.7px;
-      text-transform: uppercase;
-      color: var(--color-accent-light);
-      font-family: var(--font-mono);
-      margin-bottom: 4px;
-    }
-
-    .doc-section-title {
-      font-size: 28px;
-      font-weight: 750;
-      letter-spacing: -0.8px;
-      color: var(--color-text);
-      line-height: 1.2;
-    }
-
-    .doc-section-placeholder {
-      background: var(--color-surface-1);
-      border: 1px dashed rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-md);
+    .section-placeholder {
+      background: var(--bg-surface);
+      border: 1px dashed var(--border-default);
+      border-radius: 12px;
       padding: 48px 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: var(--color-text-faint);
       text-align: center;
+      color: var(--text-muted);
     }
 
-    .doc-section-placeholder-icon {
-      font-size: 28px;
-      opacity: 0.4;
+    .section-placeholder-icon {
+      width: 32px;
+      height: 32px;
+      margin: 0 auto 12px;
+      opacity: 0.3;
     }
 
-    .doc-section-placeholder-text {
-      font-size: 13px;
+    .section-placeholder p {
+      font-size: 14px;
+    }
+
+    .section-heading {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .section-subheading {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
     }
 
     /* ============================================================
        DOCUMENT FOOTER
     ============================================================ */
     .doc-footer {
-      padding: 40px 0 0;
-      border-top: 1px solid var(--color-border);
+      border-top: 1px solid var(--border-subtle);
+      padding: 32px 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 16px;
+      margin-left: var(--sidebar-w);
     }
 
-    .doc-footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .doc-footer-logo-mark {
-      width: 22px;
-      height: 22px;
-      background: var(--color-accent);
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .doc-footer-brand-name {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--color-text-muted);
+    .doc-footer-logo {
+      height: 26px;
+      width: auto;
+      opacity: 0.6;
     }
 
     .doc-footer-meta {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .doc-footer-item {
       font-size: 12px;
-      color: var(--color-text-faint);
-      font-family: var(--font-mono);
+      color: var(--text-muted);
     }
 
-    .doc-footer-meta-sep {
-      width: 1px;
-      height: 12px;
-      background: var(--color-border);
+    .doc-footer-item strong {
+      color: var(--text-secondary);
+      font-weight: 500;
     }
 
-    .doc-footer-confidential {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      color: var(--color-text-faint);
+    .doc-footer-copy {
+      font-size: 12px;
+      color: var(--text-muted);
     }
 
     /* ============================================================
-       SIDEBAR OVERLAY (mobile)
+       HAMBURGER / MOBILE OVERLAY
     ============================================================ */
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 200;
+      width: 38px;
+      height: 38px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border-default);
+      border-radius: 9px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .hamburger-line {
+      width: 16px;
+      height: 1.5px;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      transition: transform var(--ease), opacity var(--ease);
+    }
+
+    .hamburger.is-open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.is-open .hamburger-line:nth-child(2) { opacity: 0; }
+    .hamburger.is-open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
     .sidebar-overlay {
       display: none;
       position: fixed;
@@ -710,580 +706,486 @@
     }
 
     /* ============================================================
-       RESPONSIVE — MOBILE
+       RESPONSIVE
     ============================================================ */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+      :root { --sidebar-w: 0px; }
+
       .sidebar {
-        transform: translateX(-100%);
+        transform: translateX(-260px);
+        width: 260px;
       }
 
-      .sidebar.open {
+      .sidebar.is-open {
         transform: translateX(0);
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
       }
 
-      .sidebar-overlay.open {
-        display: block;
-      }
+      .hamburger { display: flex; }
 
-      .main-content {
-        margin-left: 0;
+      .sidebar-overlay { display: block; }
+      .sidebar-overlay.is-hidden { display: none; }
+
+      .main-content { margin-left: 0; }
+
+      .content-area {
+        padding: 32px 24px 60px;
       }
 
       .topbar {
-        padding: 0 20px;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .topbar-meta {
-        gap: 10px;
-      }
-
-      .topbar-date {
-        display: none;
-      }
-
-      .sections-wrapper {
-        padding: 0 20px 60px;
-      }
-
-      .hero {
-        padding: 48px 0 40px;
-      }
-
-      .hero-title {
-        letter-spacing: -1px;
-      }
-
-      .hero-subtitle {
-        font-size: 16px;
-      }
-
-      .metrics-block {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-cards-grid {
-        grid-template-columns: 1fr;
+        padding: 0 24px 0 64px;
       }
 
       .doc-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-title {
-        font-size: 30px;
+        margin-left: 0;
+        padding: 28px 24px;
       }
 
-      .metric-number {
-        font-size: 44px;
-      }
+      .hero-title { font-size: 34px; }
+      .metrics-block { grid-template-columns: 1fr; }
+      .nav-cards-grid { grid-template-columns: 1fr; }
     }
 
-    /* ============================================================
-       SCROLL INDICATOR
-    ============================================================ */
-    .scroll-progress {
-      position: fixed;
-      top: 0;
-      left: var(--sidebar-width);
-      right: 0;
-      height: 2px;
-      background: var(--color-border);
-      z-index: 200;
-    }
-
-    .scroll-progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
-      width: 0%;
-      transition: width 80ms linear;
-    }
-
-    @media (max-width: 768px) {
-      .scroll-progress {
-        left: 0;
-      }
+    @media (max-width: 600px) {
+      .content-area { padding: 24px 20px 60px; }
+      .hero-title { font-size: 28px; }
+      .topbar-meta { display: none; }
     }
   </style>
 </head>
 <body>
 
 <!-- ============================================================
-     SCROLL PROGRESS BAR
+     HAMBURGER BUTTON (mobile)
 ============================================================ -->
-<div class="scroll-progress" aria-hidden="true">
-  <div class="scroll-progress-bar" id="scrollBar"></div>
-</div>
+<button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+</button>
+
+<!-- Overlay -->
+<div class="sidebar-overlay is-hidden" id="sidebarOverlay"></div>
 
 <!-- ============================================================
-     LAYOUT SHELL
+     DOCUMENT SHELL
 ============================================================ -->
-<div class="layout">
-
-  <!-- SIDEBAR OVERLAY (mobile) -->
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="doc-shell">
 
   <!-- ============================================================
        SIDEBAR
   ============================================================ -->
-  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Navegación del documento">
+  <aside class="sidebar" id="sidebar">
+
     <div class="sidebar-header">
-      <div class="sidebar-logo">
-        <div class="sidebar-logo-mark">V</div>
-        <span class="sidebar-logo-name">Valírica</span>
-      </div>
-      <div class="sidebar-doc-label">Ficha Técnica</div>
+      <img
+        src="../assets/icons/logo-dark.svg"
+        alt="Valírica"
+        class="sidebar-logo"
+        width="120"
+        height="32"
+      />
+      <span class="sidebar-doc-badge">Doc</span>
     </div>
 
-    <nav class="sidebar-nav">
-      <div class="sidebar-nav-section-label">Documento</div>
+    <nav class="sidebar-nav" aria-label="Secciones del documento">
 
-      <a class="sidebar-nav-item active" href="#dashboard" onclick="setActive(this)">
-        <span class="sidebar-nav-icon">⬡</span>
+      <div class="sidebar-section-label">Contenido</div>
+
+      <a href="#dashboard" class="sidebar-link is-active" data-section="dashboard">
+        <i data-lucide="layout-dashboard" class="sidebar-link-icon"></i>
         Dashboard
-        <span class="sidebar-nav-number">00</span>
       </a>
 
-      <div class="sidebar-nav-section-label" style="margin-top:8px;">Secciones</div>
-
-      <a class="sidebar-nav-item" href="#executive-summary" onclick="setActive(this)">
-        <span class="sidebar-nav-icon">◎</span>
+      <a href="#executive-summary" class="sidebar-link" data-section="executive-summary">
+        <i data-lucide="file-text" class="sidebar-link-icon"></i>
         Executive Summary
-        <span class="sidebar-nav-number">01</span>
+        <span class="sidebar-link-num">01</span>
       </a>
 
-      <a class="sidebar-nav-item" href="#product-overview" onclick="setActive(this)">
-        <span class="sidebar-nav-icon">◈</span>
+      <a href="#product-overview" class="sidebar-link" data-section="product-overview">
+        <i data-lucide="package" class="sidebar-link-icon"></i>
         Product Overview
-        <span class="sidebar-nav-number">02</span>
+        <span class="sidebar-link-num">02</span>
       </a>
 
-      <a class="sidebar-nav-item" href="#modulos-funcionales" onclick="setActive(this)">
-        <span class="sidebar-nav-icon">⊞</span>
+      <a href="#modulos-funcionales" class="sidebar-link" data-section="modulos-funcionales">
+        <i data-lucide="layers" class="sidebar-link-icon"></i>
         Módulos Funcionales
-        <span class="sidebar-nav-number">03</span>
+        <span class="sidebar-link-num">03</span>
       </a>
 
-      <a class="sidebar-nav-item" href="#la-ciencia" onclick="setActive(this)">
-        <span class="sidebar-nav-icon">◬</span>
+      <a href="#ciencia" class="sidebar-link" data-section="ciencia">
+        <i data-lucide="atom" class="sidebar-link-icon"></i>
         La Ciencia Detrás
-        <span class="sidebar-nav-number">04</span>
+        <span class="sidebar-link-num">04</span>
       </a>
 
-      <a class="sidebar-nav-item" href="#arquitectura" onclick="setActive(this)">
-        <span class="sidebar-nav-icon">⬡</span>
+      <a href="#arquitectura" class="sidebar-link" data-section="arquitectura">
+        <i data-lucide="server" class="sidebar-link-icon"></i>
         Arquitectura y Acceso
-        <span class="sidebar-nav-number">05</span>
+        <span class="sidebar-link-num">05</span>
       </a>
 
-      <a class="sidebar-nav-item" href="#compliance" onclick="setActive(this)">
-        <span class="sidebar-nav-icon">◉</span>
+      <a href="#compliance" class="sidebar-link" data-section="compliance">
+        <i data-lucide="shield-check" class="sidebar-link-icon"></i>
         Compliance Legal
-        <span class="sidebar-nav-number">06</span>
+        <span class="sidebar-link-num">06</span>
       </a>
 
-      <a class="sidebar-nav-item" href="#roadmap" onclick="setActive(this)">
-        <span class="sidebar-nav-icon">◷</span>
+      <a href="#roadmap" class="sidebar-link" data-section="roadmap">
+        <i data-lucide="map" class="sidebar-link-icon"></i>
         Roadmap
-        <span class="sidebar-nav-number">07</span>
+        <span class="sidebar-link-num">07</span>
       </a>
+
     </nav>
 
     <div class="sidebar-footer">
-      <div class="sidebar-version-badge">
-        <span class="sidebar-version-dot"></span>
-        v1.0.0 — Borrador
+      <div class="sidebar-version-row">
+        <span class="sidebar-version">v1.0 · Abril 2026</span>
+        <span class="sidebar-status">
+          <span class="sidebar-status-dot"></span>
+          Borrador
+        </span>
       </div>
     </div>
+
   </aside>
 
   <!-- ============================================================
        MAIN CONTENT
   ============================================================ -->
-  <main class="main-content" role="main">
+  <div class="main-content">
 
-    <!-- TOP BAR -->
+    <!-- TOPBAR -->
     <header class="topbar">
-      <div style="display:flex; align-items:center; gap:16px;">
-        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú de navegación">
-          <span class="hamburger-line" id="hLine1"></span>
-          <span class="hamburger-line" id="hLine2"></span>
-          <span class="hamburger-line" id="hLine3"></span>
-        </button>
-        <div class="topbar-breadcrumb">
-          <span>Valírica</span>
-          <span class="topbar-breadcrumb-sep">/</span>
-          <span class="topbar-breadcrumb-current">Ficha Técnica de Producto</span>
-        </div>
+      <div class="topbar-breadcrumb">
+        <span>Valírica</span>
+        <span class="topbar-breadcrumb-sep">/</span>
+        <span class="topbar-breadcrumb-current">Ficha Técnica de Producto</span>
       </div>
       <div class="topbar-meta">
-        <span class="topbar-tag">Confidencial</span>
-        <span class="topbar-date">2025 · v1.0.0</span>
+        <div class="topbar-meta-item">Versión <span>1.0</span></div>
+        <div class="topbar-meta-item">Fecha <span>Abril 2026</span></div>
+        <div class="topbar-meta-item">Audiencia <span>B2B · Partners · Inversores</span></div>
       </div>
     </header>
 
-    <!-- SECTIONS WRAPPER -->
-    <div class="sections-wrapper">
+    <!-- CONTENT AREA -->
+    <main class="content-area" id="dashboard">
 
       <!-- ============================================================
-           SECTION 00 — DASHBOARD / LANDING
+           DASHBOARD HERO
       ============================================================ -->
-      <section id="dashboard">
+      <section class="dashboard-hero">
 
-        <!-- HERO -->
-        <div class="hero">
-          <div class="hero-eyebrow">
-            <span class="hero-eyebrow-line"></span>
-            Documento de Producto
-          </div>
-
-          <h1 class="hero-title">
-            Ficha Técnica<br />
-            <span class="hero-title-accent">de Producto</span>
-          </h1>
-
-          <p class="hero-subtitle">
-            Valírica es una plataforma B2B de RRHH e Inteligencia Cultural
-            que transforma cómo las organizaciones comprenden, atraen y
-            desarrollan talento a través de datos y ciencia del comportamiento.
-          </p>
-
-          <div class="hero-tagline">
-            <span class="hero-tagline-icon">✦</span>
-            "Donde los datos humanos se convierten en ventaja competitiva."
-          </div>
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot"></span>
+          Documento de producto oficial
         </div>
 
-        <!-- METRICS BLOCK -->
-        <div class="metrics-block" role="region" aria-label="Métricas clave">
+        <h1 class="hero-title">
+          Ficha Técnica<br>
+          de <span class="hero-title-accent">Producto</span>
+        </h1>
 
-          <div class="metric-item">
-            <div class="metric-number">
-              <span class="metric-number-prefix">+</span>200
-            </div>
-            <div class="metric-label">Empleados analizados</div>
-            <div class="metric-sublabel">Perfiles procesados en fase piloto</div>
-            <div class="metric-accent-bar"></div>
-          </div>
+        <p class="hero-subtitle">
+          Valírica es una plataforma B2B de RRHH e Inteligencia Cultural para PYMES.
+          Este documento recoge la arquitectura funcional, la ciencia aplicada,
+          los módulos del producto y el marco legal y de cumplimiento.
+        </p>
 
-          <div class="metric-item">
-            <div class="metric-number">3</div>
-            <div class="metric-label">Países de operación</div>
-            <div class="metric-sublabel">Expansión regional activa</div>
-            <div class="metric-accent-bar"></div>
-          </div>
-
-          <div class="metric-item">
-            <div class="metric-number">2</div>
-            <div class="metric-label">Usuarios principales</div>
-            <div class="metric-sublabel">HR Manager · C-Level Executive</div>
-            <div class="metric-accent-bar"></div>
-          </div>
-
+        <div class="hero-meta-row">
+          <span class="hero-tag">Plataforma SaaS</span>
+          <span class="hero-tag-sep"></span>
+          <span class="hero-tag">RRHH + Inteligencia Cultural</span>
+          <span class="hero-tag-sep"></span>
+          <span class="hero-tag">España · Colombia</span>
+          <span class="hero-tag-sep"></span>
+          <span class="hero-tag">v1.0 · 2026</span>
         </div>
 
-        <!-- NAVIGATION CARDS -->
-        <div class="nav-cards-heading">Contenido del documento</div>
+      </section>
 
-        <div class="nav-cards-grid" role="list">
+      <!-- ============================================================
+           METRICS BLOCK
+      ============================================================ -->
+      <div class="metrics-block">
 
-          <a class="nav-card" href="#executive-summary" role="listitem" aria-label="Ir a Executive Summary">
-            <div class="nav-card-icon-wrap">◎</div>
-            <div class="nav-card-body">
-              <div class="nav-card-number">01</div>
-              <div class="nav-card-title">Executive Summary</div>
-              <div class="nav-card-desc">Visión general del producto, propuesta de valor y contexto estratégico.</div>
-            </div>
-            <span class="nav-card-arrow">→</span>
-          </a>
-
-          <a class="nav-card" href="#product-overview" role="listitem" aria-label="Ir a Product Overview">
-            <div class="nav-card-icon-wrap">◈</div>
-            <div class="nav-card-body">
-              <div class="nav-card-number">02</div>
-              <div class="nav-card-title">Product Overview</div>
-              <div class="nav-card-desc">Descripción detallada del producto, flujos principales y casos de uso.</div>
-            </div>
-            <span class="nav-card-arrow">→</span>
-          </a>
-
-          <a class="nav-card" href="#modulos-funcionales" role="listitem" aria-label="Ir a Módulos Funcionales">
-            <div class="nav-card-icon-wrap">⊞</div>
-            <div class="nav-card-body">
-              <div class="nav-card-number">03</div>
-              <div class="nav-card-title">Módulos Funcionales</div>
-              <div class="nav-card-desc">Cada módulo de la plataforma, sus capacidades y configuraciones.</div>
-            </div>
-            <span class="nav-card-arrow">→</span>
-          </a>
-
-          <a class="nav-card" href="#la-ciencia" role="listitem" aria-label="Ir a La Ciencia Detrás">
-            <div class="nav-card-icon-wrap">◬</div>
-            <div class="nav-card-body">
-              <div class="nav-card-number">04</div>
-              <div class="nav-card-title">La Ciencia Detrás</div>
-              <div class="nav-card-desc">Modelos de inteligencia cultural, metodología y fundamentos científicos.</div>
-            </div>
-            <span class="nav-card-arrow">→</span>
-          </a>
-
-          <a class="nav-card" href="#arquitectura" role="listitem" aria-label="Ir a Arquitectura y Acceso">
-            <div class="nav-card-icon-wrap">⬡</div>
-            <div class="nav-card-body">
-              <div class="nav-card-number">05</div>
-              <div class="nav-card-title">Arquitectura y Acceso</div>
-              <div class="nav-card-desc">Stack técnico, integraciones, SSO y modelo de acceso multi-tenant.</div>
-            </div>
-            <span class="nav-card-arrow">→</span>
-          </a>
-
-          <a class="nav-card" href="#compliance" role="listitem" aria-label="Ir a Compliance Legal">
-            <div class="nav-card-icon-wrap">◉</div>
-            <div class="nav-card-body">
-              <div class="nav-card-number">06</div>
-              <div class="nav-card-title">Compliance Legal</div>
-              <div class="nav-card-desc">GDPR, tratamiento de datos sensibles, certificaciones y normativa vigente.</div>
-            </div>
-            <span class="nav-card-arrow">→</span>
-          </a>
-
-          <a class="nav-card" href="#roadmap" role="listitem" aria-label="Ir a Roadmap">
-            <div class="nav-card-icon-wrap">◷</div>
-            <div class="nav-card-body">
-              <div class="nav-card-number">07</div>
-              <div class="nav-card-title">Roadmap</div>
-              <div class="nav-card-desc">Hoja de ruta, próximas funcionalidades y horizonte de producto 2025–2026.</div>
-            </div>
-            <span class="nav-card-arrow">→</span>
-          </a>
-
+        <div class="metric-card">
+          <div class="metric-number">+200</div>
+          <div class="metric-label">Empleados analizados</div>
+          <div class="metric-desc">Perfiles activos con radiografía cultural generada</div>
         </div>
 
-      </section><!-- /dashboard -->
+        <div class="metric-card">
+          <div class="metric-number">3</div>
+          <div class="metric-label">Países de operación</div>
+          <div class="metric-desc">España, Colombia y México en fase de expansión</div>
+        </div>
 
+        <div class="metric-card">
+          <div class="metric-number">2</div>
+          <div class="metric-label">Perfiles de usuario</div>
+          <div class="metric-desc">Directivos de RRHH y consultoras de talento humano</div>
+        </div>
+
+      </div>
+
+      <!-- ============================================================
+           NAVIGATION CARDS
+      ============================================================ -->
+      <div class="section-cards-header">
+        <span class="section-cards-title">Secciones del documento</span>
+        <span class="section-cards-count">7 secciones</span>
+      </div>
+
+      <div class="nav-cards-grid">
+
+        <a href="#executive-summary" class="nav-card">
+          <div class="nav-card-icon-wrap">
+            <i data-lucide="file-text" class="nav-card-icon"></i>
+          </div>
+          <div class="nav-card-body">
+            <div class="nav-card-num">01</div>
+            <div class="nav-card-title">Executive Summary</div>
+            <div class="nav-card-desc">Visión del producto, propuesta de valor y diferenciadores estratégicos clave.</div>
+          </div>
+          <i data-lucide="arrow-up-right" class="nav-card-arrow"></i>
+        </a>
+
+        <a href="#product-overview" class="nav-card">
+          <div class="nav-card-icon-wrap">
+            <i data-lucide="package" class="nav-card-icon"></i>
+          </div>
+          <div class="nav-card-body">
+            <div class="nav-card-num">02</div>
+            <div class="nav-card-title">Product Overview</div>
+            <div class="nav-card-desc">Descripción completa del producto, mercado objetivo y modelo de negocio.</div>
+          </div>
+          <i data-lucide="arrow-up-right" class="nav-card-arrow"></i>
+        </a>
+
+        <a href="#modulos-funcionales" class="nav-card">
+          <div class="nav-card-icon-wrap">
+            <i data-lucide="layers" class="nav-card-icon"></i>
+          </div>
+          <div class="nav-card-body">
+            <div class="nav-card-num">03</div>
+            <div class="nav-card-title">Módulos Funcionales</div>
+            <div class="nav-card-desc">Fichaje, canal de denuncias, desempeño e inteligencia cultural en detalle.</div>
+          </div>
+          <i data-lucide="arrow-up-right" class="nav-card-arrow"></i>
+        </a>
+
+        <a href="#ciencia" class="nav-card">
+          <div class="nav-card-icon-wrap">
+            <i data-lucide="atom" class="nav-card-icon"></i>
+          </div>
+          <div class="nav-card-body">
+            <div class="nav-card-num">04</div>
+            <div class="nav-card-title">La Ciencia Detrás</div>
+            <div class="nav-card-desc">Modelos DISC, Hofstede, detección de burnout y motor de señales en tiempo real.</div>
+          </div>
+          <i data-lucide="arrow-up-right" class="nav-card-arrow"></i>
+        </a>
+
+        <a href="#arquitectura" class="nav-card">
+          <div class="nav-card-icon-wrap">
+            <i data-lucide="server" class="nav-card-icon"></i>
+          </div>
+          <div class="nav-card-body">
+            <div class="nav-card-num">05</div>
+            <div class="nav-card-title">Arquitectura y Acceso</div>
+            <div class="nav-card-desc">Stack tecnológico, infraestructura cloud, integraciones y niveles de acceso.</div>
+          </div>
+          <i data-lucide="arrow-up-right" class="nav-card-arrow"></i>
+        </a>
+
+        <a href="#compliance" class="nav-card">
+          <div class="nav-card-icon-wrap">
+            <i data-lucide="shield-check" class="nav-card-icon"></i>
+          </div>
+          <div class="nav-card-body">
+            <div class="nav-card-num">06</div>
+            <div class="nav-card-title">Compliance Legal</div>
+            <div class="nav-card-desc">RDL 8/2019, Ley 2/2023, GDPR, LOPD-GDD y marco normativo Colombia.</div>
+          </div>
+          <i data-lucide="arrow-up-right" class="nav-card-arrow"></i>
+        </a>
+
+        <a href="#roadmap" class="nav-card">
+          <div class="nav-card-icon-wrap">
+            <i data-lucide="map" class="nav-card-icon"></i>
+          </div>
+          <div class="nav-card-body">
+            <div class="nav-card-num">07</div>
+            <div class="nav-card-title">Roadmap</div>
+            <div class="nav-card-desc">Hoja de ruta del producto: fases completadas, en desarrollo y próximas entregas.</div>
+          </div>
+          <i data-lucide="arrow-up-right" class="nav-card-arrow"></i>
+        </a>
+
+      </div>
 
       <!-- ============================================================
            PLACEHOLDER SECTIONS
       ============================================================ -->
 
-      <!-- 01 — Executive Summary -->
-      <section class="doc-section" id="executive-summary">
-        <div class="doc-section-header">
-          <div class="doc-section-icon">◎</div>
-          <div class="doc-section-title-group">
-            <div class="doc-section-num">Sección 01</div>
-            <h2 class="doc-section-title">Executive Summary</h2>
-          </div>
+      <div class="doc-section" id="executive-summary">
+        <div class="section-divider"></div>
+        <h2 class="section-heading">Executive Summary</h2>
+        <p class="section-subheading">Sección 01 — Próximamente</p>
+        <div class="section-placeholder">
+          <i data-lucide="file-text" class="section-placeholder-icon"></i>
+          <p>El contenido de esta sección está en preparación.</p>
         </div>
-        <div class="doc-section-placeholder">
-          <div class="doc-section-placeholder-icon">◎</div>
-          <div class="doc-section-placeholder-text">Contenido en desarrollo</div>
-        </div>
-      </section>
+      </div>
 
-      <!-- 02 — Product Overview -->
-      <section class="doc-section" id="product-overview">
-        <div class="doc-section-header">
-          <div class="doc-section-icon">◈</div>
-          <div class="doc-section-title-group">
-            <div class="doc-section-num">Sección 02</div>
-            <h2 class="doc-section-title">Product Overview</h2>
-          </div>
+      <div class="doc-section" id="product-overview">
+        <div class="section-divider"></div>
+        <h2 class="section-heading">Product Overview</h2>
+        <p class="section-subheading">Sección 02 — Próximamente</p>
+        <div class="section-placeholder">
+          <i data-lucide="package" class="section-placeholder-icon"></i>
+          <p>El contenido de esta sección está en preparación.</p>
         </div>
-        <div class="doc-section-placeholder">
-          <div class="doc-section-placeholder-icon">◈</div>
-          <div class="doc-section-placeholder-text">Contenido en desarrollo</div>
-        </div>
-      </section>
+      </div>
 
-      <!-- 03 — Módulos Funcionales -->
-      <section class="doc-section" id="modulos-funcionales">
-        <div class="doc-section-header">
-          <div class="doc-section-icon">⊞</div>
-          <div class="doc-section-title-group">
-            <div class="doc-section-num">Sección 03</div>
-            <h2 class="doc-section-title">Módulos Funcionales</h2>
-          </div>
+      <div class="doc-section" id="modulos-funcionales">
+        <div class="section-divider"></div>
+        <h2 class="section-heading">Módulos Funcionales</h2>
+        <p class="section-subheading">Sección 03 — Próximamente</p>
+        <div class="section-placeholder">
+          <i data-lucide="layers" class="section-placeholder-icon"></i>
+          <p>El contenido de esta sección está en preparación.</p>
         </div>
-        <div class="doc-section-placeholder">
-          <div class="doc-section-placeholder-icon">⊞</div>
-          <div class="doc-section-placeholder-text">Contenido en desarrollo</div>
-        </div>
-      </section>
+      </div>
 
-      <!-- 04 — La Ciencia Detrás -->
-      <section class="doc-section" id="la-ciencia">
-        <div class="doc-section-header">
-          <div class="doc-section-icon">◬</div>
-          <div class="doc-section-title-group">
-            <div class="doc-section-num">Sección 04</div>
-            <h2 class="doc-section-title">La Ciencia Detrás</h2>
-          </div>
+      <div class="doc-section" id="ciencia">
+        <div class="section-divider"></div>
+        <h2 class="section-heading">La Ciencia Detrás</h2>
+        <p class="section-subheading">Sección 04 — Próximamente</p>
+        <div class="section-placeholder">
+          <i data-lucide="atom" class="section-placeholder-icon"></i>
+          <p>El contenido de esta sección está en preparación.</p>
         </div>
-        <div class="doc-section-placeholder">
-          <div class="doc-section-placeholder-icon">◬</div>
-          <div class="doc-section-placeholder-text">Contenido en desarrollo</div>
-        </div>
-      </section>
+      </div>
 
-      <!-- 05 — Arquitectura y Acceso -->
-      <section class="doc-section" id="arquitectura">
-        <div class="doc-section-header">
-          <div class="doc-section-icon">⬡</div>
-          <div class="doc-section-title-group">
-            <div class="doc-section-num">Sección 05</div>
-            <h2 class="doc-section-title">Arquitectura y Acceso</h2>
-          </div>
+      <div class="doc-section" id="arquitectura">
+        <div class="section-divider"></div>
+        <h2 class="section-heading">Arquitectura y Acceso</h2>
+        <p class="section-subheading">Sección 05 — Próximamente</p>
+        <div class="section-placeholder">
+          <i data-lucide="server" class="section-placeholder-icon"></i>
+          <p>El contenido de esta sección está en preparación.</p>
         </div>
-        <div class="doc-section-placeholder">
-          <div class="doc-section-placeholder-icon">⬡</div>
-          <div class="doc-section-placeholder-text">Contenido en desarrollo</div>
-        </div>
-      </section>
+      </div>
 
-      <!-- 06 — Compliance Legal -->
-      <section class="doc-section" id="compliance">
-        <div class="doc-section-header">
-          <div class="doc-section-icon">◉</div>
-          <div class="doc-section-title-group">
-            <div class="doc-section-num">Sección 06</div>
-            <h2 class="doc-section-title">Compliance Legal</h2>
-          </div>
+      <div class="doc-section" id="compliance">
+        <div class="section-divider"></div>
+        <h2 class="section-heading">Compliance Legal</h2>
+        <p class="section-subheading">Sección 06 — Próximamente</p>
+        <div class="section-placeholder">
+          <i data-lucide="shield-check" class="section-placeholder-icon"></i>
+          <p>El contenido de esta sección está en preparación.</p>
         </div>
-        <div class="doc-section-placeholder">
-          <div class="doc-section-placeholder-icon">◉</div>
-          <div class="doc-section-placeholder-text">Contenido en desarrollo</div>
-        </div>
-      </section>
+      </div>
 
-      <!-- 07 — Roadmap -->
-      <section class="doc-section" id="roadmap">
-        <div class="doc-section-header">
-          <div class="doc-section-icon">◷</div>
-          <div class="doc-section-title-group">
-            <div class="doc-section-num">Sección 07</div>
-            <h2 class="doc-section-title">Roadmap</h2>
-          </div>
+      <div class="doc-section" id="roadmap">
+        <div class="section-divider"></div>
+        <h2 class="section-heading">Roadmap</h2>
+        <p class="section-subheading">Sección 07 — Próximamente</p>
+        <div class="section-placeholder">
+          <i data-lucide="map" class="section-placeholder-icon"></i>
+          <p>El contenido de esta sección está en preparación.</p>
         </div>
-        <div class="doc-section-placeholder">
-          <div class="doc-section-placeholder-icon">◷</div>
-          <div class="doc-section-placeholder-text">Contenido en desarrollo</div>
-        </div>
-      </section>
+      </div>
 
+    </main>
 
-      <!-- ============================================================
-           DOCUMENT FOOTER
-      ============================================================ -->
-      <footer class="doc-footer" role="contentinfo">
-        <div class="doc-footer-brand">
-          <div class="doc-footer-logo-mark">V</div>
-          <span class="doc-footer-brand-name">Valírica</span>
-        </div>
-        <div class="doc-footer-meta">
-          <span>v1.0.0</span>
-          <span class="doc-footer-meta-sep"></span>
-          <span>Marzo 2025</span>
-          <span class="doc-footer-meta-sep"></span>
-          <span class="doc-footer-confidential">Uso interno</span>
-        </div>
-      </footer>
+    <!-- ============================================================
+         DOCUMENT FOOTER
+    ============================================================ -->
+    <footer class="doc-footer">
+      <img
+        src="../assets/icons/logo-dark.svg"
+        alt="Valírica"
+        class="doc-footer-logo"
+        width="100"
+        height="26"
+      />
+      <div class="doc-footer-meta">
+        <div class="doc-footer-item">Versión <strong>1.0</strong></div>
+        <div class="doc-footer-item">Fecha <strong>Abril 2026</strong></div>
+        <div class="doc-footer-item">Clasificación <strong>Confidencial B2B</strong></div>
+      </div>
+      <div class="doc-footer-copy">© 2026 Valírica · Todos los derechos reservados</div>
+    </footer>
 
-    </div><!-- /sections-wrapper -->
-  </main>
-</div><!-- /layout -->
+  </div><!-- /main-content -->
+</div><!-- /doc-shell -->
 
 
 <!-- ============================================================
-     JAVASCRIPT — Sidebar toggle, active state, scroll progress
+     JAVASCRIPT
 ============================================================ -->
 <script>
-  // --- Sidebar toggle (mobile) ---
-  const sidebar        = document.getElementById('sidebar');
-  const overlay        = document.getElementById('sidebarOverlay');
-  const hamburgerBtn   = document.getElementById('hamburgerBtn');
+  // Init Lucide icons
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide) lucide.createIcons();
+  });
+  // Fallback if script already loaded
+  if (document.readyState !== 'loading' && window.lucide) {
+    lucide.createIcons();
+  }
+
+  // --- Mobile sidebar toggle ---
+  const hamburger     = document.getElementById('hamburger');
+  const sidebar       = document.getElementById('sidebar');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
 
   function openSidebar() {
-    sidebar.classList.add('open');
-    overlay.classList.add('open');
-    hamburgerBtn.setAttribute('aria-expanded', 'true');
+    sidebar.classList.add('is-open');
+    hamburger.classList.add('is-open');
+    sidebarOverlay.classList.remove('is-hidden');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
   }
 
   function closeSidebar() {
-    sidebar.classList.remove('open');
-    overlay.classList.remove('open');
-    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    sidebar.classList.remove('is-open');
+    hamburger.classList.remove('is-open');
+    sidebarOverlay.classList.add('is-hidden');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
   }
 
-  hamburgerBtn.addEventListener('click', () => {
-    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+  hamburger.addEventListener('click', () => {
+    sidebar.classList.contains('is-open') ? closeSidebar() : openSidebar();
   });
 
-  overlay.addEventListener('click', closeSidebar);
+  sidebarOverlay.addEventListener('click', closeSidebar);
 
-  // Close sidebar on nav item click (mobile)
-  document.querySelectorAll('.sidebar-nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-      if (window.innerWidth <= 768) closeSidebar();
+  // Close on nav link click (mobile)
+  document.querySelectorAll('.sidebar-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 900) closeSidebar();
     });
   });
 
-  // --- Active nav state ---
-  function setActive(el) {
-    document.querySelectorAll('.sidebar-nav-item').forEach(i => i.classList.remove('active'));
-    el.classList.add('active');
-  }
-
-  // --- Scroll progress bar ---
-  const scrollBar = document.getElementById('scrollBar');
-
-  window.addEventListener('scroll', () => {
-    const scrollTop    = document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress     = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-    scrollBar.style.width = progress + '%';
-  }, { passive: true });
-
-  // --- Intersection Observer for active sidebar state ---
-  const sectionIds = [
-    'dashboard',
-    'executive-summary',
-    'product-overview',
-    'modulos-funcionales',
-    'la-ciencia',
-    'arquitectura',
-    'compliance',
-    'roadmap'
-  ];
-
-  const sectionNavMap = {
-    'dashboard':           '[href="#dashboard"]',
-    'executive-summary':   '[href="#executive-summary"]',
-    'product-overview':    '[href="#product-overview"]',
-    'modulos-funcionales': '[href="#modulos-funcionales"]',
-    'la-ciencia':          '[href="#la-ciencia"]',
-    'arquitectura':        '[href="#arquitectura"]',
-    'compliance':          '[href="#compliance"]',
-    'roadmap':             '[href="#roadmap"]',
-  };
+  // --- Active sidebar link on scroll ---
+  const sections = document.querySelectorAll('.doc-section, #dashboard');
+  const sidebarLinks = document.querySelectorAll('.sidebar-link[data-section]');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const id      = entry.target.id;
-        const selector = sectionNavMap[id];
-        if (selector) {
-          document.querySelectorAll('.sidebar-nav-item').forEach(i => i.classList.remove('active'));
-          const navItem = document.querySelector('.sidebar-nav ' + selector);
-          if (navItem) navItem.classList.add('active');
-        }
+        const id = entry.target.id;
+        sidebarLinks.forEach(link => {
+          link.classList.toggle('is-active', link.dataset.section === id);
+        });
       }
     });
   }, {
@@ -1291,9 +1193,11 @@
     threshold: 0
   });
 
-  sectionIds.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) observer.observe(el);
+  document.querySelectorAll('[id]').forEach(el => {
+    if (['dashboard','executive-summary','product-overview','modulos-funcionales',
+         'ciencia','arquitectura','compliance','roadmap'].includes(el.id)) {
+      observer.observe(el);
+    }
   });
 </script>
 
