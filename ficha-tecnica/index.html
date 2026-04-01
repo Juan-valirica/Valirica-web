@@ -34,8 +34,8 @@
 
       /* Text */
       --text-primary:   #F0F0F0;
-      --text-secondary: #888888;
-      --text-muted:     #555555;
+      --text-secondary: #ADADAD;
+      --text-muted:     #717171;
       --text-inverse:   #012133;
 
       /* Borders */
@@ -1403,12 +1403,12 @@
     .source-citation-text {
       font-size: 12px;
       line-height: 1.65;
-      color: var(--text-muted);
+      color: #858585;
       font-style: italic;
     }
 
     .source-citation-text strong {
-      color: var(--text-secondary);
+      color: #ADADAD;
       font-style: normal;
       font-weight: 600;
     }
@@ -1797,9 +1797,9 @@
     .legal-row-label {
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: #8A8A8A;
       margin-bottom: 8px;
     }
 
@@ -1820,11 +1820,10 @@
     }
 
     .obligation-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
+      position: relative;
+      padding-left: 16px;
       font-size: 13.5px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: var(--text-secondary);
     }
 
@@ -1834,11 +1833,14 @@
       height: 5px;
       border-radius: 50%;
       background: var(--accent-purple);
-      flex-shrink: 0;
-      margin-top: 7px;
+      position: absolute;
+      left: 0;
+      top: 8px;
     }
 
     .obligation-list li strong { color: var(--text-primary); font-weight: 600; }
+
+    .obligation-list li .fine-alert { display: block; margin-top: 10px; }
 
     /* Fine / sanction alert */
     .fine-alert {
@@ -1867,15 +1869,15 @@
 
     /* Coverage row (cómo lo cubre Valírica) */
     .coverage-row {
-      background: var(--accent-purple-dim);
-      border-top: 1px solid rgba(123,94,167,0.15);
-      padding: 14px 20px;
-      font-size: 13px;
-      line-height: 1.65;
-      color: var(--text-secondary);
+      background: rgba(123, 94, 167, 0.1);
+      border-top: 1px solid rgba(123,94,167,0.2);
+      padding: 16px 20px;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #C8C0D8;
     }
 
-    .coverage-row strong { color: var(--accent-purple); font-weight: 600; }
+    .coverage-row strong { color: #B89FD8; font-weight: 700; }
 
     /* Country section spacer */
     .country-spacer {
