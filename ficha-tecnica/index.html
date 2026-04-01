@@ -1342,6 +1342,199 @@
     }
 
     /* ============================================================
+       LA CIENCIA DETRÁS — CITAS, MODELOS Y SÍNTESIS
+    ============================================================ */
+
+    /* Intro callout (encuestas vs. ciencia) */
+    .science-intro {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 28px 28px 26px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .science-intro::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-purple) 0%, var(--accent-teal) 100%);
+    }
+
+    .science-intro-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .science-intro-text {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+    }
+
+    .science-intro-text strong { color: var(--text-primary); font-weight: 600; }
+
+    /* Academic source citation */
+    .source-citation {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+    }
+
+    .source-citation-icon {
+      width: 14px;
+      height: 14px;
+      color: var(--accent-purple);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .source-citation-text {
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .source-citation-text strong {
+      color: var(--text-secondary);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* Maslow level ladder */
+    .maslow-ladder {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 4px;
+      margin: 20px 0;
+    }
+
+    .maslow-level {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      transition: background var(--ease), border-color var(--ease);
+    }
+
+    .maslow-level:hover {
+      background: var(--bg-raised);
+      border-color: var(--border-default);
+    }
+
+    .maslow-level-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .maslow-level:nth-child(1) .maslow-level-num { background: rgba(255,151,0,0.15); color: var(--accent-orange); }
+    .maslow-level:nth-child(2) .maslow-level-num { background: rgba(123,94,167,0.15); color: var(--accent-purple); }
+    .maslow-level:nth-child(3) .maslow-level-num { background: rgba(0,122,150,0.15); color: var(--accent-teal); }
+    .maslow-level:nth-child(4) .maslow-level-num { background: rgba(76,175,138,0.15); color: #4caf8a; }
+    .maslow-level:nth-child(5) .maslow-level-num { background: rgba(240,240,240,0.08); color: var(--text-secondary); }
+
+    .maslow-level-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      min-width: 140px;
+    }
+
+    .maslow-level-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .maslow-level-apex {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      white-space: nowrap;
+    }
+
+    /* Science synthesis table (3.6) */
+    .synthesis-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .synthesis-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color var(--ease);
+    }
+
+    .synthesis-row:hover { border-color: var(--border-default); }
+
+    .synthesis-model {
+      background: var(--bg-raised);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .synthesis-model-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .synthesis-model-author {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .synthesis-question {
+      padding: 14px 18px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      line-height: 1.5;
+    }
+
+    .synthesis-question em {
+      font-style: italic;
+      color: var(--text-primary);
+    }
+
+    /* ============================================================
        HAMBURGER / MOBILE OVERLAY
     ============================================================ */
     .hamburger {
@@ -2265,11 +2458,317 @@
       <div class="doc-section" id="ciencia">
         <div class="section-divider"></div>
         <h2 class="section-heading">La Ciencia Detrás</h2>
-        <p class="section-subheading">Sección 04 — Próximamente</p>
-        <div class="section-placeholder">
-          <i data-lucide="atom" class="section-placeholder-icon"></i>
-          <p>El contenido de esta sección está en preparación.</p>
+        <p class="section-subheading">Sección 03 — 5 modelos académicos que construyen el perfil multidimensional de cada persona</p>
+
+        <!-- Intro -->
+        <div class="science-intro">
+          <div class="science-intro-title">Por qué modelos científicos y no encuestas de opinión</div>
+          <p class="science-intro-text">
+            Las encuestas de clima tradicionales miden percepciones en un momento dado. Valírica va más
+            profundo: construye el perfil de cada persona y cada organización a partir de
+            <strong>modelos académicos validados con décadas de investigación</strong>, lo que hace que
+            los datos sean comparables, replicables y accionables más allá de una foto puntual.
+          </p>
         </div>
+
+        <!-- 3.1 Hofstede -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">3.1</span>
+            <h3 class="sub-section-title">Hofstede — Dimensiones Culturales</h3>
+          </div>
+          <div class="source-citation">
+            <i data-lucide="book-open" class="source-citation-icon"></i>
+            <span class="source-citation-text">
+              <strong>Hofstede, G. (1980).</strong> Culture's Consequences: International Differences in Work-Related Values. Sage Publications. —
+              Expandido en <strong>Hofstede, G., Hofstede, G.J. &amp; Minkov, M. (2010).</strong> Cultures and Organizations: Software of the Mind (3ª ed.). McGraw-Hill.
+            </span>
+          </div>
+          <p class="section-prose">
+            Geert Hofstede desarrolló este modelo a partir de uno de los estudios empíricos más grandes
+            de la historia organizacional — más de 116.000 encuestas en más de 70 países dentro de IBM.
+            Su hallazgo central: la cultura nacional y organizacional puede medirse con precisión a través
+            de dimensiones específicas que predicen comportamientos colectivos.
+          </p>
+          <p class="section-prose">
+            Valírica aplica las 6 dimensiones tanto a nivel de empresa como a nivel individual:
+          </p>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Dimensión</th>
+                  <th>Qué revela en el contexto organizacional</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Distancia al poder</strong></td><td>Cómo se relaciona el equipo con la autoridad y la jerarquía</td></tr>
+                <tr><td><strong>Individualismo vs. Colectivismo</strong></td><td>Si las personas se mueven por logro personal o por pertenencia al grupo</td></tr>
+                <tr><td><strong>Masculinidad vs. Feminidad</strong></td><td>Orientación hacia competencia y resultado vs. bienestar y cooperación</td></tr>
+                <tr><td><strong>Evasión de la incertidumbre</strong></td><td>Tolerancia al riesgo, la ambigüedad y los entornos no estructurados</td></tr>
+                <tr><td><strong>Orientación al largo plazo</strong></td><td>Capacidad de diferir gratificación y pensar estratégicamente</td></tr>
+                <tr><td><strong>Indulgencia vs. Restricción</strong></td><td>Libertad para actuar por motivación propia vs. control por normas sociales</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            El cruce entre el perfil Hofstede de la empresa y el de cada colaborador genera el
+            <strong>índice de alineación cultural</strong> — uno de los indicadores centrales de Valírica.
+          </div>
+        </div>
+
+        <!-- 3.2 Maslow -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">3.2</span>
+            <h3 class="sub-section-title">Maslow — Jerarquía de Necesidades</h3>
+          </div>
+          <div class="source-citation">
+            <i data-lucide="book-open" class="source-citation-icon"></i>
+            <span class="source-citation-text">
+              <strong>Maslow, A.H. (1943).</strong> "A Theory of Human Motivation." Psychological Review, 50(4), 370–396. —
+              Desarrollado en <strong>Maslow, A.H. (1954).</strong> Motivation and Personality. Harper &amp; Row.
+            </span>
+          </div>
+          <p class="section-prose">
+            La premisa de Maslow es tan vigente hoy como en 1943: una persona no puede comprometerse
+            plenamente con su trabajo si sus necesidades básicas no están cubiertas. Cada nivel superior
+            solo puede activarse cuando el anterior está suficientemente satisfecho.
+          </p>
+          <div class="maslow-ladder">
+            <div class="maslow-level">
+              <div class="maslow-level-num">1</div>
+              <div class="maslow-level-name">Fisiológicas</div>
+              <div class="maslow-level-desc">Condiciones básicas del entorno laboral: espacio, descanso, remuneración mínima</div>
+            </div>
+            <div class="maslow-level">
+              <div class="maslow-level-num">2</div>
+              <div class="maslow-level-name">Seguridad</div>
+              <div class="maslow-level-desc">Estabilidad en el rol, predictibilidad, ausencia de amenaza o arbitrariedad</div>
+            </div>
+            <div class="maslow-level">
+              <div class="maslow-level-num">3</div>
+              <div class="maslow-level-name">Pertenencia</div>
+              <div class="maslow-level-desc">Sentido de equipo, relaciones de confianza, inclusión cultural</div>
+            </div>
+            <div class="maslow-level">
+              <div class="maslow-level-num">4</div>
+              <div class="maslow-level-name">Reconocimiento</div>
+              <div class="maslow-level-desc">Valoración del aporte, logros visibles, respeto de pares y liderazgo</div>
+            </div>
+            <div class="maslow-level">
+              <div class="maslow-level-num">5</div>
+              <div class="maslow-level-name">Autorrealización</div>
+              <div class="maslow-level-desc">Desarrollo del potencial propio, significado del trabajo</div>
+              <span class="maslow-level-apex">Máximo potencial</span>
+            </div>
+          </div>
+          <div class="callout">
+            Valírica identifica el nivel de Maslow activo de cada colaborador para que el admin entienda
+            <strong>desde qué posición está operando cada persona</strong> y qué tipo de gestión,
+            reconocimiento o condiciones necesita para avanzar.
+          </div>
+        </div>
+
+        <!-- 3.3 Daniel Pink -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">3.3</span>
+            <h3 class="sub-section-title">Daniel Pink — Motivación Intrínseca</h3>
+          </div>
+          <div class="source-citation">
+            <i data-lucide="book-open" class="source-citation-icon"></i>
+            <span class="source-citation-text">
+              <strong>Pink, D.H. (2009).</strong> Drive: The Surprising Truth About What Motivates Us. Riverhead Books. —
+              Basado en <strong>Deci, E.L. &amp; Ryan, R.M. (1985).</strong> Intrinsic Motivation and Self-Determination in Human Behavior. Plenum Press.
+            </span>
+          </div>
+          <p class="section-prose">
+            Pink sintetizó décadas de investigación en psicología motivacional para demostrar que los
+            incentivos externos — salario, bonos, recompensas — son insuficientes para sostener el
+            desempeño en trabajos que requieren pensamiento creativo. La motivación sostenida depende
+            de tres palancas intrínsecas:
+          </p>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Palanca</th>
+                  <th>Definición</th>
+                  <th>Pregunta clave en el trabajo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Autonomía</strong></td>
+                  <td>Necesidad de dirigir el propio trabajo</td>
+                  <td>¿Tiene control sobre cómo hace su trabajo?</td>
+                </tr>
+                <tr>
+                  <td><strong>Maestría</strong></td>
+                  <td>Impulso de mejorar en algo que importa</td>
+                  <td>¿Siente que está creciendo y desarrollándose?</td>
+                </tr>
+                <tr>
+                  <td><strong>Propósito</strong></td>
+                  <td>Necesidad de que el trabajo tenga significado</td>
+                  <td>¿Conecta su rol con algo más grande que él?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            Valírica mide el perfil motivacional de cada colaborador para identificar qué palanca
+            está activa, cuál está apagada y qué tipo de liderazgo o condiciones puede reactivarla.
+          </div>
+        </div>
+
+        <!-- 3.4 Thomas-Kilmann -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">3.4</span>
+            <h3 class="sub-section-title">Estilos de Resolución de Conflicto — Thomas-Kilmann</h3>
+          </div>
+          <div class="source-citation">
+            <i data-lucide="book-open" class="source-citation-icon"></i>
+            <span class="source-citation-text">
+              <strong>Thomas, K.W. &amp; Kilmann, R.H. (1974).</strong> Thomas-Kilmann Conflict Mode Instrument. Xicom. —
+              Referenciado en <strong>Thomas, K.W. (1976).</strong> "Conflict and conflict management." En Dunnette, M.D. (ed.), Handbook of Industrial and Organizational Psychology. Rand McNally.
+            </span>
+          </div>
+          <p class="section-prose">
+            El modelo Thomas-Kilmann identifica cómo reacciona cada persona ante situaciones de conflicto
+            o tensión, a partir de dos ejes: <strong>asertividad</strong> (hasta qué punto defiende sus
+            propios intereses) y <strong>cooperación</strong> (hasta qué punto considera los intereses del otro).
+            De esa combinación emergen cinco estilos:
+          </p>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Estilo</th>
+                  <th>Perfil de comportamiento</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Competir</strong></td><td>Alta asertividad, baja cooperación — busca ganar</td></tr>
+                <tr><td><strong>Colaborar</strong></td><td>Alta asertividad, alta cooperación — busca la solución óptima para ambas partes</td></tr>
+                <tr><td><strong>Comprometer</strong></td><td>Posición intermedia — busca acuerdos parciales rápidos</td></tr>
+                <tr><td><strong>Evitar</strong></td><td>Baja asertividad, baja cooperación — se retira del conflicto</td></tr>
+                <tr><td><strong>Ceder</strong></td><td>Baja asertividad, alta cooperación — prioriza la relación sobre su posición</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            Conocer el estilo predominante de cada miembro del equipo permite al liderazgo
+            <strong>anticipar cómo se gestionarán las tensiones naturales del trabajo colaborativo</strong>
+            y diseñar dinámicas de equipo más inteligentes.
+          </div>
+        </div>
+
+        <!-- 3.5 VAK -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">3.5</span>
+            <h3 class="sub-section-title">Estilos de Aprendizaje — Modelo VAK</h3>
+          </div>
+          <div class="source-citation">
+            <i data-lucide="book-open" class="source-citation-icon"></i>
+            <span class="source-citation-text">
+              <strong>Fleming, N.D. &amp; Mills, C. (1992).</strong> "Not another inventory, rather a catalyst for reflection." To Improve the Academy, 11, 137–155. —
+              Desarrollado a partir de <strong>Bandler, R. &amp; Grinder, J. (1975)</strong> y <strong>Dunn, R. &amp; Dunn, K. (1978).</strong> Teaching Students Through Their Individual Learning Styles. Prentice Hall.
+            </span>
+          </div>
+          <p class="section-prose">
+            Cada individuo tiene un canal preferente a través del cual procesa, retiene y aplica
+            información nueva. En el entorno laboral, esto tiene implicaciones directas en cómo se forma
+            al equipo, cómo se comunican instrucciones y cómo se lidera a cada persona.
+          </p>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Estilo</th>
+                  <th>Cómo aprende y procesa mejor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Visual</strong></td>
+                  <td>A través de imágenes, gráficos, esquemas, mapas visuales y representaciones espaciales</td>
+                </tr>
+                <tr>
+                  <td><strong>Auditivo</strong></td>
+                  <td>A través de explicaciones verbales, discusiones, debates y escucha activa</td>
+                </tr>
+                <tr>
+                  <td><strong>Kinestésico</strong></td>
+                  <td>A través de la experiencia práctica, el movimiento y el aprendizaje por ensayo y error</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            Un equipo mayoritariamente kinestésico al que se le forma solo con manuales escritos
+            está siendo gestionado <strong>en contra de su naturaleza</strong>.
+          </div>
+        </div>
+
+        <!-- 3.6 Síntesis -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">3.6</span>
+            <h3 class="sub-section-title">Lo que hace único este enfoque</h3>
+          </div>
+          <p class="section-prose">
+            Ninguno de estos modelos, aplicado de forma aislada, es suficiente para entender a una
+            persona en su totalidad. La propuesta de Valírica es combinarlos en un
+            <strong>perfil multidimensional único por colaborador</strong> — donde cada capa añade
+            una dimensión de comprensión que las demás no cubren.
+          </p>
+          <div class="synthesis-grid">
+            <div class="synthesis-row">
+              <div class="synthesis-model">
+                <div class="synthesis-model-name">Hofstede</div>
+                <div class="synthesis-model-author">6 dimensiones culturales</div>
+              </div>
+              <div class="synthesis-question"><em>¿Cómo percibe la autoridad, el riesgo y el trabajo colectivo?</em></div>
+            </div>
+            <div class="synthesis-row">
+              <div class="synthesis-model">
+                <div class="synthesis-model-name">Maslow</div>
+                <div class="synthesis-model-author">Jerarquía de necesidades</div>
+              </div>
+              <div class="synthesis-question"><em>¿Desde qué nivel de necesidad está operando hoy?</em></div>
+            </div>
+            <div class="synthesis-row">
+              <div class="synthesis-model">
+                <div class="synthesis-model-name">Daniel Pink</div>
+                <div class="synthesis-model-author">Motivación intrínseca</div>
+              </div>
+              <div class="synthesis-question"><em>¿Qué lo mueve internamente: autonomía, maestría o propósito?</em></div>
+            </div>
+            <div class="synthesis-row">
+              <div class="synthesis-model">
+                <div class="synthesis-model-name">Thomas-Kilmann</div>
+                <div class="synthesis-model-author">Resolución de conflicto</div>
+              </div>
+              <div class="synthesis-question"><em>¿Cómo gestiona la tensión y el desacuerdo?</em></div>
+            </div>
+            <div class="synthesis-row">
+              <div class="synthesis-model">
+                <div class="synthesis-model-name">VAK</div>
+                <div class="synthesis-model-author">Estilos de aprendizaje</div>
+              </div>
+              <div class="synthesis-question"><em>¿Cómo aprende y procesa mejor la información?</em></div>
+            </div>
+          </div>
+          <div class="callout" style="margin-top: 16px;">
+            El resultado es la <strong>visión más completa del mercado sobre cada persona en el equipo</strong> —
+            no como recurso, sino como individuo con una arquitectura motivacional, cultural y cognitiva propia.
+          </div>
+        </div>
+
       </div>
 
       <div class="doc-section" id="arquitectura">
