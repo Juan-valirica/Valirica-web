@@ -132,13 +132,13 @@ function format_date_es($dt){
 <html lang="es">
 <head>
   <!-- ── Google Analytics ── -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH7VP37W6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-ZZH7VP37W6');
-  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TF4JJCXB');</script>
+  <!-- End Google Tag Manager -->
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -599,6 +599,10 @@ function format_date_es($dt){
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TF4JJCXB"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
 <!-- ══ NAV ══════════════════════════════════════════════════════════════════ -->
 <header class="navbar" id="mainNav" role="banner">
@@ -614,22 +618,24 @@ function format_date_es($dt){
       </a>
 
       <nav class="nav-links" aria-label="Navegación principal">
-        <a href="https://www.valirica.com/#modulos" class="nav-link">Plataforma</a>
-        <a href="https://www.valirica.com/#diagnostico-cultural" class="nav-link">Diagnóstico</a>
-        <a href="https://www.valirica.com/#beneficios" class="nav-link">Impacto</a>
-        <a href="https://www.valirica.com/#diferenciador" class="nav-link">Por qué Valírica</a>
-        <a href="https://www.valirica.com/#seguridad" class="nav-link">Seguridad</a>
-        <a href="/blog" class="nav-link is-active" aria-current="page">Blog</a>
+        <a href="https://www.valirica.com/#modulos" id="nav-link-plataforma" class="nav-link">Plataforma</a>
+        <a href="https://www.valirica.com/#diagnostico-cultural" id="nav-link-diagnostico" class="nav-link">Diagnóstico</a>
+        <a href="https://www.valirica.com/#beneficios" id="nav-link-beneficios" class="nav-link">Impacto</a>
+        <a href="https://www.valirica.com/#diferenciador" id="nav-link-diferenciador" class="nav-link">Por qué Valírica</a>
+        <a href="https://www.valirica.com/#seguridad" id="nav-link-seguridad" class="nav-link">Seguridad</a>
+        <a href="/blog" id="nav-link-blog" class="nav-link is-active" aria-current="page">Blog</a>
       </nav>
 
       <div class="nav-actions">
         <a href="https://app.valirica.com"
+           id="nav-login-btn"
            class="nav-login"
            target="_blank"
            rel="noopener noreferrer">
           Acceder
         </a>
         <a href="https://app.valirica.com/registro.php"
+           id="nav-cta-free-trial"
            class="nav-cta"
            target="_blank"
            rel="noopener noreferrer">
@@ -665,21 +671,23 @@ function format_date_es($dt){
   <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
     <div class="container">
       <nav class="nav-mobile-links" aria-label="Menú móvil">
-        <a href="https://www.valirica.com/#diagnostico-cultural" class="nav-mobile-link">Diagnóstico cultural</a>
-        <a href="https://www.valirica.com/#modulos" class="nav-mobile-link">Plataforma</a>
-        <a href="https://www.valirica.com/#beneficios" class="nav-mobile-link">Impacto real</a>
-        <a href="https://www.valirica.com/#diferenciador" class="nav-mobile-link">Por qué Valírica</a>
-        <a href="https://www.valirica.com/#seguridad" class="nav-mobile-link">Seguridad y datos</a>
-        <a href="/blog" class="nav-mobile-link is-active">Blog</a>
+        <a href="https://www.valirica.com/#diagnostico-cultural" id="nav-mobile-link-diagnostico" class="nav-mobile-link">Diagnóstico cultural</a>
+        <a href="https://www.valirica.com/#modulos" id="nav-mobile-link-plataforma" class="nav-mobile-link">Plataforma</a>
+        <a href="https://www.valirica.com/#beneficios" id="nav-mobile-link-impacto" class="nav-mobile-link">Impacto real</a>
+        <a href="https://www.valirica.com/#diferenciador" id="nav-mobile-link-diferenciador" class="nav-mobile-link">Por qué Valírica</a>
+        <a href="https://www.valirica.com/#seguridad" id="nav-mobile-link-seguridad" class="nav-mobile-link">Seguridad y datos</a>
+        <a href="/blog" id="nav-mobile-link-blog" class="nav-mobile-link is-active">Blog</a>
       </nav>
       <div class="nav-mobile-actions">
         <a href="https://app.valirica.com"
+           id="nav-mobile-login-btn"
            class="nav-mobile-login"
            target="_blank"
            rel="noopener noreferrer">
           Iniciar sesión
         </a>
         <a href="https://app.valirica.com/registro.php"
+           id="nav-mobile-cta-free-trial"
            class="nav-cta nav-mobile-cta"
            target="_blank"
            rel="noopener noreferrer">
@@ -971,7 +979,7 @@ function format_date_es($dt){
             </a>
           </li>
           <li>
-            <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item">
+            <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#109;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#97;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#105;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#108;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#116;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#111;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#58;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#118;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#97;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#108;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#101;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#64;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#118;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#97;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#108;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#105;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#114;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#105;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#99;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#97;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#46;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#99;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#111;&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;" class="footer-contact-item"#109;" id="footer-contact-email" class="footer-contact-item">
               <span class="footer-contact-icon"><i data-lucide="mail"></i></span>
               <span>&#118;&#97;&#108;&#101;&#64;&#118;&#97;&#108;&#105;&#114;&#105;&#99;&#97;&#46;&#99;&#111;&#109;</span>
             </a>
@@ -982,6 +990,7 @@ function format_date_es($dt){
           </li>
         </ul>
         <a href="https://app.valirica.com/registro.php"
+           id="footer-cta-free-trial"
            class="footer-cta-btn"
            target="_blank"
            rel="noopener noreferrer">

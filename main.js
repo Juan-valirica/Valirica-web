@@ -291,14 +291,357 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =====================================================
-     DEMO MODAL
+     DEMO MODAL — Premium Wizard Logic
   ===================================================== */
 
-  if (openDemo && demoModal)
-    openDemo.addEventListener("click", () => demoModal.classList.add("active"));
+  const demoOverlay    = document.getElementById("closeDemoOverlay");
+  const demoStep1      = document.getElementById("demoStep1");
+  const demoStep2      = document.getElementById("demoStep2");
+  const demoStep3      = document.getElementById("demoStep3");
+  const demoStep1Form  = document.getElementById("demoStep1Form");
+  const demoBackBtn    = document.getElementById("demoBackBtn");
+  const demoConfirmBtn = document.getElementById("demoConfirmBtn");
+  const demoCloseSucc  = document.getElementById("demoCloseSuccess");
+  const stepPip1       = document.getElementById("stepPip1");
+  const stepPip2       = document.getElementById("stepPip2");
+  const stepConn       = document.getElementById("stepConnector");
+  const calGrid        = document.getElementById("calGrid");
+  const calMonthLabel  = document.getElementById("calMonthLabel");
+  const calPrev        = document.getElementById("calPrev");
+  const calNext        = document.getElementById("calNext");
+  const slotGrid       = document.getElementById("slotGrid");
+  const demoSlots      = document.getElementById("demoSlots");
+  const slotsDateText  = document.getElementById("slotsDateText");
+  const demoDateInput  = document.getElementById("demoDate");
+  const demoTimeInput  = document.getElementById("demoTime");
 
-  if (closeDemo && demoModal)
-    closeDemo.addEventListener("click", () => demoModal.classList.remove("active"));
+  // State
+  let calYear, calMonth, selectedDate = null, selectedTime = null;
+  let step1Data = {};
+
+  // ── Calendar data ──────────────────────────────────
+  const MONTH_NAMES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+  const TIME_SLOTS  = ["10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00"];
+
+  function initCalendar() {
+    const now = new Date();
+    calYear  = now.getFullYear();
+    calMonth = now.getMonth();
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    if (!calGrid) return;
+    const today = new Date(); today.setHours(0,0,0,0);
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    // Convert Sun=0 to Mon-first offset (Mon=0...Sun=6)
+    const offset = (firstDay + 6) % 7;
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+    calMonthLabel.textContent = MONTH_NAMES[calMonth] + " " + calYear;
+
+    // Disable prev if current month is today's month
+    if (calPrev) {
+      const nowCheck = new Date(); nowCheck.setHours(0,0,0,0);
+      calPrev.disabled = (calYear === nowCheck.getFullYear() && calMonth === nowCheck.getMonth());
+    }
+
+    calGrid.innerHTML = "";
+
+    // Empty offset cells
+    for (let i = 0; i < offset; i++) {
+      const blank = document.createElement("div");
+      blank.className = "cal-day cal-day--empty";
+      calGrid.appendChild(blank);
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date    = new Date(calYear, calMonth, d);
+      const weekday = date.getDay(); // 0=Sun, 1=Mon...5=Fri, 6=Sat
+      const isPast  = date < today;
+      const isWE    = weekday === 0 || weekday === 5 || weekday === 6; // disable Fri, Sat, Sun
+      const isSel   = selectedDate && date.toDateString() === selectedDate.toDateString();
+      const isTod   = date.toDateString() === today.toDateString();
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "cal-day";
+      btn.textContent = d;
+
+      if (isPast || isWE) {
+        btn.disabled = true;
+        btn.classList.add("cal-day--disabled");
+      } else {
+        if (isTod) btn.classList.add("cal-day--today");
+        if (isSel) btn.classList.add("cal-day--selected");
+        btn.addEventListener("click", () => selectDate(date));
+      }
+      calGrid.appendChild(btn);
+    }
+  }
+
+  function selectDate(date) {
+    selectedDate = date;
+    selectedTime = null;
+    if (demoTimeInput) demoTimeInput.value = "";
+    if (demoConfirmBtn) demoConfirmBtn.disabled = true;
+
+    // Update calendar highlight
+    renderCalendar();
+
+    // Show slots
+    const day = date.getDate();
+    const monthName = MONTH_NAMES[date.getMonth()];
+    const weekdays = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+    if (slotsDateText) slotsDateText.textContent = weekdays[date.getDay()] + " " + day + " de " + monthName;
+    if (demoDateInput) demoDateInput.value = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+
+    renderSlots();
+    if (demoSlots) demoSlots.hidden = false;
+    if (window.lucide) lucide.createIcons();
+  }
+
+  function renderSlots() {
+    if (!slotGrid) return;
+    slotGrid.innerHTML = "";
+    TIME_SLOTS.forEach(t => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "slot-chip" + (t === selectedTime ? " selected" : "");
+      chip.textContent = t;
+      chip.addEventListener("click", () => {
+        selectedTime = t;
+        if (demoTimeInput) demoTimeInput.value = t;
+        slotGrid.querySelectorAll(".slot-chip").forEach(c => c.classList.remove("selected"));
+        chip.classList.add("selected");
+        if (demoConfirmBtn) demoConfirmBtn.disabled = false;
+      });
+      slotGrid.appendChild(chip);
+    });
+  }
+
+  // ── Step indicator ─────────────────────────────────
+  function setStepUI(step) {
+    if (step === 1) {
+      if (stepPip1) { stepPip1.classList.add("step-pip--active"); stepPip1.classList.remove("step-pip--done"); }
+      if (stepPip2) { stepPip2.classList.remove("step-pip--active","step-pip--done"); }
+      if (stepConn) stepConn.classList.remove("step-connector--filled");
+    } else {
+      if (stepPip1) { stepPip1.classList.remove("step-pip--active"); stepPip1.classList.add("step-pip--done"); }
+      if (stepPip2) stepPip2.classList.add("step-pip--active");
+      if (stepConn) stepConn.classList.add("step-connector--filled");
+    }
+  }
+
+  function showStep(stepEl) {
+    [demoStep1, demoStep2, demoStep3].forEach(s => { if (s) s.classList.add("demo-step--hidden"); });
+    if (stepEl) stepEl.classList.remove("demo-step--hidden");
+    if (demoModal) demoModal.querySelector(".demo-content").scrollTop = 0;
+    if (window.lucide) lucide.createIcons();
+  }
+
+  // ── Modal open/close ───────────────────────────────
+  function openDemoModal() {
+    if (!demoModal) return;
+    // Reset to step 1
+    showStep(demoStep1);
+    setStepUI(1);
+    selectedDate = null;
+    selectedTime = null;
+    step1Data = {};
+    if (demoStep1Form) demoStep1Form.reset();
+    clearErrors();
+    if (demoSlots) demoSlots.hidden = true;
+    if (demoConfirmBtn) demoConfirmBtn.disabled = true;
+    initCalendar();
+    demoModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'demo_modal_open',
+      'modal_id': 'demoModal'
+    });
+    if (window.lucide) lucide.createIcons();
+  }
+
+  function closeDemoModal() {
+    if (!demoModal) return;
+    demoModal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  if (openDemo) openDemo.addEventListener("click", openDemoModal);
+  if (closeDemo) closeDemo.addEventListener("click", closeDemoModal);
+  if (demoOverlay) demoOverlay.addEventListener("click", closeDemoModal);
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && demoModal && demoModal.classList.contains("active")) closeDemoModal();
+  });
+  if (demoCloseSucc) demoCloseSucc.addEventListener("click", closeDemoModal);
+
+  // ── Step 1 validation & advance ───────────────────
+  function clearErrors() {
+    ["nameErr","companyErr","emailErr"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = "";
+    });
+    ["demoName","demoCompany","demoEmail"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove("input--error");
+    });
+  }
+
+  function setError(inputId, errId, msg) {
+    const input = document.getElementById(inputId);
+    const err   = document.getElementById(errId);
+    if (input) input.classList.add("input--error");
+    if (err)   err.textContent = msg;
+  }
+
+  if (demoStep1Form) {
+    // Clear error on input
+    ["demoName","demoCompany","demoEmail"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", () => {
+        el.classList.remove("input--error");
+        const errId = id.replace("demo","").toLowerCase() + "Err";
+        const errEl = document.getElementById(errId === "nameErr" ? "nameErr" : errId === "companyErr" ? "companyErr" : "emailErr");
+        if (errEl) errEl.textContent = "";
+      });
+    });
+
+    demoStep1Form.addEventListener("submit", e => {
+      e.preventDefault();
+      clearErrors();
+
+      const name    = (document.getElementById("demoName")?.value || "").trim();
+      const company = (document.getElementById("demoCompany")?.value || "").trim();
+      const email   = (document.getElementById("demoEmail")?.value || "").trim();
+      const phone   = (document.getElementById("demoPhone")?.value || "").trim();
+      const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      let valid = true;
+      if (!name)            { setError("demoName",    "nameErr",    "El nombre es obligatorio"); valid = false; }
+      if (!company)         { setError("demoCompany", "companyErr", "La empresa es obligatoria"); valid = false; }
+      if (!email)           { setError("demoEmail",   "emailErr",   "El email es obligatorio"); valid = false; }
+      else if (!emailRx.test(email)) { setError("demoEmail", "emailErr", "Email no válido"); valid = false; }
+      if (!valid) return;
+
+      step1Data = { name, company, email, phone };
+      setStepUI(2);
+      showStep(demoStep2);
+      initCalendar();
+    });
+  }
+
+  // ── Back button ────────────────────────────────────
+  if (demoBackBtn) {
+    demoBackBtn.addEventListener("click", () => {
+      setStepUI(1);
+      showStep(demoStep1);
+    });
+  }
+
+  // ── Calendar navigation ────────────────────────────
+  if (calPrev) {
+    calPrev.addEventListener("click", () => {
+      calMonth--;
+      if (calMonth < 0) { calMonth = 11; calYear--; }
+      renderCalendar();
+    });
+  }
+  if (calNext) {
+    calNext.addEventListener("click", () => {
+      calMonth++;
+      if (calMonth > 11) { calMonth = 0; calYear++; }
+      renderCalendar();
+    });
+  }
+
+  // ── Confirm & submit ───────────────────────────────
+  if (demoConfirmBtn) {
+    demoConfirmBtn.addEventListener("click", () => {
+      if (!selectedDate || !selectedTime) return;
+
+      const origHTML = demoConfirmBtn.innerHTML;
+      demoConfirmBtn.disabled = true;
+      demoConfirmBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon" style="animation:spin 0.8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Enviando...';
+
+      const formData = new FormData();
+      formData.append("name",    step1Data.name);
+      formData.append("company", step1Data.company);
+      formData.append("email",   step1Data.email);
+      formData.append("phone",   step1Data.phone || "");
+      formData.append("date",    demoDateInput?.value || "");
+      formData.append("time",    selectedTime);
+
+      fetch("send-demo-request.php", { method: "POST", body: formData })
+        .then(r => r.json())
+        .then(data => {
+          if (data.status === "success") {
+            // Fill success screen
+            const weekdays = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+            const months   = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+            const dateStr  = weekdays[selectedDate.getDay()] + " " + selectedDate.getDate() + " de " + months[selectedDate.getMonth()] + " " + selectedDate.getFullYear();
+
+            const sName = document.getElementById("successName");
+            const sEmail= document.getElementById("successEmail");
+            const sDate = document.getElementById("successDate");
+            const sTime = document.getElementById("successTime");
+            const sCo   = document.getElementById("successCompany");
+
+            if (sName)  sName.textContent  = step1Data.name.split(" ")[0];
+            if (sEmail) sEmail.textContent = step1Data.email;
+            if (sDate)  sDate.textContent  = dateStr;
+            if (sTime)  sTime.textContent  = selectedTime + " (hora de Colombia)";
+            if (sCo)    sCo.textContent    = step1Data.company;
+
+            // GTM
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: "demo_form_submitted",
+              lead_name: step1Data.name,
+              lead_email: step1Data.email,
+              lead_company: step1Data.company,
+              demo_date: demoDateInput?.value,
+              demo_time: selectedTime
+            });
+
+            showStep(demoStep3);
+            // Hide step indicator on success
+            const ind = document.getElementById("demoStepIndicator");
+            if (ind) ind.style.display = "none";
+          } else {
+            throw new Error("server error");
+          }
+        })
+        .catch(() => {
+          demoConfirmBtn.disabled = false;
+          demoConfirmBtn.innerHTML = origHTML;
+          // Show inline error
+          const trustRow = document.querySelector(".demo-trust-row");
+          if (trustRow) {
+            const errMsg = document.createElement("p");
+            errMsg.style.cssText = "font-size:13px;color:#dc2626;text-align:center;margin-bottom:8px;font-weight:600;";
+            errMsg.textContent = "Hubo un problema. Intenta de nuevo o escríbenos por WhatsApp.";
+            trustRow.before(errMsg);
+            setTimeout(() => errMsg.remove(), 5000);
+          }
+          if (window.lucide) lucide.createIcons();
+        });
+    });
+  }
+
+  // Restore step indicator on modal close
+  const origOpenDemo = openDemo;
+  if (demoModal) {
+    demoModal.addEventListener("transitionend", () => {
+      if (!demoModal.classList.contains("active")) {
+        const ind = document.getElementById("demoStepIndicator");
+        if (ind) ind.style.display = "";
+      }
+    });
+  }
 
 
 
