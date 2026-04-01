@@ -1885,7 +1885,226 @@
       background: var(--border-subtle);
       margin: 40px 0;
     }
-    .hamburger {
+
+    /* ============================================================
+       ROADMAP — ESTADO, MÓDULOS PRÓXIMOS, EJES ESTRATÉGICOS
+    ============================================================ */
+
+    /* Estado actual */
+    .roadmap-status {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 4px;
+    }
+
+    .roadmap-status-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .roadmap-status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #4caf8a;
+      box-shadow: 0 0 10px rgba(76,175,138,0.5);
+    }
+
+    .roadmap-status-line {
+      width: 1px;
+      flex: 1;
+      min-height: 32px;
+      background: linear-gradient(to bottom, rgba(76,175,138,0.3), transparent);
+    }
+
+    .roadmap-status-body {}
+
+    .roadmap-status-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4caf8a;
+      margin-bottom: 6px;
+    }
+
+    .roadmap-status-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    .roadmap-status-text strong { color: var(--text-primary); font-weight: 600; }
+
+    .roadmap-status-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    /* Próximos módulos */
+    .roadmap-modules {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .roadmap-module-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 24px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .roadmap-module-card::before {
+      content: 'Próximo';
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      background: var(--accent-orange-dim);
+      border: 1px solid rgba(255,151,0,0.2);
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
+    .roadmap-module-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .roadmap-module-card:nth-child(1) .roadmap-module-icon-wrap {
+      background: var(--accent-teal-dim);
+      border: 1px solid rgba(0,122,150,0.2);
+    }
+
+    .roadmap-module-card:nth-child(2) .roadmap-module-icon-wrap {
+      background: var(--accent-purple-dim);
+      border: 1px solid rgba(123,94,167,0.2);
+    }
+
+    .roadmap-module-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .roadmap-module-card:nth-child(1) .roadmap-module-icon { color: var(--accent-teal); }
+    .roadmap-module-card:nth-child(2) .roadmap-module-icon { color: var(--accent-purple); }
+
+    .roadmap-module-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+      padding-right: 64px;
+    }
+
+    .roadmap-module-desc {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    /* Strategic axis cards */
+    .axis-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .axis-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 20px 22px;
+      transition: background var(--ease), border-color var(--ease);
+    }
+
+    .axis-card:hover {
+      background: var(--bg-raised);
+      border-color: var(--border-default);
+    }
+
+    .axis-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--accent-purple-dim);
+      border: 1px solid rgba(123,94,167,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent-purple);
+      flex-shrink: 0;
+    }
+
+    .axis-body {}
+
+    .axis-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .axis-desc {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    /* Timeline code block */
+    .timeline-block {
+      background: #0a0a0a;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 20px 22px;
+      margin: 0 0 28px;
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+      font-size: 12.5px;
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+
+    .timeline-block .tl-label { color: #4caf8a; font-weight: 600; }
+    .timeline-block .tl-mid   { color: var(--accent-orange); font-weight: 600; }
+    .timeline-block .tl-end   { color: var(--accent-purple); font-weight: 600; }
+    .timeline-block .tl-arrow { color: #555; }
+    .timeline-block .tl-text  { color: #707070; }
+
+    @media (max-width: 640px) {
+      .roadmap-modules { grid-template-columns: 1fr; }
+      .roadmap-module-title { padding-right: 0; }
+    }
       display: none;
       position: fixed;
       top: 14px;
@@ -3646,11 +3865,153 @@
       <div class="doc-section" id="roadmap">
         <div class="section-divider"></div>
         <h2 class="section-heading">Roadmap</h2>
-        <p class="section-subheading">Sección 07 — Próximamente</p>
-        <div class="section-placeholder">
-          <i data-lucide="map" class="section-placeholder-icon"></i>
-          <p>El contenido de esta sección está en preparación.</p>
+        <p class="section-subheading">Sección 06 — Visión, estado actual y dirección estratégica del producto</p>
+
+        <!-- Visión -->
+        <div class="science-intro">
+          <div class="science-intro-title">Visión</div>
+          <p class="science-intro-text">
+            Valírica tiene una misión clara: ser la <strong>plataforma de RRHH más relevante de
+            Iberoamérica</strong> para empresas que han tomado la decisión de gestionar su gente
+            con rigor, datos y visión estratégica.
+          </p>
+          <p class="science-intro-text" style="margin-top:12px">
+            No es una herramienta de nicho ni un software de administración de personal al uso.
+            Es la plataforma base para organizaciones en proceso de transformación digital seria —
+            aquellas que entienden que la gestión de personas es simultáneamente un tema de
+            <strong>compliance operativo</strong> y de <strong>ventaja competitiva estratégica</strong>.
+          </p>
+          <p class="science-intro-text" style="margin-top:12px">
+            El mercado objetivo no se define por tamaño, sino por mentalidad: empresas que ya
+            decidieron que la cultura, el talento y las personas son prioridad de negocio.
+          </p>
         </div>
+
+        <!-- Estado actual -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num" style="background:rgba(76,175,138,0.12);border-color:rgba(76,175,138,0.25);color:#4caf8a;">Activo</span>
+            <h3 class="sub-section-title">Estado Actual</h3>
+          </div>
+          <div class="roadmap-status">
+            <div class="roadmap-status-indicator">
+              <div class="roadmap-status-dot"></div>
+              <div class="roadmap-status-line"></div>
+            </div>
+            <div class="roadmap-status-body">
+              <div class="roadmap-status-label">En producción</div>
+              <p class="roadmap-status-text">
+                Valírica opera hoy con una plataforma funcional y probada en tres mercados —
+                <strong>Colombia, México y España</strong> — con más de
+                <strong>200 colaboradores analizados</strong>. Los dos pilares del producto
+                están activos: las herramientas prácticas de gestión y el motor de
+                inteligencia cultural con base científica.
+              </p>
+              <div class="roadmap-status-tags">
+                <span class="badge badge--active"><span class="badge-dot"></span>Colombia</span>
+                <span class="badge badge--active"><span class="badge-dot"></span>México</span>
+                <span class="badge badge--active"><span class="badge-dot"></span>España</span>
+                <span class="badge badge--active"><span class="badge-dot"></span>+200 colaboradores</span>
+                <span class="badge badge--active"><span class="badge-dot"></span>9 módulos activos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Próximos módulos -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">Próx.</span>
+            <h3 class="sub-section-title">Próximos Módulos</h3>
+          </div>
+          <div class="roadmap-modules">
+
+            <div class="roadmap-module-card">
+              <div class="roadmap-module-icon-wrap">
+                <i data-lucide="gift" class="roadmap-module-icon"></i>
+              </div>
+              <div class="roadmap-module-title">Módulo de Beneficios</div>
+              <p class="roadmap-module-desc">
+                Una capa de valor directo para el colaborador dentro de la misma plataforma.
+                Valírica gestionará una bolsa de beneficios y deals con partners estratégicos
+                en Europa y Latinoamérica — orientados al bienestar personal y el desarrollo
+                profesional.
+              </p>
+              <p class="roadmap-module-desc" style="margin-top:10px">
+                El objetivo: que la plataforma no sea solo donde la empresa gestiona procesos,
+                sino donde el colaborador encuentra valor tangible en su día a día.
+              </p>
+            </div>
+
+            <div class="roadmap-module-card">
+              <div class="roadmap-module-icon-wrap">
+                <i data-lucide="layers-3" class="roadmap-module-icon"></i>
+              </div>
+              <div class="roadmap-module-title">Módulo Multidimensional</div>
+              <p class="roadmap-module-desc">
+                La evolución del motor de inteligencia cultural hacia el perfil individual
+                más completo del mercado. Se activarán progresivamente nuevas capas de análisis:
+              </p>
+              <div class="content-table-wrap" style="margin-top:14px">
+                <table class="content-table">
+                  <thead>
+                    <tr><th>Assessment</th><th>Dimensión que añade</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>DISC</strong></td><td>Estilo de comportamiento observable en el entorno laboral</td></tr>
+                    <tr><td><strong>MBTI</strong></td><td>Tipo de personalidad y preferencias cognitivas</td></tr>
+                    <tr><td><strong>Social Networking Analysis</strong></td><td>Mapa de influencia e interacción real dentro del equipo</td></tr>
+                    <tr><td><strong>Test de Carácter</strong></td><td>Virtudes y rasgos de carácter que guían las decisiones</td></tr>
+                    <tr><td><strong>Test del Sabio</strong></td><td>Arquetipos de sabiduría y liderazgo interior</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Dirección estratégica -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">→</span>
+            <h3 class="sub-section-title">Dirección Estratégica</h3>
+          </div>
+
+          <div class="timeline-block">
+<span class="tl-label">Hoy</span>                         <span class="tl-mid">Mediano plazo</span>              <span class="tl-end">Visión</span>
+──────────────────────────────────────────────────────────────────────
+<span class="tl-text">Compliance + Cultura</span>    <span class="tl-arrow">→</span>    <span class="tl-text">Employee Experience</span>    <span class="tl-arrow">→</span>    <span class="tl-end">Plataforma de referencia</span>
+<span class="tl-text">operativa básica</span>             <span class="tl-text">y Engagement</span>                   <span class="tl-end">en RRHH para Iberoamérica</span>
+                              <span class="tl-text">(Beneficios +</span>
+                              <span class="tl-text">Multidimensional)</span>
+          </div>
+
+          <div class="axis-cards">
+            <div class="axis-card">
+              <div class="axis-num">1</div>
+              <div class="axis-body">
+                <div class="axis-title">Iberoamérica como mercado natural</div>
+                <p class="axis-desc">España, Colombia y México son el punto de partida. La expansión al resto de la región sigue una lógica de proximidad cultural, regulatoria y lingüística que pocas plataformas globales pueden replicar con la misma profundidad.</p>
+              </div>
+            </div>
+            <div class="axis-card">
+              <div class="axis-num">2</div>
+              <div class="axis-body">
+                <div class="axis-title">Compliance + Estrategia en una sola plataforma</div>
+                <p class="axis-desc">La mayoría de las soluciones del mercado resuelven uno u otro. Valírica resuelve ambos — y esa integración es la propuesta de valor que ningún competidor directo tiene hoy en el segmento iberoamericano.</p>
+              </div>
+            </div>
+            <div class="axis-card">
+              <div class="axis-num">3</div>
+              <div class="axis-body">
+                <div class="axis-title">La persona como unidad de análisis</div>
+                <p class="axis-desc">Cada módulo que se construya — presente o futuro — tiene como norte entender mejor a las personas que forman los equipos. No como recursos, sino como individuos con perfiles únicos, motivaciones propias y potencial específico. Esa filosofía es lo que convierte a Valírica en algo estructuralmente distinto a un software de RRHH tradicional.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </main>
