@@ -1117,6 +1117,231 @@
     }
 
     /* ============================================================
+       MÓDULOS FUNCIONALES — PILARES, MÓDULOS, ESPECIALES
+    ============================================================ */
+
+    /* Pilar banner */
+    .pilar-banner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      border-radius: 12px;
+      margin-bottom: 32px;
+      border: 1px solid;
+    }
+
+    .pilar-banner--practicas {
+      background: var(--accent-teal-dim);
+      border-color: rgba(0, 122, 150, 0.2);
+    }
+
+    .pilar-banner--cultural {
+      background: var(--accent-purple-dim);
+      border-color: rgba(123, 94, 167, 0.2);
+    }
+
+    .pilar-banner-icon-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pilar-banner--practicas .pilar-banner-icon-wrap {
+      background: rgba(0, 122, 150, 0.15);
+    }
+
+    .pilar-banner--cultural .pilar-banner-icon-wrap {
+      background: rgba(123, 94, 167, 0.15);
+    }
+
+    .pilar-banner-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .pilar-banner--practicas .pilar-banner-icon { color: var(--accent-teal); }
+    .pilar-banner--cultural  .pilar-banner-icon { color: var(--accent-purple); }
+
+    .pilar-banner-body {}
+
+    .pilar-banner-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .pilar-banner--practicas .pilar-banner-label { color: var(--accent-teal); }
+    .pilar-banner--cultural  .pilar-banner-label { color: var(--accent-purple); }
+
+    .pilar-banner-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .pilar-banner-count {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Module feature tags */
+    .module-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .module-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+    }
+
+    .module-tag-icon {
+      width: 12px;
+      height: 12px;
+      color: var(--accent-purple);
+      flex-shrink: 0;
+    }
+
+    /* Kanban mini-preview (2.3) */
+    .kanban-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+    }
+
+    .kanban-col-header {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0 2px 8px;
+      border-bottom: 2px solid;
+      margin-bottom: 8px;
+    }
+
+    .kanban-col:nth-child(1) .kanban-col-header { color: var(--text-muted); border-color: var(--border-default); }
+    .kanban-col:nth-child(2) .kanban-col-header { color: var(--accent-orange); border-color: var(--accent-orange); }
+    .kanban-col:nth-child(3) .kanban-col-header { color: #4caf8a; border-color: #4caf8a; }
+
+    .kanban-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .kanban-card:last-child { margin-bottom: 0; }
+
+    /* CVF Quadrant (2.9) */
+    .cvf-wrap {
+      margin-top: 20px;
+    }
+
+    .cvf-axis-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .cvf-axis-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .cvf-axis-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border-subtle);
+    }
+
+    .cvf-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .cvf-cell {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 20px 18px;
+      transition: border-color var(--ease), background var(--ease);
+    }
+
+    .cvf-cell:hover {
+      background: var(--bg-raised);
+      border-color: var(--border-default);
+    }
+
+    .cvf-cell-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .cvf-cell-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .cvf-cell-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .cvf-cell:nth-child(1) .cvf-cell-badge { color: var(--accent-teal);   background: var(--accent-teal-dim); }
+    .cvf-cell:nth-child(2) .cvf-cell-badge { color: var(--accent-purple); background: var(--accent-purple-dim); }
+    .cvf-cell:nth-child(3) .cvf-cell-badge { color: var(--accent-orange); background: var(--accent-orange-dim); }
+    .cvf-cell:nth-child(4) .cvf-cell-badge { color: var(--text-secondary); background: var(--bg-overlay); border: 1px solid var(--border-subtle); }
+
+    .cvf-cell-desc {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
        HAMBURGER / MOBILE OVERLAY
     ============================================================ */
     .hamburger {
@@ -1768,11 +1993,273 @@
       <div class="doc-section" id="modulos-funcionales">
         <div class="section-divider"></div>
         <h2 class="section-heading">Módulos Funcionales</h2>
-        <p class="section-subheading">Sección 03 — Próximamente</p>
-        <div class="section-placeholder">
-          <i data-lucide="layers" class="section-placeholder-icon"></i>
-          <p>El contenido de esta sección está en preparación.</p>
+        <p class="section-subheading">Sección 02 — 9 módulos en dos pilares: Herramientas Prácticas e Inteligencia Cultural</p>
+
+        <!-- ── PILAR 1 ─────────────────────────────────────────── -->
+        <div class="pilar-banner pilar-banner--practicas">
+          <div class="pilar-banner-icon-wrap">
+            <i data-lucide="briefcase" class="pilar-banner-icon"></i>
+          </div>
+          <div class="pilar-banner-body">
+            <div class="pilar-banner-label">Pilar 1</div>
+            <div class="pilar-banner-title">Herramientas Prácticas</div>
+          </div>
+          <span class="pilar-banner-count">5 módulos · 2.1 – 2.5</span>
         </div>
+
+        <!-- 2.1 Canal de Denuncias -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">2.1</span>
+            <h3 class="sub-section-title">Canal de Denuncias</h3>
+          </div>
+          <p class="section-prose">
+            Permite a cualquier persona dentro o fuera de la organización reportar situaciones
+            de riesgo ético, legal o de conducta — con la opción de hacerlo de forma
+            <strong>anónima o identificada</strong>.
+          </p>
+          <p class="section-prose">
+            Cada denuncia genera un <strong>código de referencia único</strong> para su seguimiento.
+            El módulo gestiona el flujo completo: recepción, asignación, recopilación de evidencias,
+            estados de avance y resolución. Los plazos se calculan automáticamente según la
+            legislación de cada país — días hábiles para España, días naturales para Colombia.
+            Los datos sensibles del denunciante se almacenan <strong>encriptados</strong>.
+          </p>
+          <div class="module-tags">
+            <span class="module-tag"><i data-lucide="hash" class="module-tag-icon"></i>Código único de referencia</span>
+            <span class="module-tag"><i data-lucide="lock" class="module-tag-icon"></i>Denuncia anónima o identificada</span>
+            <span class="module-tag"><i data-lucide="calendar-clock" class="module-tag-icon"></i>Plazos por legislación local</span>
+            <span class="module-tag"><i data-lucide="shield" class="module-tag-icon"></i>Datos encriptados</span>
+            <span class="module-tag"><i data-lucide="git-branch" class="module-tag-icon"></i>Flujo completo de gestión</span>
+          </div>
+        </div>
+
+        <!-- 2.2 Registro de Jornadas -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">2.2</span>
+            <h3 class="sub-section-title">Registro de Jornadas Laborales</h3>
+          </div>
+          <p class="section-prose">
+            Control del tiempo de trabajo de cada colaborador: entrada, salida, jornadas por día
+            y gestión de ausencias justificadas. Permite configurar los tipos de jornada de la
+            organización y registrar validaciones sobre las marcaciones.
+          </p>
+          <p class="section-prose">
+            Provee al área de RRHH visibilidad sobre asistencia y horas trabajadas para efectos
+            de <strong>cumplimiento normativo y nómina</strong>.
+          </p>
+          <div class="module-tags">
+            <span class="module-tag"><i data-lucide="clock" class="module-tag-icon"></i>Entrada y salida</span>
+            <span class="module-tag"><i data-lucide="sliders-horizontal" class="module-tag-icon"></i>Tipos de jornada configurables</span>
+            <span class="module-tag"><i data-lucide="file-check" class="module-tag-icon"></i>Ausencias justificadas</span>
+            <span class="module-tag"><i data-lucide="bar-chart-2" class="module-tag-icon"></i>Visibilidad de asistencia</span>
+          </div>
+        </div>
+
+        <!-- 2.3 Gestor de Metas -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">2.3</span>
+            <h3 class="sub-section-title">Gestor de Metas y Proyectos</h3>
+          </div>
+          <p class="section-prose">
+            Gestión de objetivos a nivel individual y de equipo con vista <strong>Kanban</strong>.
+            Colaboradores y administradores crean metas, las desglosan en tareas, las asignan y
+            hacen seguimiento visual del avance por columnas de estado. Conecta el desempeño
+            individual con los objetivos organizacionales.
+          </p>
+          <div class="kanban-preview">
+            <div class="kanban-col">
+              <div class="kanban-col-header">Pendiente</div>
+              <div class="kanban-card">Definir objetivos Q3</div>
+              <div class="kanban-card">Revisión de indicadores</div>
+            </div>
+            <div class="kanban-col">
+              <div class="kanban-col-header">En progreso</div>
+              <div class="kanban-card">Onboarding nuevo equipo</div>
+              <div class="kanban-card">Diagnóstico cultural</div>
+            </div>
+            <div class="kanban-col">
+              <div class="kanban-col-header">Completado</div>
+              <div class="kanban-card">Configuración canal</div>
+              <div class="kanban-card">Carga de documentos</div>
+            </div>
+          </div>
+          <div class="module-tags" style="margin-top:12px">
+            <span class="module-tag"><i data-lucide="kanban" class="module-tag-icon"></i>Vista Kanban</span>
+            <span class="module-tag"><i data-lucide="users" class="module-tag-icon"></i>Individual y equipo</span>
+            <span class="module-tag"><i data-lucide="list-checks" class="module-tag-icon"></i>Desglose en tareas</span>
+          </div>
+        </div>
+
+        <!-- 2.4 Documentos -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">2.4</span>
+            <h3 class="sub-section-title">Organización de Documentos</h3>
+          </div>
+          <p class="section-prose">
+            Distribución centralizada de documentos corporativos hacia los colaboradores. El admin
+            puede subir documentos, asignarlos a personas o equipos. El sistema registra
+            automáticamente la <strong>fecha de aceptación y la IP del dispositivo</strong> desde
+            el que se aceptó — generando un audit trail con validez probatoria.
+          </p>
+          <div class="callout">
+            Soporta distintas categorías y tipos de documento. El registro de aceptación digital
+            es jurídicamente relevante en auditorías laborales y de compliance.
+          </div>
+          <div class="module-tags">
+            <span class="module-tag"><i data-lucide="folder-open" class="module-tag-icon"></i>Categorías de documento</span>
+            <span class="module-tag"><i data-lucide="mouse-pointer-click" class="module-tag-icon"></i>Aceptación con IP + fecha</span>
+            <span class="module-tag"><i data-lucide="search" class="module-tag-icon"></i>Audit trail probatorio</span>
+            <span class="module-tag"><i data-lucide="user-check" class="module-tag-icon"></i>Asignación por persona o equipo</span>
+          </div>
+        </div>
+
+        <!-- 2.5 Permisos y Vacaciones -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">2.5</span>
+            <h3 class="sub-section-title">Gestión de Permisos y Vacaciones</h3>
+          </div>
+          <p class="section-prose">
+            Los colaboradores solicitan permisos y vacaciones directamente desde la plataforma.
+            El admin gestiona las solicitudes, aprueba o rechaza, y el sistema mantiene el
+            <strong>saldo actualizado</strong> de días disponibles por persona.
+            Elimina el uso de correo o formularios externos para este proceso.
+          </p>
+          <div class="module-tags">
+            <span class="module-tag"><i data-lucide="calendar-check" class="module-tag-icon"></i>Solicitud self-service</span>
+            <span class="module-tag"><i data-lucide="check-circle" class="module-tag-icon"></i>Aprobación en plataforma</span>
+            <span class="module-tag"><i data-lucide="gauge" class="module-tag-icon"></i>Saldo actualizado en tiempo real</span>
+          </div>
+        </div>
+
+        <!-- ── PILAR 2 ─────────────────────────────────────────── -->
+        <div class="pilar-banner pilar-banner--cultural">
+          <div class="pilar-banner-icon-wrap">
+            <i data-lucide="brain-circuit" class="pilar-banner-icon"></i>
+          </div>
+          <div class="pilar-banner-body">
+            <div class="pilar-banner-label">Pilar 2</div>
+            <div class="pilar-banner-title">Inteligencia Cultural</div>
+          </div>
+          <span class="pilar-banner-count">4 módulos · 2.6 – 2.9</span>
+        </div>
+
+        <!-- 2.6 Gráfico de Alineación -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">2.6</span>
+            <h3 class="sub-section-title">Gráfico de Alineación Cultural</h3>
+          </div>
+          <p class="section-prose">
+            Visualización que cruza el perfil cultural de cada colaborador con la
+            <strong>cultura ideal definida por la empresa</strong>. Muestra el grado de alineación
+            individual y colectiva, identificando quiénes están más cercanos o más alejados de los
+            valores y dimensiones que la organización quiere cultivar.
+          </p>
+          <div class="module-tags">
+            <span class="module-tag"><i data-lucide="radar" class="module-tag-icon"></i>Perfil individual vs. cultura ideal</span>
+            <span class="module-tag"><i data-lucide="activity" class="module-tag-icon"></i>Alineación individual y colectiva</span>
+            <span class="module-tag"><i data-lucide="trending-up" class="module-tag-icon"></i>Identificación de brechas</span>
+          </div>
+        </div>
+
+        <!-- 2.7 Áreas de Oportunidad -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">2.7</span>
+            <h3 class="sub-section-title">Áreas de Oportunidad en Clima y Cultura</h3>
+          </div>
+          <p class="section-prose">
+            Lista priorizada de los gaps más relevantes entre la cultura actual del equipo y la
+            cultura objetivo de la empresa. Traduce los datos de los perfiles individuales en
+            <strong>recomendaciones accionables</strong> para RRHH, señalando qué dimensiones
+            culturales o condiciones de clima requieren atención.
+          </p>
+          <div class="module-tags">
+            <span class="module-tag"><i data-lucide="list-ordered" class="module-tag-icon"></i>Gaps priorizados</span>
+            <span class="module-tag"><i data-lucide="lightbulb" class="module-tag-icon"></i>Recomendaciones accionables</span>
+            <span class="module-tag"><i data-lucide="target" class="module-tag-icon"></i>Cultura actual vs. objetivo</span>
+          </div>
+        </div>
+
+        <!-- 2.8 Radar de Fuga de Talento -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">2.8</span>
+            <h3 class="sub-section-title">Radar de Riesgo de Fuga de Talento</h3>
+          </div>
+          <p class="section-prose">
+            Identificación de colaboradores con señales de desenganche o desalineación que pueden
+            derivar en rotación no deseada. El radar cruza variables del perfil individual —
+            motivación, alineación cultural, satisfacción de necesidades — para señalar
+            <strong>perfiles de riesgo</strong> y permitir intervenciones preventivas antes de
+            que el problema escale.
+          </p>
+          <div class="module-tags">
+            <span class="module-tag"><i data-lucide="alert-triangle" class="module-tag-icon"></i>Señales de desenganche</span>
+            <span class="module-tag"><i data-lucide="zap" class="module-tag-icon"></i>Intervención preventiva</span>
+            <span class="module-tag"><i data-lucide="user-x" class="module-tag-icon"></i>Perfiles de riesgo identificados</span>
+            <span class="module-tag"><i data-lucide="combine" class="module-tag-icon"></i>Motivación + alineación + necesidades</span>
+          </div>
+        </div>
+
+        <!-- 2.9 Cuadrante Cultural CVF -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">2.9</span>
+            <h3 class="sub-section-title">Cuadrante Cultural</h3>
+          </div>
+          <p class="section-prose">
+            Herramienta de diagnóstico basada en el <strong>Competing Values Framework</strong>
+            (Quinn & Rohrbaugh, 1983) que clasifica la cultura de la organización en uno de cuatro
+            arquetipos. Ayuda al liderazgo a comprender dónde está hoy su organización y hacia
+            dónde quiere moverse culturalmente.
+          </p>
+          <div class="cvf-wrap">
+            <div class="cvf-axis-row">
+              <span class="cvf-axis-label">Interna</span>
+              <div class="cvf-axis-line"></div>
+              <span class="cvf-axis-label">↔ Orientación ↔</span>
+              <div class="cvf-axis-line"></div>
+              <span class="cvf-axis-label">Externa</span>
+            </div>
+            <div class="cvf-grid">
+              <div class="cvf-cell">
+                <div class="cvf-cell-header">
+                  <span class="cvf-cell-name">Cuidado</span>
+                  <span class="cvf-cell-badge">Flexible · Interna</span>
+                </div>
+                <p class="cvf-cell-desc">Cultura centrada en las personas, la confianza y las relaciones. Prioriza el bienestar y la cohesión del equipo.</p>
+              </div>
+              <div class="cvf-cell">
+                <div class="cvf-cell-header">
+                  <span class="cvf-cell-name">Ágil</span>
+                  <span class="cvf-cell-badge">Flexible · Externa</span>
+                </div>
+                <p class="cvf-cell-desc">Orientada a la innovación, la adaptabilidad y el cambio. Valora la creatividad y la respuesta rápida al entorno.</p>
+              </div>
+              <div class="cvf-cell">
+                <div class="cvf-cell-header">
+                  <span class="cvf-cell-name">De Mercado</span>
+                  <span class="cvf-cell-badge">Estable · Externa</span>
+                </div>
+                <p class="cvf-cell-desc">Enfocada en resultados, competitividad y cuota de mercado. Impulsa el rendimiento y la orientación al logro.</p>
+              </div>
+              <div class="cvf-cell">
+                <div class="cvf-cell-header">
+                  <span class="cvf-cell-name">Jerárquica</span>
+                  <span class="cvf-cell-badge">Estable · Interna</span>
+                </div>
+                <p class="cvf-cell-desc">Basada en procesos, normas y control. Prioriza la eficiencia, la previsibilidad y la estabilidad operativa.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <div class="doc-section" id="ciencia">
