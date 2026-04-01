@@ -888,6 +888,235 @@
     }
 
     /* ============================================================
+       SECTION CONTENT — SUBSECTIONS & TYPOGRAPHY
+    ============================================================ */
+
+    /* Subsection header (1.1, 1.2…) */
+    .sub-section {
+      margin-bottom: 48px;
+    }
+
+    .sub-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .sub-section-num {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent-purple);
+      background: var(--accent-purple-dim);
+      border: 1px solid rgba(123, 94, 167, 0.2);
+      border-radius: 5px;
+      padding: 2px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .sub-section-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    /* Prose within sections */
+    .section-prose {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      max-width: 700px;
+    }
+
+    .section-prose strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .section-prose:last-child { margin-bottom: 0; }
+
+    /* Callout box */
+    .callout {
+      background: var(--bg-raised);
+      border: 1px solid var(--border-default);
+      border-left: 3px solid var(--accent-purple);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-top: 20px;
+    }
+
+    .callout strong { color: var(--text-primary); font-weight: 600; }
+
+    /* User profile cards */
+    .user-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .user-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 24px 22px;
+    }
+
+    .user-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .user-card-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .user-card--admin .user-card-avatar {
+      background: var(--accent-purple-dim);
+      border: 1px solid rgba(123, 94, 167, 0.2);
+    }
+
+    .user-card--member .user-card-avatar {
+      background: var(--accent-teal-dim);
+      border: 1px solid rgba(0, 122, 150, 0.2);
+    }
+
+    .user-card-avatar-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .user-card--admin  .user-card-avatar-icon { color: var(--accent-purple); }
+    .user-card--member .user-card-avatar-icon { color: var(--accent-teal); }
+
+    .user-card-role {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .user-card--admin  .user-card-role { color: var(--accent-purple); }
+    .user-card--member .user-card-role { color: var(--accent-teal); }
+
+    .user-card-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .user-card-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    /* Content table */
+    .content-table-wrap {
+      overflow-x: auto;
+      margin-top: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .content-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    .content-table thead tr {
+      background: var(--bg-raised);
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    .content-table th {
+      text-align: left;
+      padding: 12px 18px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .content-table tbody tr {
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background var(--ease);
+    }
+
+    .content-table tbody tr:last-child { border-bottom: none; }
+
+    .content-table tbody tr:hover { background: var(--bg-raised); }
+
+    .content-table td {
+      padding: 13px 18px;
+      color: var(--text-secondary);
+      vertical-align: middle;
+      line-height: 1.5;
+    }
+
+    .content-table td strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Status badge inside table */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    .badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .badge--active {
+      color: #4caf8a;
+      background: rgba(76, 175, 138, 0.1);
+      border: 1px solid rgba(76, 175, 138, 0.2);
+    }
+
+    .badge--active .badge-dot { background: #4caf8a; }
+
+    .badge--pwa {
+      color: var(--accent-orange);
+      background: var(--accent-orange-dim);
+      border: 1px solid rgba(255, 151, 0, 0.2);
+    }
+
+    @media (max-width: 640px) {
+      .user-cards-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
        HAMBURGER / MOBILE OVERLAY
     ============================================================ */
     .hamburger {
@@ -1370,11 +1599,170 @@
       <div class="doc-section" id="product-overview">
         <div class="section-divider"></div>
         <h2 class="section-heading">Product Overview</h2>
-        <p class="section-subheading">Sección 02 — Próximamente</p>
-        <div class="section-placeholder">
-          <i data-lucide="package" class="section-placeholder-icon"></i>
-          <p>El contenido de esta sección está en preparación.</p>
+        <p class="section-subheading">Sección 01 — Propuesta de valor, usuarios, acceso y mercados</p>
+
+        <!-- 1.1 Propuesta de valor -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">1.1</span>
+            <h3 class="sub-section-title">Propuesta de Valor</h3>
+          </div>
+          <p class="section-prose">
+            Valírica es la plataforma para empresas que quieren gestionar su gente con
+            <strong>orden operativo</strong> e <strong>inteligencia estratégica</strong> —
+            sin tener que usar dos herramientas distintas para lograrlo.
+          </p>
+          <p class="section-prose">
+            Mientras la mayoría de las soluciones de RRHH se enfocan en procesos administrativos
+            o en diagnósticos culturales por separado, Valírica integra ambas dimensiones en un
+            solo entorno: las herramientas del día a día conviven con modelos científicos que
+            transforman los datos del equipo en comprensión real de las personas.
+          </p>
+          <div class="callout">
+            <strong>El resultado:</strong> una organización que opera con compliance, conoce a
+            profundidad su cultura y puede tomar decisiones de personas basadas en evidencia —
+            no en intuición.
+          </div>
         </div>
+
+        <!-- 1.2 Usuarios del sistema -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">1.2</span>
+            <h3 class="sub-section-title">Usuarios del Sistema</h3>
+          </div>
+          <p class="section-prose">
+            Valírica opera con dos perfiles de usuario claramente diferenciados, cada uno
+            con su propio nivel de acceso, vista y experiencia de uso.
+          </p>
+          <div class="user-cards-grid">
+
+            <div class="user-card user-card--admin">
+              <div class="user-card-header">
+                <div class="user-card-avatar">
+                  <i data-lucide="shield-user" class="user-card-avatar-icon"></i>
+                </div>
+                <div>
+                  <div class="user-card-role">Admin de Empresa</div>
+                  <div class="user-card-name">Responsable de RRHH</div>
+                </div>
+              </div>
+              <p class="user-card-desc">
+                Configura la empresa, incorpora al equipo y gestiona todos los módulos
+                operativos. Visualiza los análisis culturales y toma decisiones a partir
+                de los datos agregados. Tiene acceso completo a la plataforma.
+              </p>
+            </div>
+
+            <div class="user-card user-card--member">
+              <div class="user-card-header">
+                <div class="user-card-avatar">
+                  <i data-lucide="user" class="user-card-avatar-icon"></i>
+                </div>
+                <div>
+                  <div class="user-card-role">Miembro del Equipo</div>
+                  <div class="user-card-name">Colaborador</div>
+                </div>
+              </div>
+              <p class="user-card-desc">
+                Participa en los formularios de diagnóstico, consulta su información
+                personal, solicita permisos y vacaciones, y accede a los documentos
+                compartidos. Experiencia simple, directa y optimizada para móvil.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 1.3 Acceso y plataforma -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">1.3</span>
+            <h3 class="sub-section-title">Acceso y Plataforma</h3>
+          </div>
+          <p class="section-prose">
+            Valírica es una aplicación <strong>100% web</strong> — sin instalación,
+            sin tiendas de aplicaciones, sin fricción de onboarding técnico.
+          </p>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Perfil</th>
+                  <th>Dispositivo</th>
+                  <th>Experiencia</th>
+                  <th>Formato</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Admin de empresa</strong></td>
+                  <td>Escritorio (navegador)</td>
+                  <td>Plataforma completa</td>
+                  <td>Web app</td>
+                </tr>
+                <tr>
+                  <td><strong>Miembro del equipo</strong></td>
+                  <td>Escritorio o móvil</td>
+                  <td>Web responsive</td>
+                  <td>Web app + <span class="badge badge--pwa">PWA</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            El módulo del miembro del equipo soporta instalación como
+            <strong>Progressive Web App (PWA)</strong> — el colaborador puede agregarlo
+            a su pantalla de inicio y usarlo como una app nativa, sin pasar por
+            App Store ni Google Play.
+          </div>
+        </div>
+
+        <!-- 1.4 Mercados activos -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">1.4</span>
+            <h3 class="sub-section-title">Mercados Activos</h3>
+          </div>
+          <p class="section-prose">
+            Valírica opera actualmente en tres países con marcos laborales, culturales
+            y regulatorios distintos.
+          </p>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>País</th>
+                  <th>Estado</th>
+                  <th>Particularidad regulatoria</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Colombia</strong></td>
+                  <td><span class="badge badge--active"><span class="badge-dot"></span>Activo</span></td>
+                  <td>Ley 1010 (acoso laboral), normativa UGPP</td>
+                </tr>
+                <tr>
+                  <td><strong>México</strong></td>
+                  <td><span class="badge badge--active"><span class="badge-dot"></span>Activo</span></td>
+                  <td>NOM-035 (factores de riesgo psicosocial)</td>
+                </tr>
+                <tr>
+                  <td><strong>España</strong></td>
+                  <td><span class="badge badge--active"><span class="badge-dot"></span>Activo</span></td>
+                  <td>RDL 8/2019 (jornada), Ley 2/2023 (denuncias), GDPR</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            Esta presencia multipaís <strong>no es solo comercial</strong>: el producto adapta
+            sus módulos de compliance a la legislación local de cada mercado, diferenciándose
+            de soluciones genéricas que ignoran las particularidades regulatorias de Iberoamérica.
+          </div>
+        </div>
+
       </div>
 
       <div class="doc-section" id="modulos-funcionales">
