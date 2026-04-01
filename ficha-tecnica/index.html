@@ -1535,6 +1535,166 @@
     }
 
     /* ============================================================
+       ARQUITECTURA Y ACCESO — PRINCIPIOS, CÓDIGO, SEGURIDAD
+    ============================================================ */
+
+    /* Principle list (4.1) */
+    .principle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .principle-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      transition: border-color var(--ease), background var(--ease);
+    }
+
+    .principle-item:hover {
+      background: var(--bg-raised);
+      border-color: var(--border-default);
+    }
+
+    .principle-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .principle-item:nth-child(1) .principle-icon-wrap { background: var(--accent-teal-dim);   border: 1px solid rgba(0,122,150,0.2); }
+    .principle-item:nth-child(2) .principle-icon-wrap { background: var(--accent-purple-dim); border: 1px solid rgba(123,94,167,0.2); }
+    .principle-item:nth-child(3) .principle-icon-wrap { background: var(--accent-orange-dim); border: 1px solid rgba(255,151,0,0.2); }
+
+    .principle-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .principle-item:nth-child(1) .principle-icon { color: var(--accent-teal); }
+    .principle-item:nth-child(2) .principle-icon { color: var(--accent-purple); }
+    .principle-item:nth-child(3) .principle-icon { color: var(--accent-orange); }
+
+    .principle-body {}
+
+    .principle-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .principle-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* Code / tree block */
+    .code-block {
+      background: #0a0a0a;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 20px 22px;
+      margin: 16px 0;
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #a0b0c0;
+      overflow-x: auto;
+    }
+
+    .code-block .tree-root { color: #7B5EA7; font-weight: 600; }
+    .code-block .tree-org  { color: #4caf8a; }
+    .code-block .tree-role { color: #888; }
+
+    /* Security level indicator */
+    .security-level {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(76,175,138,0.1);
+      border: 1px solid rgba(76,175,138,0.2);
+      color: #4caf8a;
+      white-space: nowrap;
+    }
+
+    /* Integration card */
+    .integration-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .integration-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 22px 20px;
+    }
+
+    .integration-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .integration-card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .integration-card-icon i {
+      width: 16px;
+      height: 16px;
+      color: var(--text-secondary);
+    }
+
+    .integration-card-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .integration-card-type {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .integration-card-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 640px) {
+      .integration-cards { grid-template-columns: 1fr; }
+    }
        HAMBURGER / MOBILE OVERLAY
     ============================================================ */
     .hamburger {
@@ -2774,11 +2934,264 @@
       <div class="doc-section" id="arquitectura">
         <div class="section-divider"></div>
         <h2 class="section-heading">Arquitectura y Acceso</h2>
-        <p class="section-subheading">Sección 05 — Próximamente</p>
-        <div class="section-placeholder">
-          <i data-lucide="server" class="section-placeholder-icon"></i>
-          <p>El contenido de esta sección está en preparación.</p>
+        <p class="section-subheading">Sección 04 — Stack, seguridad, acceso multi-tenant e integraciones activas</p>
+
+        <!-- 4.1 Principios de diseño -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">4.1</span>
+            <h3 class="sub-section-title">Principios de Diseño</h3>
+          </div>
+          <p class="section-prose">Tres principios guían cada decisión técnica de la plataforma:</p>
+          <div class="principle-list">
+            <div class="principle-item">
+              <div class="principle-icon-wrap">
+                <i data-lucide="mouse-pointer-click" class="principle-icon"></i>
+              </div>
+              <div class="principle-body">
+                <div class="principle-title">Simplicidad de acceso</div>
+                <div class="principle-desc">Ningún colaborador necesita instalar nada ni crear cuentas en tiendas de aplicaciones. Todo funciona desde el navegador.</div>
+              </div>
+            </div>
+            <div class="principle-item">
+              <div class="principle-icon-wrap">
+                <i data-lucide="lock" class="principle-icon"></i>
+              </div>
+              <div class="principle-body">
+                <div class="principle-title">Aislamiento por empresa</div>
+                <div class="principle-desc">Cada organización opera en su propio espacio de datos, sin visibilidad sobre otras cuentas en la plataforma.</div>
+              </div>
+            </div>
+            <div class="principle-item">
+              <div class="principle-icon-wrap">
+                <i data-lucide="shield-check" class="principle-icon"></i>
+              </div>
+              <div class="principle-body">
+                <div class="principle-title">Seguridad por diseño</div>
+                <div class="principle-desc">Los datos sensibles se protegen en todas las capas — en tránsito, en reposo y en los flujos de operación críticos.</div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- 4.2 Stack tecnológico -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">4.2</span>
+            <h3 class="sub-section-title">Stack Tecnológico</h3>
+          </div>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Capa</th>
+                  <th>Tecnología</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Backend</strong></td><td>PHP 8.2</td></tr>
+                <tr><td><strong>Base de datos</strong></td><td>MySQL (InnoDB, UTF-8MB4)</td></tr>
+                <tr><td><strong>Frontend</strong></td><td>HTML5, CSS3, JavaScript</td></tr>
+                <tr><td><strong>Email transaccional</strong></td><td>AWS Simple Email Service (SES v2)</td></tr>
+                <tr><td><strong>Assessments externos</strong></td><td>Innermetrix</td></tr>
+                <tr><td><strong>Acceso móvil</strong></td><td>Progressive Web App (PWA)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            La plataforma es una <strong>aplicación web server-side</strong> sin dependencia de frameworks
+            de frontend pesados — tiempos de carga rápidos y compatibilidad amplia con navegadores.
+            Interfaz de administración optimizada para escritorio; módulo del colaborador optimizado para móvil.
+          </div>
+        </div>
+
+        <!-- 4.3 Multi-tenant -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">4.3</span>
+            <h3 class="sub-section-title">Modelo Multi-Tenant</h3>
+          </div>
+          <p class="section-prose">
+            Valírica opera bajo una arquitectura <strong>multi-tenant</strong> — múltiples empresas
+            coexisten en la misma plataforma con total separación de datos.
+          </p>
+          <div class="code-block">
+<span class="tree-root">Valírica</span> (plataforma)
+├── <span class="tree-org">Empresa A</span>
+│   ├── <span class="tree-role">Admin de empresa</span>
+│   └── <span class="tree-role">Equipo (colaboradores)</span>
+└── <span class="tree-org">Empresa B</span>
+    ├── <span class="tree-role">Admin de empresa</span>
+    └── <span class="tree-role">Equipo (colaboradores)</span>
+          </div>
+          <div class="callout">
+            Cada empresa accede únicamente a sus propios datos. La separación se garantiza a nivel de
+            base de datos mediante <strong>identificadores únicos por empresa</strong> en todas las
+            tablas del sistema. No existe visibilidad cruzada entre organizaciones.
+          </div>
+        </div>
+
+        <!-- 4.4 Autenticación -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">4.4</span>
+            <h3 class="sub-section-title">Modelo de Acceso y Autenticación</h3>
+          </div>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Mecanismo</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Incorporación del equipo</strong></td>
+                  <td>Invitación por <strong>token único</strong> con tiempo de expiración — sin registros abiertos ni acceso sin invitación previa</td>
+                </tr>
+                <tr>
+                  <td><strong>Hashing de contraseñas</strong></td>
+                  <td>Protegidas con <strong>bcrypt</strong> — nunca almacenadas en texto plano</td>
+                </tr>
+                <tr>
+                  <td><strong>Gestión de sesiones</strong></td>
+                  <td>Sesiones autenticadas con validación en cada petición</td>
+                </tr>
+                <tr>
+                  <td><strong>Protección CSRF</strong></td>
+                  <td>Aplicada en todos los formularios y operaciones de escritura</td>
+                </tr>
+                <tr>
+                  <td><strong>Control de roles</strong></td>
+                  <td>Cada acción verifica el rol del usuario antes de ejecutarse — separación estricta admin / colaborador</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4.5 Dispositivos -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">4.5</span>
+            <h3 class="sub-section-title">Acceso desde Dispositivos</h3>
+          </div>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Dispositivo</th>
+                  <th>Módulo</th>
+                  <th>Experiencia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Escritorio (navegador)</strong></td>
+                  <td>Admin + Colaborador</td>
+                  <td>Plataforma completa</td>
+                </tr>
+                <tr>
+                  <td><strong>Móvil (navegador)</strong></td>
+                  <td>Colaborador</td>
+                  <td>Diseño responsive optimizado</td>
+                </tr>
+                <tr>
+                  <td><strong>Móvil (pantalla de inicio)</strong></td>
+                  <td>Colaborador</td>
+                  <td><span class="badge badge--pwa">PWA</span> instalable — experiencia de app nativa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4.6 Seguridad -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">4.6</span>
+            <h3 class="sub-section-title">Seguridad de Datos</h3>
+          </div>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Capa</th>
+                  <th>Mecanismo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Contraseñas</strong></td>
+                  <td>Hashing bcrypt — nunca almacenadas en texto plano</td>
+                </tr>
+                <tr>
+                  <td><strong>Canal de denuncias</strong></td>
+                  <td>Datos del denunciante encriptados con <strong>AES-256-CBC</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Formularios</strong></td>
+                  <td>Protección CSRF en todas las operaciones sensibles</td>
+                </tr>
+                <tr>
+                  <td><strong>Documentos</strong></td>
+                  <td>Audit trail con timestamp e IP por cada aceptación</td>
+                </tr>
+                <tr>
+                  <td><strong>Base de datos</strong></td>
+                  <td>Consultas con <strong>prepared statements</strong> — protección contra inyección SQL</td>
+                </tr>
+                <tr>
+                  <td><strong>Comunicaciones</strong></td>
+                  <td>HTTPS obligatorio en todas las conexiones <span class="security-level">TLS</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4.7 Integraciones -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">4.7</span>
+            <h3 class="sub-section-title">Integraciones Activas</h3>
+          </div>
+          <div class="integration-cards">
+            <div class="integration-card">
+              <div class="integration-card-header">
+                <div class="integration-card-icon">
+                  <i data-lucide="mail" ></i>
+                </div>
+                <div>
+                  <div class="integration-card-name">AWS SES v2</div>
+                  <div class="integration-card-type">Email transaccional</div>
+                </div>
+              </div>
+              <p class="integration-card-desc">
+                Toda la comunicación automatizada — invitaciones, notificaciones, confirmaciones
+                del canal de denuncias — se envía a través de Amazon Simple Email Service,
+                garantizando entregabilidad y trazabilidad.
+              </p>
+            </div>
+            <div class="integration-card">
+              <div class="integration-card-header">
+                <div class="integration-card-icon">
+                  <i data-lucide="brain-circuit"></i>
+                </div>
+                <div>
+                  <div class="integration-card-name">Innermetrix</div>
+                  <div class="integration-card-type">Assessments externos</div>
+                </div>
+              </div>
+              <p class="integration-card-desc">
+                Integración para importación de datos de assessments externos de personalidad
+                y competencias, que se incorporan al perfil multidimensional del colaborador.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <div class="doc-section" id="compliance">
