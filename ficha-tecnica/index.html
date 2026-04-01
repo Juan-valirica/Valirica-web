@@ -1695,8 +1695,194 @@
     @media (max-width: 640px) {
       .integration-cards { grid-template-columns: 1fr; }
     }
-       HAMBURGER / MOBILE OVERLAY
+
+    /* ============================================================
+       COMPLIANCE LEGAL — PAÍS, NORMAS, COBERTURA, SANCIONES
     ============================================================ */
+
+    /* Country header */
+    .country-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      margin-bottom: 28px;
+    }
+
+    .country-flag {
+      font-size: 26px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .country-header-body {}
+
+    .country-header-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .country-header-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .country-header-laws {
+      margin-left: auto;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .law-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 5px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border-default);
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    /* Legal obligation block */
+    .legal-block {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .legal-block-header {
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .legal-block-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .legal-block-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .legal-block-body {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .legal-row {}
+
+    .legal-row-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .legal-row-content {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .legal-row-content strong { color: var(--text-primary); font-weight: 600; }
+
+    /* Obligation list */
+    .obligation-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .obligation-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .obligation-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-purple);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .obligation-list li strong { color: var(--text-primary); font-weight: 600; }
+
+    /* Fine / sanction alert */
+    .fine-alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.18);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #f87171;
+      margin-top: 6px;
+    }
+
+    .fine-alert-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: #f87171;
+    }
+
+    .fine-alert strong { color: #fca5a5; font-weight: 700; }
+
+    /* Coverage row (cómo lo cubre Valírica) */
+    .coverage-row {
+      background: var(--accent-purple-dim);
+      border-top: 1px solid rgba(123,94,167,0.15);
+      padding: 14px 20px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .coverage-row strong { color: var(--accent-purple); font-weight: 600; }
+
+    /* Country section spacer */
+    .country-spacer {
+      height: 1px;
+      background: var(--border-subtle);
+      margin: 40px 0;
+    }
     .hamburger {
       display: none;
       position: fixed;
@@ -3197,11 +3383,262 @@
       <div class="doc-section" id="compliance">
         <div class="section-divider"></div>
         <h2 class="section-heading">Compliance Legal</h2>
-        <p class="section-subheading">Sección 06 — Próximamente</p>
-        <div class="section-placeholder">
-          <i data-lucide="shield-check" class="section-placeholder-icon"></i>
-          <p>El contenido de esta sección está en preparación.</p>
+        <p class="section-subheading">Sección 05 — Cobertura normativa en España y Colombia</p>
+
+        <!-- Intro -->
+        <div class="science-intro">
+          <div class="science-intro-title">Por qué el compliance es parte del producto, no un anexo</div>
+          <p class="science-intro-text">
+            Valírica no es un software genérico adaptado al mercado iberoamericano. Sus módulos de
+            registro de jornada y canal de denuncias están diseñados desde el inicio para responder
+            a <strong>obligaciones legales concretas en cada país donde opera</strong>. Esto convierte
+            a la plataforma en un activo de mitigación de riesgo legal para sus clientes, no solo
+            una herramienta de gestión.
+          </p>
         </div>
+
+        <!-- ── ESPAÑA ─────────────────────────────────────────── -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">5.1</span>
+            <h3 class="sub-section-title">España</h3>
+          </div>
+
+          <div class="country-header">
+            <span class="country-flag">🇪🇸</span>
+            <div class="country-header-body">
+              <div class="country-header-label">Marco regulatorio activo</div>
+              <div class="country-header-name">España</div>
+            </div>
+            <div class="country-header-laws">
+              <span class="law-badge">RDL 8/2019</span>
+              <span class="law-badge">Ley 2/2023</span>
+              <span class="law-badge">Dir. UE 2019/1937</span>
+              <span class="law-badge">GDPR</span>
+            </div>
+          </div>
+
+          <!-- Registro de jornada ES -->
+          <div class="legal-block">
+            <div class="legal-block-header">
+              <i data-lucide="clock" class="legal-block-icon"></i>
+              <span class="legal-block-title">Registro de Jornada Laboral</span>
+            </div>
+            <div class="legal-block-body">
+              <div class="legal-row">
+                <div class="legal-row-label">Marco legal</div>
+                <div class="legal-row-content">
+                  <strong>Real Decreto-ley 8/2019</strong>, de 8 de marzo, de medidas urgentes de
+                  protección social y de lucha contra la precariedad laboral. Modifica el artículo
+                  34 del Estatuto de los Trabajadores.
+                </div>
+              </div>
+              <div class="legal-row">
+                <div class="legal-row-label">Qué obliga</div>
+                <ul class="obligation-list">
+                  <li>Todas las empresas con trabajadores en España — <strong>sin excepción de tamaño</strong> — deben registrar diariamente la jornada de cada trabajador, incluyendo hora de inicio y de finalización</li>
+                  <li>Los registros deben conservarse durante <strong>4 años</strong> y estar disponibles para la Inspección de Trabajo, los trabajadores y sus representantes legales</li>
+                  <li>
+                    El incumplimiento es infracción grave
+                    <div class="fine-alert" style="margin-top:8px">
+                      <i data-lucide="triangle-alert" class="fine-alert-icon"></i>
+                      <span>Sanciones de entre <strong>626 y 6.250 €</strong> por infracción</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="coverage-row">
+              <strong>Cómo lo cubre Valírica —</strong> El módulo de Registro de Jornadas permite
+              fichar entrada y salida, gestionar ausencias justificadas y configurar tipos de jornada.
+              El admin dispone de visibilidad centralizada y trazabilidad completa del historial de
+              cada trabajador, disponible ante cualquier requerimiento de inspección.
+            </div>
+          </div>
+
+          <!-- Canal de denuncias ES -->
+          <div class="legal-block">
+            <div class="legal-block-header">
+              <i data-lucide="megaphone" class="legal-block-icon"></i>
+              <span class="legal-block-title">Canal de Denuncias</span>
+            </div>
+            <div class="legal-block-body">
+              <div class="legal-row">
+                <div class="legal-row-label">Marco legal</div>
+                <div class="legal-row-content">
+                  <strong>Ley 2/2023</strong>, de 20 de febrero, reguladora de la protección de
+                  las personas que informen sobre infracciones normativas. Transposición de la
+                  <strong>Directiva (UE) 2019/1937</strong> del Parlamento Europeo y del Consejo.
+                </div>
+              </div>
+              <div class="legal-row">
+                <div class="legal-row-label">Qué obliga</div>
+                <ul class="obligation-list">
+                  <li>Empresas con <strong>50 o más trabajadores</strong> deben disponer de un canal interno de denuncias</li>
+                  <li>El canal debe garantizar confidencialidad y permitir denuncias anónimas</li>
+                  <li>Acuse de recibo al denunciante: máximo <strong>7 días hábiles</strong></li>
+                  <li>Resolución o respuesta de seguimiento: máximo <strong>3 meses</strong> (ampliable a 6 en casos complejos)</li>
+                  <li>El denunciante goza de protección frente a represalias</li>
+                  <li>
+                    Incumplimiento: infracción muy grave
+                    <div class="fine-alert" style="margin-top:8px">
+                      <i data-lucide="triangle-alert" class="fine-alert-icon"></i>
+                      <span>Sanciones de hasta <strong>1.000.000 €</strong> para grandes empresas</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="coverage-row">
+              <strong>Cómo lo cubre Valírica —</strong> Reportes anónimos e identificados, código
+              de referencia por denuncia, cálculo automático de plazos en días hábiles, flujo completo
+              de resolución y almacenamiento del denunciante con encriptación AES-256-CBC.
+            </div>
+          </div>
+        </div>
+
+        <div class="country-spacer"></div>
+
+        <!-- ── COLOMBIA ────────────────────────────────────────── -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">5.2</span>
+            <h3 class="sub-section-title">Colombia</h3>
+          </div>
+
+          <div class="country-header">
+            <span class="country-flag">🇨🇴</span>
+            <div class="country-header-body">
+              <div class="country-header-label">Marco regulatorio activo</div>
+              <div class="country-header-name">Colombia</div>
+            </div>
+            <div class="country-header-laws">
+              <span class="law-badge">Ley 1778/2016</span>
+              <span class="law-badge">Ley 2195/2022</span>
+              <span class="law-badge">CST arts. 158–168</span>
+              <span class="law-badge">Ley 2101/2021</span>
+            </div>
+          </div>
+
+          <!-- Canal denuncias CO -->
+          <div class="legal-block">
+            <div class="legal-block-header">
+              <i data-lucide="megaphone" class="legal-block-icon"></i>
+              <span class="legal-block-title">Canal de Denuncias y Ética Empresarial</span>
+            </div>
+            <div class="legal-block-body">
+              <div class="legal-row">
+                <div class="legal-row-label">Marco legal</div>
+                <div class="legal-row-content">
+                  <strong>Ley 1778/2016:</strong> responsabilidad de personas jurídicas por actos
+                  de corrupción transnacional — obliga a empresas contratantes con el Estado a
+                  implementar programas de ética y canales de reporte.<br><br>
+                  <strong>Ley 2195/2022:</strong> adopta medidas de transparencia y lucha contra
+                  la corrupción — amplía y refuerza la obligatoriedad de canales de denuncia
+                  internos en el sector privado.
+                </div>
+              </div>
+              <div class="legal-row">
+                <div class="legal-row-label">Qué obliga</div>
+                <ul class="obligation-list">
+                  <li>Implementar canales que permitan reportar irregularidades, actos de corrupción y conductas contrarias a la ética empresarial</li>
+                  <li>Garantizar la protección del denunciante frente a represalias</li>
+                  <li>Plazos de gestión medidos en <strong>días naturales</strong> (a diferencia de España)</li>
+                  <li>Empresas sujetas a la Superintendencia de Sociedades deben acreditar la existencia y funcionamiento del canal</li>
+                </ul>
+              </div>
+            </div>
+            <div class="coverage-row">
+              <strong>Cómo lo cubre Valírica —</strong> El módulo adapta automáticamente el cálculo
+              de plazos a días naturales para empresas colombianas, manteniendo el mismo flujo
+              de gestión, encriptación AES-256-CBC y trazabilidad completa.
+            </div>
+          </div>
+
+          <!-- Jornada CO -->
+          <div class="legal-block">
+            <div class="legal-block-header">
+              <i data-lucide="clock" class="legal-block-icon"></i>
+              <span class="legal-block-title">Gestión de Jornada y Horas Extra</span>
+            </div>
+            <div class="legal-block-body">
+              <div class="legal-row">
+                <div class="legal-row-label">Marco legal</div>
+                <div class="legal-row-content">
+                  <strong>Código Sustantivo del Trabajo (CST)</strong>, artículos 158 a 168.
+                  Modificado por la <strong>Ley 2101/2021</strong> de reducción gradual de
+                  jornada laboral.
+                </div>
+              </div>
+              <div class="legal-row">
+                <div class="legal-row-label">Qué establece</div>
+                <div class="content-table-wrap">
+                  <table class="content-table">
+                    <thead>
+                      <tr><th>Concepto</th><th>Regulación</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>Jornada ordinaria máxima</strong></td><td>8h diarias — reducción gradual a 42h semanales hacia 2026 (Ley 2101/2021)</td></tr>
+                      <tr><td><strong>Horas extra diurnas</strong></td><td>Recargo del <strong>25%</strong> sobre el valor de la hora ordinaria</td></tr>
+                      <tr><td><strong>Horas extra nocturnas</strong></td><td>Recargo del <strong>75%</strong> sobre el valor de la hora ordinaria</td></tr>
+                      <tr><td><strong>Trabajo nocturno ordinario</strong></td><td>Recargo del <strong>35%</strong> (entre 9:00 p.m. y 6:00 a.m.)</td></tr>
+                      <tr><td><strong>Trabajo dominical o festivo</strong></td><td>Recargo del <strong>75%</strong> sobre el valor ordinario</td></tr>
+                      <tr><td><strong>Límite horas extra</strong></td><td>Máximo <strong>2 horas diarias</strong> y <strong>12 horas semanales</strong></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="coverage-row">
+              <strong>Cómo lo cubre Valírica —</strong> El módulo de Registro de Jornadas provee
+              los datos de horas trabajadas por colaborador con la trazabilidad necesaria para que
+              el área de nómina calcule correctamente los recargos legales, evitando contingencias
+              por subpago de horas extra o trabajo nocturno.
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.3 Resumen -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">5.3</span>
+            <h3 class="sub-section-title">Resumen de Cobertura Legal por País</h3>
+          </div>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>Obligación</th>
+                  <th>España</th>
+                  <th>Colombia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Registro de jornada diaria</strong></td>
+                  <td><span class="badge badge--active"><span class="badge-dot"></span>RDL 8/2019</span></td>
+                  <td><span class="badge badge--active"><span class="badge-dot"></span>CST + Ley 2101/2021</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Canal de denuncias</strong></td>
+                  <td><span class="badge badge--active"><span class="badge-dot"></span>Ley 2/2023</span></td>
+                  <td><span class="badge badge--active"><span class="badge-dot"></span>Ley 1778/2016 + Ley 2195/2022</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Plazos canal de denuncias</strong></td>
+                  <td>Días hábiles</td>
+                  <td>Días naturales</td>
+                </tr>
+                <tr>
+                  <td><strong>Gestión de horas extra</strong></td>
+                  <td style="color:var(--text-muted)">—</td>
+                  <td><span class="badge badge--active"><span class="badge-dot"></span>CST arts. 158–168</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
 
       <div class="doc-section" id="roadmap">
