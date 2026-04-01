@@ -2101,7 +2101,133 @@
     .timeline-block .tl-arrow { color: #555; }
     .timeline-block .tl-text  { color: #707070; }
 
-    @media (max-width: 640px) {
+    /* ============================================================
+       EXECUTIVE SUMMARY — KPI STRIP, DIFERENCIADORES, QUICK REF
+    ============================================================ */
+
+    /* KPI strip — compact horizontal metrics */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .kpi-cell {
+      background: var(--bg-surface);
+      padding: 20px 18px;
+      text-align: center;
+    }
+
+    .kpi-value {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .kpi-cell:nth-child(1) .kpi-value { color: var(--accent-purple); }
+    .kpi-cell:nth-child(2) .kpi-value { color: var(--accent-orange); }
+    .kpi-cell:nth-child(3) .kpi-value { color: var(--accent-teal); }
+    .kpi-cell:nth-child(4) .kpi-value { color: #4caf8a; }
+
+    .kpi-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Differentiator list */
+    .differentiator-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .diff-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9px;
+      transition: background var(--ease), border-color var(--ease);
+    }
+
+    .diff-item:hover {
+      background: var(--bg-raised);
+      border-color: var(--border-default);
+    }
+
+    .diff-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-purple);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .diff-text {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .diff-text strong { color: var(--text-primary); font-weight: 600; }
+
+    /* Quick-ref rows (compliance, science) */
+    .quick-ref {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .quick-ref-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .quick-ref-key {
+      background: var(--bg-raised);
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+    }
+
+    .quick-ref-val {
+      padding: 10px 16px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+      line-height: 1.5;
+    }
+
+    .quick-ref-val strong { color: var(--text-primary); font-weight: 600; }
+
+    @media (max-width: 700px) {
+      .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+      .quick-ref-row { grid-template-columns: 1fr; }
+      .quick-ref-key { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+    }
       .roadmap-modules { grid-template-columns: 1fr; }
       .roadmap-module-title { padding-right: 0; }
     }
@@ -2574,11 +2700,183 @@
       <div class="doc-section" id="executive-summary">
         <div class="section-divider"></div>
         <h2 class="section-heading">Executive Summary</h2>
-        <p class="section-subheading">Sección 01 — Próximamente</p>
-        <div class="section-placeholder">
-          <i data-lucide="file-text" class="section-placeholder-icon"></i>
-          <p>El contenido de esta sección está en preparación.</p>
+        <p class="section-subheading">Sección 00 — Visión concentrada del producto para decisores</p>
+
+        <!-- Definición -->
+        <p class="section-prose" style="font-size:17px; line-height:1.8; margin-bottom:32px; max-width:100%">
+          Valírica es una <strong>plataforma B2B SaaS de RRHH e Inteligencia Cultural</strong>
+          diseñada para empresas que necesitan cumplir sus obligaciones laborales y, al mismo
+          tiempo, comprender con precisión científica la cultura y el potencial de su equipo —
+          todo en un único entorno, sin integraciones de terceros ni duplicación de herramientas.
+        </p>
+
+        <!-- KPIs -->
+        <div class="kpi-strip">
+          <div class="kpi-cell">
+            <div class="kpi-value">+200</div>
+            <div class="kpi-label">Empleados analizados en producción</div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-value">3</div>
+            <div class="kpi-label">Mercados activos — CO, MX, ES</div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-value">9</div>
+            <div class="kpi-label">Módulos funcionales activos</div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-value">5</div>
+            <div class="kpi-label">Modelos científicos integrados</div>
+          </div>
         </div>
+
+        <!-- Problema y solución -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">ES.1</span>
+            <h3 class="sub-section-title">El Problema que Resuelve</h3>
+          </div>
+          <div class="content-table-wrap">
+            <table class="content-table">
+              <thead>
+                <tr><th>Dimensión</th><th>Gap actual en el mercado</th><th>Respuesta de Valírica</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Operativa</strong></td>
+                  <td>Jornadas, metas, permisos y denuncias gestionados en herramientas dispersas — fricción, errores y riesgo legal acumulado</td>
+                  <td>5 módulos operativos integrados: fichaje, canal de denuncias, metas, documentos y permisos</td>
+                </tr>
+                <tr>
+                  <td><strong>Estratégica</strong></td>
+                  <td>Las organizaciones toman decisiones de personas sin datos reales sobre cultura, motivación ni riesgo de rotación</td>
+                  <td>Motor de inteligencia cultural basado en 5 modelos académicos — genera perfil multidimensional por colaborador</td>
+                </tr>
+                <tr>
+                  <td><strong>Legal</strong></td>
+                  <td>Las plataformas genéricas ignoran las particularidades regulatorias de cada país iberoamericano</td>
+                  <td>Compliance nativo por mercado: RDL 8/2019 y Ley 2/2023 en España; Ley 1778/2016, Ley 2195/2022 y CST en Colombia</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Diferenciadores -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">ES.2</span>
+            <h3 class="sub-section-title">Diferenciadores Clave</h3>
+          </div>
+          <div class="differentiator-list">
+            <div class="diff-item">
+              <i data-lucide="merge" class="diff-icon"></i>
+              <span class="diff-text"><strong>Compliance + Estrategia en una sola plataforma.</strong> La mayoría de soluciones resuelven uno o el otro. Valírica integra ambas dimensiones sin fricción.</span>
+            </div>
+            <div class="diff-item">
+              <i data-lucide="flask-conical" class="diff-icon"></i>
+              <span class="diff-text"><strong>Ciencia, no intuición.</strong> Hofstede, Maslow, Daniel Pink, Thomas-Kilmann y VAK aplicados en tiempo real — no como encuesta anual, sino como perfil continuo.</span>
+            </div>
+            <div class="diff-item">
+              <i data-lucide="globe" class="diff-icon"></i>
+              <span class="diff-text"><strong>Compliance adaptado por mercado.</strong> Los plazos, legislación y flujos del canal de denuncias y registro de jornada se calculan según la ley local de cada país.</span>
+            </div>
+            <div class="diff-item">
+              <i data-lucide="smartphone" class="diff-icon"></i>
+              <span class="diff-text"><strong>100% web, sin fricción de adopción.</strong> Ningún colaborador instala nada. El módulo del equipo es PWA instalable desde cualquier dispositivo — sin App Store ni Google Play.</span>
+            </div>
+            <div class="diff-item">
+              <i data-lucide="lock" class="diff-icon"></i>
+              <span class="diff-text"><strong>Seguridad por diseño.</strong> AES-256-CBC para datos sensibles del canal de denuncias, bcrypt en contraseñas, prepared statements contra inyección SQL y CSRF en todos los formularios.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Usuarios -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">ES.3</span>
+            <h3 class="sub-section-title">Usuarios y Acceso</h3>
+          </div>
+          <div class="quick-ref">
+            <div class="quick-ref-row">
+              <div class="quick-ref-key">Admin de empresa</div>
+              <div class="quick-ref-val">Responsable de RRHH — acceso completo a todos los módulos, análisis culturales y gestión del equipo. <strong>Escritorio (navegador).</strong></div>
+            </div>
+            <div class="quick-ref-row">
+              <div class="quick-ref-key">Miembro del equipo</div>
+              <div class="quick-ref-val">Colaborador — fichaje, permisos, documentos y diagnósticos propios. <strong>Web responsive + PWA instalable en móvil.</strong></div>
+            </div>
+            <div class="quick-ref-row">
+              <div class="quick-ref-key">Incorporación</div>
+              <div class="quick-ref-val">Por <strong>token de invitación</strong> — sin registros abiertos, con tiempo de expiración. Multi-tenant: cada empresa aislada en su espacio de datos.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compliance -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">ES.4</span>
+            <h3 class="sub-section-title">Cobertura Legal por Mercado</h3>
+          </div>
+          <div class="quick-ref">
+            <div class="quick-ref-row">
+              <div class="quick-ref-key">🇪🇸 España</div>
+              <div class="quick-ref-val">
+                <span class="badge badge--active"><span class="badge-dot"></span>RDL 8/2019</span>
+                <span class="badge badge--active"><span class="badge-dot"></span>Ley 2/2023</span>
+                <span class="badge badge--active"><span class="badge-dot"></span>Dir. UE 2019/1937</span>
+                <span class="badge badge--active"><span class="badge-dot"></span>GDPR / LOPD-GDD</span>
+              </div>
+            </div>
+            <div class="quick-ref-row">
+              <div class="quick-ref-key">🇨🇴 Colombia</div>
+              <div class="quick-ref-val">
+                <span class="badge badge--active"><span class="badge-dot"></span>Ley 1778/2016</span>
+                <span class="badge badge--active"><span class="badge-dot"></span>Ley 2195/2022</span>
+                <span class="badge badge--active"><span class="badge-dot"></span>CST arts. 158–168</span>
+                <span class="badge badge--active"><span class="badge-dot"></span>Ley 2101/2021</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ciencia -->
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <span class="sub-section-num">ES.5</span>
+            <h3 class="sub-section-title">Base Científica</h3>
+          </div>
+          <div class="quick-ref">
+            <div class="quick-ref-row">
+              <div class="quick-ref-key">Hofstede (1980)</div>
+              <div class="quick-ref-val">6 dimensiones culturales — índice de alineación empresa ↔ colaborador</div>
+            </div>
+            <div class="quick-ref-row">
+              <div class="quick-ref-key">Maslow (1943)</div>
+              <div class="quick-ref-val">Jerarquía de necesidades — nivel desde el que opera cada colaborador hoy</div>
+            </div>
+            <div class="quick-ref-row">
+              <div class="quick-ref-key">Daniel Pink (2009)</div>
+              <div class="quick-ref-val">Motivación intrínseca — palancas activas: autonomía, maestría, propósito</div>
+            </div>
+            <div class="quick-ref-row">
+              <div class="quick-ref-key">Thomas-Kilmann (1974)</div>
+              <div class="quick-ref-val">5 estilos de resolución de conflicto — anticipa tensiones en el equipo</div>
+            </div>
+            <div class="quick-ref-row">
+              <div class="quick-ref-key">VAK (Fleming, 1992)</div>
+              <div class="quick-ref-val">Estilos de aprendizaje — canal preferente para formación y comunicación</div>
+            </div>
+          </div>
+          <div class="callout" style="margin-top:16px">
+            Cada modelo responde una pregunta distinta sobre la persona. Combinados forman un
+            <strong>perfil multidimensional único por colaborador</strong> — la visión más completa
+            disponible en el mercado iberoamericano sobre el individuo como unidad de análisis.
+          </div>
+        </div>
+
       </div>
 
       <div class="doc-section" id="product-overview">
