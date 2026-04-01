@@ -663,6 +663,231 @@
     }
 
     /* ============================================================
+       CONTENT BLOCKS — DASHBOARD PORTADA
+    ============================================================ */
+
+    /* Block label */
+    .block-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .block-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-subtle);
+    }
+
+    /* Prose paragraph */
+    .prose-block {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin-bottom: 52px;
+    }
+
+    .prose-block strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Problem grid */
+    .problem-section {
+      margin-bottom: 52px;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .problem-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 24px 24px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 3px 3px 0 0;
+    }
+
+    .problem-card--operativo::before  { background: var(--accent-orange); }
+    .problem-card--estrategico::before { background: var(--accent-purple); }
+
+    .problem-card-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-bottom: 14px;
+    }
+
+    .problem-card--operativo  .problem-card-type {
+      color: var(--accent-orange);
+      background: var(--accent-orange-dim);
+    }
+
+    .problem-card--estrategico .problem-card-type {
+      color: var(--accent-purple);
+      background: var(--accent-purple-dim);
+    }
+
+    .problem-card-icon {
+      width: 14px;
+      height: 14px;
+    }
+
+    .problem-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .problem-card-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .problem-resolution {
+      margin-top: 16px;
+      padding: 16px 20px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .problem-resolution strong {
+      color: var(--accent-purple);
+    }
+
+    /* Pillars */
+    .pillars-section {
+      margin-bottom: 52px;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .pillar-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 28px 26px 26px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--ease), box-shadow var(--ease);
+    }
+
+    .pillar-card:hover {
+      border-color: var(--border-default);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+
+    .pillar-card--practicas {
+      border-top: 2px solid var(--accent-teal);
+    }
+
+    .pillar-card--cultural {
+      border-top: 2px solid var(--accent-purple);
+    }
+
+    .pillar-card-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .pillar-card--practicas .pillar-card-icon-wrap {
+      background: var(--accent-teal-dim);
+      border: 1px solid rgba(0, 122, 150, 0.2);
+    }
+
+    .pillar-card--cultural .pillar-card-icon-wrap {
+      background: var(--accent-purple-dim);
+      border: 1px solid rgba(123, 94, 167, 0.2);
+    }
+
+    .pillar-card-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .pillar-card--practicas .pillar-card-icon { color: var(--accent-teal); }
+    .pillar-card--cultural  .pillar-card-icon { color: var(--accent-purple); }
+
+    .pillar-card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .pillar-card-text {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .pillar-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pillar-tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 5px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      background: var(--bg-raised);
+    }
+
+    /* Responsive — content blocks */
+    @media (max-width: 640px) {
+      .problem-grid { grid-template-columns: 1fr; }
+      .pillars-grid  { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
        HAMBURGER / MOBILE OVERLAY
     ============================================================ */
     .hamburger {
@@ -891,22 +1116,73 @@
         </h1>
 
         <p class="hero-subtitle">
-          Valírica es una plataforma B2B de RRHH e Inteligencia Cultural para PYMES.
-          Este documento recoge la arquitectura funcional, la ciencia aplicada,
-          los módulos del producto y el marco legal y de cumplimiento.
+          Plataforma B2B de gestión de personas que combina herramientas operativas
+          de RRHH con inteligencia cultural basada en ciencia del comportamiento humano.
         </p>
 
         <div class="hero-meta-row">
-          <span class="hero-tag">Plataforma SaaS</span>
+          <span class="hero-tag">Plataforma SaaS · B2B</span>
           <span class="hero-tag-sep"></span>
           <span class="hero-tag">RRHH + Inteligencia Cultural</span>
           <span class="hero-tag-sep"></span>
-          <span class="hero-tag">España · Colombia</span>
+          <span class="hero-tag">España · Colombia · México</span>
           <span class="hero-tag-sep"></span>
-          <span class="hero-tag">v1.0 · 2026</span>
+          <span class="hero-tag">v1.0 · Abril 2026</span>
         </div>
 
       </section>
+
+      <!-- ============================================================
+           QUÉ ES VALÍRICA
+      ============================================================ -->
+      <div class="block-label">Qué es Valírica</div>
+      <p class="prose-block">
+        Valírica permite a las empresas <strong>cumplir con sus obligaciones laborales</strong>
+        y, al mismo tiempo, <strong>comprender a profundidad la cultura de su organización</strong>
+        y el perfil de cada persona en su equipo. Es el punto de encuentro entre
+        el RRHH del día a día y la <strong>estrategia de personas a largo plazo</strong> —
+        todo en una sola plataforma, sin herramientas dispersas ni datos desconectados.
+      </p>
+
+      <!-- ============================================================
+           EL PROBLEMA QUE RESUELVE
+      ============================================================ -->
+      <div class="problem-section">
+        <div class="block-label">El problema que resuelve</div>
+        <div class="problem-grid">
+
+          <div class="problem-card problem-card--operativo">
+            <div class="problem-card-type">
+              <i data-lucide="zap" class="problem-card-icon"></i>
+              Operativo
+            </div>
+            <div class="problem-card-title">Herramientas dispersas, fricción constante</div>
+            <div class="problem-card-text">
+              Las empresas gestionan permisos, jornadas, documentos, metas y denuncias
+              en hojas de cálculo, correo y apps desconectadas — generando fricción,
+              errores y riesgo legal acumulado.
+            </div>
+          </div>
+
+          <div class="problem-card problem-card--estrategico">
+            <div class="problem-card-type">
+              <i data-lucide="brain" class="problem-card-icon"></i>
+              Estratégico
+            </div>
+            <div class="problem-card-title">Decisiones de personas sin datos reales</div>
+            <div class="problem-card-text">
+              La mayoría de organizaciones no tienen visibilidad real sobre su cultura,
+              el riesgo de perder talento clave, ni una comprensión científica de su equipo —
+              tomando decisiones basadas en intuición, no en evidencia.
+            </div>
+          </div>
+
+        </div>
+        <div class="problem-resolution">
+          <strong>Valírica resuelve ambas dimensiones en una sola plataforma</strong> —
+          sin necesidad de integrar herramientas de terceros ni construir modelos de análisis propios.
+        </div>
+      </div>
 
       <!-- ============================================================
            METRICS BLOCK
@@ -916,21 +1192,69 @@
         <div class="metric-card">
           <div class="metric-number">+200</div>
           <div class="metric-label">Empleados analizados</div>
-          <div class="metric-desc">Perfiles activos con radiografía cultural generada</div>
+          <div class="metric-desc">Perfiles con radiografía cultural generada en producción</div>
         </div>
 
         <div class="metric-card">
           <div class="metric-number">3</div>
-          <div class="metric-label">Países de operación</div>
-          <div class="metric-desc">España, Colombia y México en fase de expansión</div>
+          <div class="metric-label">Mercados activos</div>
+          <div class="metric-desc">Colombia, México y España — tres marcos laborales distintos</div>
         </div>
 
         <div class="metric-card">
           <div class="metric-number">2</div>
-          <div class="metric-label">Perfiles de usuario</div>
-          <div class="metric-desc">Directivos de RRHH y consultoras de talento humano</div>
+          <div class="metric-label">Usuarios principales</div>
+          <div class="metric-desc">Directivos de RRHH en empresas y consultoras de talento humano</div>
         </div>
 
+      </div>
+
+      <!-- ============================================================
+           LOS DOS PILARES
+      ============================================================ -->
+      <div class="pillars-section">
+        <div class="block-label">Los dos pilares</div>
+        <div class="pillars-grid">
+
+          <div class="pillar-card pillar-card--practicas">
+            <div class="pillar-card-icon-wrap">
+              <i data-lucide="briefcase" class="pillar-card-icon"></i>
+            </div>
+            <div class="pillar-card-title">Herramientas Prácticas</div>
+            <div class="pillar-card-text">
+              Todo lo que un equipo de RRHH necesita para operar con orden y cumplimiento:
+              jornadas, metas, documentos, permisos, vacaciones y canal de denuncias —
+              en un solo lugar, sin fricciones.
+            </div>
+            <div class="pillar-tag-list">
+              <span class="pillar-tag">Fichaje digital</span>
+              <span class="pillar-tag">Canal de denuncias</span>
+              <span class="pillar-tag">Gestión de metas</span>
+              <span class="pillar-tag">Permisos y vacaciones</span>
+              <span class="pillar-tag">Documentos</span>
+            </div>
+          </div>
+
+          <div class="pillar-card pillar-card--cultural">
+            <div class="pillar-card-icon-wrap">
+              <i data-lucide="brain-circuit" class="pillar-card-icon"></i>
+            </div>
+            <div class="pillar-card-title">Inteligencia Cultural</div>
+            <div class="pillar-card-text">
+              Un motor de análisis basado en modelos científicos consolidados que convierte
+              los datos del equipo en decisiones estratégicas sobre cultura, clima y talento —
+              sin encuestas adicionales.
+            </div>
+            <div class="pillar-tag-list">
+              <span class="pillar-tag">Hofstede</span>
+              <span class="pillar-tag">Maslow</span>
+              <span class="pillar-tag">Daniel Pink</span>
+              <span class="pillar-tag">Estilos de aprendizaje</span>
+              <span class="pillar-tag">Competing Values Framework</span>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <!-- ============================================================
